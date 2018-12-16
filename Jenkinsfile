@@ -1,6 +1,6 @@
 node {
  	// Clean workspace before doing anything
-    sudo deleteDir()
+    deleteDir()
 
     try {
         stage ('Clone') {
