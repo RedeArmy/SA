@@ -22,7 +22,7 @@ node {
             sh "sudo chgrp -R www-data /var/www/html/SA-Proyecto"
             sh "sudo chmod -R 775 /var/www/html/SA-Proyecto/storage"
             sh "cd /var/www/html/SA-Proyecto"
-            sh "sudo composer update"
+            sh "sudo composer install"
       	}
     } catch (err) {
         currentBuild.result = 'FAILED'
