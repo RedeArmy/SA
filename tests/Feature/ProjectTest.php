@@ -75,7 +75,7 @@ class ProjectTest extends TestCase
     /** @test */
     function existeDpto_tester() 
     {
-      $this->assertTrue(app('App\Http\Controllers\DepartamentoController')->existeDpto(20) == true);
+      $this->assertTrue(app('App\Http\Controllers\MunicipioController')->existeDpto(20) == true);
     }
 
     /** @test */
