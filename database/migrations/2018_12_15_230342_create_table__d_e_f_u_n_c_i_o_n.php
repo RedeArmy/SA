@@ -15,9 +15,26 @@ class CreateTableDEFUNCION extends Migration
     {
         Schema::create('DEFUNCION', function (Blueprint $table) {
             $table->engine = 'InnoDB';
-            $table->increments('acta_defuncion');
+            $table->increments('no_acta');
             $table->integer('cui_difunto')->unsigned();
+            $table->integer('cui_compareciente')->unsigned();
+            $table->integer('muni_defuncion')->unsigned();
+            $table->string('direccion_defuncion',200);
+            $table->datetime('fecha_hora');
+            $table->string('causa',200)->nullable();
             $table->timestamps();
+
+            $table->foreign('cui_difunto')
+                ->references('cui')->on('PERSONA')
+                ->onDelete('cascade');
+
+            $table->foreign('cui_compareciente')
+                ->references('cui')->on('PERSONA')
+                ->onDelete('cascade');
+
+            $table->foreign('muni_defuncion')
+                ->references('id_muni')->on('MUNICIPIO')
+                ->onDelete('cascade');
         });
     }
 

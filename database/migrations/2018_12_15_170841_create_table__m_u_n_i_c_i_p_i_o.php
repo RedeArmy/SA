@@ -20,7 +20,7 @@ class CreateTableMUNICIPIO extends Migration
             $table->integer('id_dpto')->unsigned();
             $table->timestamps();
 
-            $table->foreign('id_muni')
+            $table->foreign('id_dpto')
                 ->references('id_dpto')->on('DEPARTAMENTO')
                 ->onDelete('cascade');
         });
