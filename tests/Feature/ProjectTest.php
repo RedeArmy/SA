@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-
+use ->
 class ProjectTest extends TestCase
 {
     /**
@@ -16,13 +16,6 @@ class ProjectTest extends TestCase
     public function testExample()
     {
         $this->assertTrue(true);
-    }
-
-    /** @test */
-    function servicio_nacimiento_tester() 
-    {
-      $this->resource('servicionacimiento')
-        ->assertStatus(200);
     }
 
     /** @test */
@@ -43,31 +36,31 @@ class ProjectTest extends TestCase
     /** @test */
     function valida_CUI_nac_tester() 
     {
-      $this->assertTrue(ServNacimientoController)->valida_CUI_Nacimiento(2954728550101);
+      $this->assertTrue($ServNacimientoController->valida_CUI_Nacimiento(295472855));
     }
 
     /** @test */
     function formar_CUI_sum_tester() 
     {
-      $this->assertTrue(ServNacimientoController)->FormarCUISumatoria(29547285) == 228;
+      $this->assertTrue($ServNacimientoController->FormarCUISumatoria(295472855) == 228);
     }
 
     /** @test */
     function obtener_ultimo_dig_tester() 
     {
-      $this->assertTrue(ServNacimientoController)->ObtenerUltimoDigito(29547285) == 5;
+      $this->assertTrue($ServNacimientoController->ObtenerUltimoDigito(295472855) == 5);
     }
 
     /** @test */
     function valida_ultimo_val_tester() 
     {
-      $this->assertTrue(ServNacimientoController)->ValidarUltimoValor(228,5);
+      $this->assertTrue($ServNacimientoController->ValidarUltimoValor(228,5));
     }
 
     /** @test */
     function valor_entero_tester() 
     {
-      $this->assertTrue(ServNacimientoController)->valor_entero() == 24;
+      $this->assertTrue($ServNacimientoController->valor_entero() == 24);
     }
 
 }
