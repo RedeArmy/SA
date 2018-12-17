@@ -21,8 +21,8 @@ node {
             sh "sudo cp -R /var/lib/jenkins/workspace/SA-Proyecto/ /var/www/html/"
             sh "sudo chgrp -R www-data /var/www/html/SA-Proyecto"
             sh "sudo chmod -R 775 /var/www/html/SA-Proyecto/storage"
-            sh "cd /var/www/html/SA-Proyecto"
-            sh "sudo composer install"
+            sh "sudo rm -rf /var/lib/jenkins/workspace/SA-Proyecto"
+            sh "sudo mkdir /var/lib/jenkins/workspace/SA-Proyecto"
       	}
     } catch (err) {
         currentBuild.result = 'FAILED'
