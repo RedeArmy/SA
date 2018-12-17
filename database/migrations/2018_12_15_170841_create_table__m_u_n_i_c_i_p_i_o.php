@@ -14,6 +14,7 @@ class CreateTableMUNICIPIO extends Migration
     public function up()
     {
         Schema::create('MUNICIPIO', function (Blueprint $table) {
+            
             $table->engine = 'InnoDB';
             $table->increments('id_muni');
             $table->string('nombre',100);
