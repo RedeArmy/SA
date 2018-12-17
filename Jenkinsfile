@@ -1,5 +1,6 @@
 node {
  	// Clean workspace before doing anything
+    sh "sudo chmod 777 -R /var/lib/jenkins/workspace/SA-Proyecto"
     deleteDir()
 
     try {
