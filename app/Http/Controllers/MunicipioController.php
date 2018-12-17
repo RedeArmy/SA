@@ -114,7 +114,7 @@ class MunicipioController extends Controller
             ->where('id_dpto','=',$id_dpto)
             ->get();
 
-        if(!existeDpto()){
+        if($existe == "[]"){
             $d = new Municipio;
             $d->mensaje = "No hay Departamento con ese codigo";
             $d->codigoMensaje = "-1";
