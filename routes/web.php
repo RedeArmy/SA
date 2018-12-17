@@ -23,4 +23,10 @@ Route::get('api/v1/imprimirNacimiento/{valor}',"ServNacimientoController@imprimi
 
 Route::get('api/v1/registrarNacimiento/{valor}',"ServNacimientoController@registrarNacimiento");
 
+Route::resource('departamento','DepartamentoController');
+
+Route::get('api/v1/dptos','DepartamentoController@getDptos');
+
+Route::get('api/v1/muni/{valor}','MunicipioController@getMuni');
+
 
