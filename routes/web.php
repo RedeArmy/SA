@@ -15,7 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::resource('servicionacimiento','ServNacimientoController');
 
 Route::get('api/v1/nacs','ServNacimientoController@getPrueba');
@@ -23,3 +22,5 @@ Route::get('api/v1/nacs','ServNacimientoController@getPrueba');
 Route::get('api/v1/imprimirNacimiento/{valor}',"ServNacimientoController@imprimirNacimiento");
 
 Route::get('api/v1/registrarNacimiento/{valor}',"ServNacimientoController@registrarNacimiento");
+
+

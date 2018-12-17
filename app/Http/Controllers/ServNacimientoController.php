@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ServNacimientoController extends Controller
 {
@@ -238,12 +239,7 @@ class ServNacimientoController extends Controller
         $modulo_valor = $objeto->CalcularModulo11($total_sumatodo);
         
         $valor_inicial = $valor_inicial + $modulo_valor;
-/*
-        echo "\n<br>";
-        echo "\n<br>";
-
-        echo "CUI GENERADO: ".$valor_inicial;
-*/      
+  
         return $valor_inicial;
     }
 
@@ -251,9 +247,14 @@ class ServNacimientoController extends Controller
 
         //CODIGO DE LA CONSULTA PARA CONOCER SI EXISTE EL CUI GENERADO
 
+        $users = DB::table('PERSONA')->get();
+        
+        foreach ($users as $user) {
+            echo "existe mi cui: ".$user->nombre_persona;
+        }
+
         return false;
     }
-
 
     /**
      * SERVICIOS WEB - REGISTRAR NACIMIENTOS
@@ -323,7 +324,6 @@ class ServNacimientoController extends Controller
             //CONSULTA A LA BASE DE DATOS DEL SISTEMA
 
             $json_response = [
-
             ];
             
             return response()->json($json_response);

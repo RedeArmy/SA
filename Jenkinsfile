@@ -21,6 +21,7 @@ node {
             sh "sudo cp -R /var/lib/jenkins/workspace/SA-Proyecto/ /var/www/html/"
             sh "sudo chgrp -R www-data /var/www/html/SA-Proyecto"
             sh "sudo chmod -R 775 /var/www/html/SA-Proyecto/storage"
+            sh "sudo composer update /var/www/html/SA-Proyecto"
             //sh "sudo mkdir /var/lib/jenkins/workspace/SA-Proyecto"
       	}
     } catch (err) {
