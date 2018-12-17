@@ -1,7 +1,10 @@
 node {
- 	// Clean workspace before doing anything
-    sh "sudo rm -rf /var/lib/jenkins/workspace/SA-Proyecto/"
-    sh "sudo mkdir /var/lib/jenkins/workspace/SA-Proyecto"
+ 	// Clean workspace before doing anything'
+     if(fileExist('/var/lib/jenkins/workspace/SA-Proyecto/')){
+         sh "sudo rm -RF /var/lib/jenkins/workspace/SA-Proyecto/"
+     }
+         sh "sudo mkdir /var/lib/jenkins/workspace/SA-Proyecto"
+
 
     try {
         stage ('Clone') {
