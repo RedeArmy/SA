@@ -18,6 +18,7 @@ class CreateTableNACIMIENTO extends Migration
             $table->engine = 'InnoDB';
             $table->increments('acta_nac');
             $table->bigInteger('cui')->unsigned();
+            
             $table->bigInteger('cui_padre')->unsigned();
             $table->bigInteger('cui_madre')->unsigned();
             $table->integer('id_muni')->unsigned();
