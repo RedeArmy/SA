@@ -238,12 +238,7 @@ class ServNacimientoController extends Controller
         $modulo_valor = $objeto->CalcularModulo11($total_sumatodo);
         
         $valor_inicial = $valor_inicial + $modulo_valor;
-/*
-        echo "\n<br>";
-        echo "\n<br>";
-
-        echo "CUI GENERADO: ".$valor_inicial;
-*/      
+  
         return $valor_inicial;
     }
 
@@ -251,9 +246,14 @@ class ServNacimientoController extends Controller
 
         //CODIGO DE LA CONSULTA PARA CONOCER SI EXISTE EL CUI GENERADO
 
+        $users = DB::table('PERSONA')->get();
+        
+        foreach ($users as $user) {
+            echo $user->nombre_persona;
+        }
+
         return false;
     }
-
 
     /**
      * SERVICIOS WEB - REGISTRAR NACIMIENTOS
