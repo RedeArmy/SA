@@ -18,6 +18,26 @@ class ProjectTest extends TestCase
         $this->assertTrue(true);
     }
 
+    /** @test */
+    function servicio_nacimiento_tester() 
+    {
+      $this->resource('servicionacimiento')
+        ->assertStatus(200);
+    }
+
+    /** @test */
+    function sev_nacimiento_getPrueba_tester() 
+    {
+      $this->get('/api/v1/nacs')
+        ->assertStatus(200);
+    }
+
+    /** @test */
+    function imprimir_nac_tester() 
+    {
+      $this->get('/api/v1/imprimirNacimiento/2')
+        ->assertStatus(200);
+    }
 
 
     /** @test */
@@ -47,7 +67,7 @@ class ProjectTest extends TestCase
     /** @test */
     function valor_entero_tester() 
     {
-      $this->assertTrue(ServNacimientoController)->valor_entero() == 24;
+      $this->assertTrue(ServNacimientoController)->valor_entero() == 24);
     }
 
 }
