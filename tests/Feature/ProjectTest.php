@@ -67,7 +67,7 @@ class ProjectTest extends TestCase
     /** @test */
     function valor_entero_tester() 
     {
-      $this->assertTrue(ServNacimientoController)->valor_entero() == 24);
+      $this->assertTrue(ServNacimientoController)->valor_entero() == 24;
     }
 
 }
