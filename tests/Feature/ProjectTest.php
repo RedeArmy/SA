@@ -73,6 +73,12 @@ class ProjectTest extends TestCase
     }
 
     /** @test */
+    function existeDpto_tester() 
+    {
+      $this->assertTrue(app('App\Http\Controllers\DepartamentoController')->existeDpto(20) == true);
+    }
+
+    /** @test */
     function obtener_ultimo_dig_tester() 
     {
       

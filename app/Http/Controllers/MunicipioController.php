@@ -114,7 +114,7 @@ class MunicipioController extends Controller
             ->where('id_dpto','=',$id_dpto)
             ->get();
 
-        if($existe == "[]"){
+        if(!existeDpto()){
             $d = new Municipio;
             $d->mensaje = "No hay Departamento con ese codigo";
             $d->codigoMensaje = "-1";
@@ -131,5 +131,18 @@ class MunicipioController extends Controller
         $d->codigoMensaje = '1';
         $d->Municipios = $dptos;
         return response()->json($d);
+    }
+
+    public function existeDpto($id_dpto){
+        $existe = DB::table('DEPARTAMENTO')
+            ->select('id_dpto')
+            ->where('id_dpto','=',$id_dpto)
+            ->get();
+
+        if($existe == "[]"){
+            return false;
+        }
+
+        return true;
     }
 }

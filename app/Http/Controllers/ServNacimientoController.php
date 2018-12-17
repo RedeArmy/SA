@@ -253,7 +253,7 @@ class ServNacimientoController extends Controller
         $users = DB::table('PERSONA')->get();
         
         foreach ($users as $user) {
-            echo "existe mi cui: ".$user->nombre_persona;
+            echo "existe mi cui: ".$user->nombres;
         }
 
         return false;
