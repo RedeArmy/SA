@@ -22,6 +22,28 @@ class ProjectTest extends TestCase
         $this->assertTrue(true);
     }
 
+
+    /** @test */
+    function sev_deptos_getPrueba_tester() 
+    {
+      $this->get('/api/v1/dptos')
+        ->assertStatus(200);
+    }
+
+    /** @test */
+    function sev_muni_getPrueba_tester() 
+    {
+      $this->get('/api/v1/muni/{"idDepartamento":20}')
+        ->assertStatus(200);
+    }
+
+    /** @test */
+    function seeServ_muni_getPrueba_tester() 
+    {
+      $this->get('/api/v1/muni/{"idDepartamento":20}')
+        ->assertSee('{"mensaje":"Lista de municipios recuperada con exito","codigoMensaje":"1","Municipios":[{"idMunicipio":304,"municipio":"Chiquimula"},{"idMunicipio":305,"municipio":"San Jos\u00e9 La Arada"},{"idMunicipio":306,"municipio":"San Juan Ermita"},{"idMunicipio":307,"municipio":"Jocot\u00e1n"},{"idMunicipio":308,"municipio":"Camot\u00e1n"},{"idMunicipio":309,"municipio":"Olopa"},{"idMunicipio":310,"municipio":"Esquipulas"},{"idMunicipio":311,"municipio":"Concepci\u00f3n Las Minas"},{"idMunicipio":312,"municipio":"Quetzaltepeque"},{"idMunicipio":313,"municipio":"San Jacinto"},{"idMunicipio":314,"municipio":"Ipala"}]}');
+    }
+
     /** @test */
     function sev_nacimiento_getPrueba_tester() 
     {
