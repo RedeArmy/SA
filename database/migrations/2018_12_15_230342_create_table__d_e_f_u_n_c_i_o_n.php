@@ -15,7 +15,7 @@ class CreateTableDEFUNCION extends Migration
     {
         Schema::create('DEFUNCION', function (Blueprint $table) {
 
-            /*corregidos */
+            /* corregidos */
             $table->engine = 'InnoDB';
             $table->increments('no_acta');
             $table->integer('cui_difunto')->unsigned();
