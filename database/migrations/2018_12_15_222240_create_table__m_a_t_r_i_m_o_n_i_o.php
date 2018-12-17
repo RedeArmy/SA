@@ -16,8 +16,8 @@ class CreateTableMATRIMONIO extends Migration
         Schema::create('MATRIMONIO', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('acta_matrimonio');
-            $table->integer('cui_esposo')->unsigned();
-            $table->integer('cui_esposa')->unsigned();
+            $table->bigInteger('cui_esposo')->unsigned();
+            $table->bigInteger('cui_esposa')->unsigned();
             $table->integer('id_muni')->unsigned();
             $table->string('direccion_matri',200);
             $table->string('regimen_eco',100);

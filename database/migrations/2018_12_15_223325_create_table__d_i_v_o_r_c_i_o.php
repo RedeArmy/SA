@@ -16,8 +16,8 @@ class CreateTableDIVORCIO extends Migration
         Schema::create('DIVORCIO', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('acta_divorcio');
-            $table->integer('cui_esposo')->unsigned();
-            $table->integer('cui_esposa')->unsigned();
+            $table->bigInteger('cui_esposo')->unsigned();
+            $table->bigInteger('cui_esposa')->unsigned();
             $table->string('direccion_divorcio',200);
             $table->integer('id_muni')->unsigned();
             $table->date('fecha_divorcio');

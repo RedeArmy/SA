@@ -18,8 +18,8 @@ class CreateTableDEFUNCION extends Migration
             /* corregidos */
             $table->engine = 'InnoDB';
             $table->increments('no_acta');
-            $table->integer('cui_difunto')->unsigned();
-            $table->integer('cui_compareciente')->unsigned();
+            $table->bigInteger('cui_difunto')->unsigned();
+            $table->bigInteger('cui_compareciente')->unsigned();
             $table->integer('muni_defuncion')->unsigned();
             $table->string('direccion_defuncion',200);
             $table->datetime('fecha_hora');

@@ -17,7 +17,7 @@ class CreateTablePERSONA extends Migration
         Schema::create('PERSONA', function (Blueprint $table) {
             
             $table->engine = 'InnoDB';
-            $table->integer('cui')->unsigned();
+            $table->bigInteger('cui')->unsigned();
             $table->string('nombres',200);
             $table->string('apellidos',200);
             $table->integer('genero')->unsigned();

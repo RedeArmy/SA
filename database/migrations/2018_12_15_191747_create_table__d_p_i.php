@@ -16,7 +16,7 @@ class CreateTableDPI extends Migration
         Schema::create('DPI', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id_dpi');
-            $table->integer('cui_persona')->unsigned();
+            $table->bigInteger('cui_persona')->unsigned();
             $table->date('fecha_vence');
             $table->timestamps();
 
