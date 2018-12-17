@@ -73,9 +73,10 @@ class ProjectTest extends TestCase
     }
 
     /** @test */
-    function existeDpto_tester() 
-    {
-      $this->assertTrue(app('App\Http\Controllers\MunicipioController')->existeDpto(20) == true);
+    function sumatoriaCUI_tester() 
+    {      
+      $this->assertFalse(app('App\Http\Controllers\ServNacimientoController')->FormarCUISumatoria(256461546) == 2);
+      //$this->assertTrue(app('App\Http\Controllers\MunicipioController')->existeDpto(20) == true);
     }
 
     /** @test */
