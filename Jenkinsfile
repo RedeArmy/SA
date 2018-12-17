@@ -1,6 +1,7 @@
 node {
  	// Clean workspace before doing anything
-    sudo deleteDir()
+    sh "sudo rm -rf /var/lib/jenkins/workspace/SA-Proyecto/"
+    sh "sudo mkdir /var/lib/jenkins/workspace/SA-Proyecto"
 
     try {
         stage ('Clone') {
