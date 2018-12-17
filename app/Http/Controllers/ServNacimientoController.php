@@ -105,9 +105,9 @@ class ServNacimientoController extends Controller
         for($x = 0; $x < ($num_digits - 1); $x++){
             $valor_multiplicacion = $x + 2;
             $total_sumandos += ($valor_multiplicacion * $array[$x]);
-            //echo "Valor inicio: ".$array[$x]." * ".$valor_multiplicacion." = ";
-            //echo $total_sumandos;
-            //echo "\n";
+            echo "Valor inicio: ".$array[$x]." * ".$valor_multiplicacion." = ";
+            echo $total_sumandos;
+            echo "\n";
             //Log::info($total_sumandos);
         }
 
@@ -141,12 +141,14 @@ class ServNacimientoController extends Controller
         $objeto = new ServNacimientoController;
         $valor = $objeto->CalcularModulo11($Sumatoria);
 
-        //echo "\nVALIDACION DE VALORES: ".$valor." === ".$ultimoDigito."\n"; 
-
-        if($valor === $ultimoDigito){
+        echo "\nVALIDACION DE VALORES: ".$valor." === ".$ultimoDigito."\n"; 
+        
+        if($valor == $ultimoDigito){
+            echo 'resultado true';
             return true;
         }
         else{
+            echo 'resultado false';
             return false;
         }
 
