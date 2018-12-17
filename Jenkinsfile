@@ -4,7 +4,7 @@ node {
     try {
         stage ('Clone') {
             sh "sudo rm -rf /var/lib/jenkins/workspace/SA-Proyecto"
-            sh "sudo mkdir /var/lib/jenkins/workspace/SA-Proyecto"
+            sh "sudo mkdir /var/lib/jenkins/workspace/SA-Proyecto/"
         	checkout scm
         }
         stage ('Build') {
