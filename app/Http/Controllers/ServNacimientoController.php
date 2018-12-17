@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ServNacimientoController extends Controller
 {
@@ -323,7 +324,6 @@ class ServNacimientoController extends Controller
             //CONSULTA A LA BASE DE DATOS DEL SISTEMA
 
             $json_response = [
-
             ];
             
             return response()->json($json_response);
