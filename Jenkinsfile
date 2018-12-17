@@ -1,9 +1,6 @@
 node {
- 	// Clean workspace before doing anything'ls
-     if(fileExists('/var/lib/jenkins/workspace/SA-Proyecto/server.php')){
-         sh "sudo rm -rf /var/lib/jenkins/workspace/SA-Proyecto/"
-     }
-         sh "sudo mkdir /var/lib/jenkins/workspace/SA-Proyecto"
+ 	// Clean workspace before doing anything
+    deleteDir()
 
     try {
         stage ('Clone') {
