@@ -18,8 +18,8 @@ class CreateTableNACIMIENTO extends Migration
             $table->engine = 'InnoDB';
             $table->increments('acta_nac');
             $table->bigInteger('cui')->unsigned();
-            $table->integer('cui_padre')->unsigned();
-            $table->integer('cui_madre')->unsigned();
+            $table->bigInteger('cui_padre')->unsigned();
+            $table->bigInteger('cui_madre')->unsigned();
             $table->integer('id_muni')->unsigned();
             $table->date('fecha');
             $table->string('direccion_nac',200)->nullable();
