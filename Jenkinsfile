@@ -9,14 +9,14 @@ node {
         stage ('Build') {
 		sh "echo 'shell scripts to deploy to server....'"
         }
+	stage ('Push') {
+		sh "echo 'shell scripts to deploy to server...'"
+      	}
         stage ('Tests') {
 	        sh "echo 'shell scripts to deploy to server....'"
 	        sh "echo 'shell scripts to deploy to server....'"
             sh 'sudo /var/www/html/SA-Proyecto/vendor/bin/phpunit'
-        }
-	stage ('Push') {
-		sh "echo 'shell scripts to deploy to server...'"
-      	}   
+        }   
       	stage ('Deploy') {
             sh "sudo rm -rf /var/www/html/SA-Proyecto"
             sh "sudo cp -R /var/lib/jenkins/workspace/SA-Proyecto/ /var/www/html/"
