@@ -12,7 +12,7 @@ node {
         stage ('Tests') {
 	        sh "echo 'shell scripts to deploy to server....'"
 	        sh "echo 'shell scripts to deploy to server....'"
-            sh '/var/www/html/SA-Proyecto/vendor/bin/phpunit'
+            sh 'sudo /var/www/html/SA-Proyecto/vendor/bin/phpunit'
         }
 	stage ('Push') {
 		sh "echo 'shell scripts to deploy to server...'"
