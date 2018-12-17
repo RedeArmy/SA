@@ -19,7 +19,7 @@ class CreateTableMATRIMONIO extends Migration
             $table->bigInteger('cui_esposo')->unsigned();
             $table->bigInteger('cui_esposa')->unsigned();
             $table->integer('id_muni')->unsigned();
-            $table->string('direccion_matri',200);
+            $table->string('direccion_matri',200)->nullable();
             $table->string('regimen_eco',100);
             $table->date('fecha_matri');
             $table->timestamps();

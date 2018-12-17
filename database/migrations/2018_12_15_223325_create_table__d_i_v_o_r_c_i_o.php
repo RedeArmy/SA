@@ -18,7 +18,7 @@ class CreateTableDIVORCIO extends Migration
             $table->increments('acta_divorcio');
             $table->bigInteger('cui_esposo')->unsigned();
             $table->bigInteger('cui_esposa')->unsigned();
-            $table->string('direccion_divorcio',200);
+            $table->string('direccion_divorcio',200)->nullable();
             $table->integer('id_muni')->unsigned();
             $table->date('fecha_divorcio');
             $table->timestamps();

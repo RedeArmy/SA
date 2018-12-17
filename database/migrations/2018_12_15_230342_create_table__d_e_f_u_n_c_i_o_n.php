@@ -21,7 +21,7 @@ class CreateTableDEFUNCION extends Migration
             $table->bigInteger('cui_difunto')->unsigned();
             $table->bigInteger('cui_compareciente')->unsigned();
             $table->integer('muni_defuncion')->unsigned();
-            $table->string('direccion_defuncion',200);
+            $table->string('direccion_defuncion',200)->nullable();
             $table->datetime('fecha_hora');
             $table->string('causa',200)->nullable();
             $table->timestamps();

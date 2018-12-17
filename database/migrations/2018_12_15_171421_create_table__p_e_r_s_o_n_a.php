@@ -18,13 +18,14 @@ class CreateTablePERSONA extends Migration
             
             $table->engine = 'InnoDB';
             $table->bigInteger('cui')->unsigned();
+            $table->integer('id')->usigned();
             $table->string('nombres',200);
             $table->string('apellidos',200);
             $table->integer('genero')->unsigned();
             $table->integer('estado_civil')->unsigned();
             $table->string('huella',200)->nullable();
-            $table->string('direccion',200);
-            $table->integer('vivo_muerto')->unsigned();
+            $table->string('direccion',200)->nullable();
+            $table->integer('vivo_muerto')->unsigned()->nullable();
             $table->integer('id_muni')->unsigned();
             $table->timestamps();
 
