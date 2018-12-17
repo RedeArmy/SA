@@ -1,9 +1,11 @@
 node {
  	// Clean workspace before doing anything'
-     if(fileExists('/var/lib/jenkins/workspace/SA-Proyecto/')){
-         sh "sudo rm -RF /var/lib/jenkins/workspace/SA-Proyecto/"
-     }
+     if(fileExists('/var/lib/jenkins/workspace/SA-Proyecto')){
+         sh "sudo rm -rf /var/lib/jenkins/workspace/SA-Proyecto/"
          sh "sudo mkdir /var/lib/jenkins/workspace/SA-Proyecto"
+     }else{
+         sh "sudo mkdir /var/lib/jenkins/workspace/SA-Proyecto"
+     }
 
 
     try {
