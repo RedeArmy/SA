@@ -18,10 +18,9 @@ node {
       	}   
       	stage ('Deploy') {
             sh "sudo rm -rf /var/www/html/SA-Proyecto"
-            sh "sudo cp -R /var/lib/jenkins/workspace/SA-Proyecto/ /var/www/html/"
+            sh "sudo mv /var/lib/jenkins/workspace/SA-Proyecto/ /var/www/html/SA-Proyecto/"
             sh "sudo chgrp -R www-data /var/www/html/SA-Proyecto"
             sh "sudo chmod -R 775 /var/www/html/SA-Proyecto/storage"
-            sh "sudo rm -rf /var/lib/jenkins/workspace/SA-Proyecto"
             sh "sudo mkdir /var/lib/jenkins/workspace/SA-Proyecto"
       	}
     } catch (err) {
