@@ -126,7 +126,7 @@ class ServNacimientoController extends Controller
     }
 
     public function CalcularModulo11 ($numero){
-        $valor_division = $numero / 11;
+        $valor_division = $numero % 11;
         $valor_entero = $valor_division % 1000000000000000000;
         $primer_digito = str_split($valor_entero);
         $longitud_entero = sizeof($primer_digito);
