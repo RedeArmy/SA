@@ -139,7 +139,7 @@ class MunicipioController extends Controller
             ->where('id_dpto','=',$id_dpto)
             ->get();
 
-        if($existe == "[]"){
+        if($existe === "[]"){
             return false;
         }
 
