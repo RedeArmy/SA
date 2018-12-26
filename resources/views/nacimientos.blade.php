@@ -131,10 +131,10 @@
 
                         <div class="form-label-group">
                             <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                            <label for="inputEmail">Email address</label>
+                            <label for="inputEmail">CUI</label>
                         </div>
 
-                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Imprimir Nacimiento</button>
     
                     </form>
                 </div>
