@@ -303,7 +303,7 @@ class ServNacimientoController extends Controller
         
         do{
             $cui_generado = $objeto->generarCUI();
-            $cui_final_generado = ($cui_generado * 10000) + ($id_departamento * 100) + ($municipio);
+            $cui_final_generado = $cui_generado.$id_departamento.$municipio;
             $validadorExistencia = $objeto->validarExistenciaCUI($cui_final_generado);
         }while($validadorExistencia == false);
 
