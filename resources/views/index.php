@@ -49,8 +49,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<h1>SISTEMA DE CONSULTAS POR DEPARTAMENTO</h1>
 				<h4><p class="special">Seleccione su departamento:</p></h4>
 				<select class="js-example-basic-single" name="state">
-				  <option value="1">Guatemala</option>
-				  <option value="2">Sacatepequez</option>
+				  <option value="1">Alta Verapaz</option>
+				  <option value="2">Baja Verapaz</option>
+				  <option value="3">Chimaltenango</option>
+				  <option value="4">Chiquimula</option>
+				  <option value="5">El Progreso</option>
+				  <option value="6">Escuintla</option>
+				  <option value="7">Guatemala</option>
+				  <option value="8">Huehuetenango</option>
+				  <option value="9">Izabal</option>
+				  <option value="10">Jalapa</option>
+				  <option value="11">Jutiapa</option>
+				  <option value="12">Peten</option>
+				  <option value="13">Quetzaltenango</option>
+				  <option value="14">Quiche</option>
+				  <option value="15">Retalhuleu</option>
+				  <option value="16">Sacatepequez</option>
+				  <option value="17">San Marcos</option>
+				  <option value="18">Santa Rosa</option>
+				  <option value="19">Solola</option>
+				  <option value="20">Suchitepequez</option>
+				  <option value="21">Totonicapan</option>
+				  <option value="22">Zacapa</option>
 				</select>
 				
 			</div>
@@ -72,5 +92,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script>
 	$(document).ready(function() {
 		$('.js-example-basic-single').select2();
+		alert('esta funcionando el jquery');
+		
 	});
 </script>

@@ -78,4 +78,69 @@ class MatrimonioController extends Controller
         return response()->json($json_response);
         //{"cuiHombre":"2942637562001","cuiMujer":"2942637562002","municipio":"1","lugarMatrimonio":"Ciudad","fecharMatrimonio":"1999-01-01","regimenMatrimonial":"bianes mancomunados"}
     }
+
+    public function consultarMatrimonio($valor){
+        $json_recibido = json_decode($valor,true);
+
+        $cui_esposo = $json_recibido['cuiHombre'];
+        $cui_esposa = $json_recibido['cuiMujer'];
+
+        $existe = DB::table('MATRIMONIO')
+            ->select('acta_matrimonio')
+            ->where('cui_esposo','=',$cui_esposo)
+            ->where('cui_esposa','=',$cui_esposa)
+            ->orderByRaw('acta_matrimonio DESC')
+            ->get();
+
+        $hombre = DB::table('PERSONA')
+            ->join('MUNICIPIO','PERSONA.id_muni','=','MUNICIPIO.id_muni')
+            ->join('DEPARTAMENTO','MUNICIPIO.id_dpto','=','DEPARTAMENTO.id_dpto')
+            ->join('PAIS','DEPARTAMENTO.id_pais','=','PAIS.id_pais')
+            ->select('PERSONA.nombres', 'PERSONA.apellidos','PERSONA.genero','MUNICIPIO.nombre as municipio',
+                    'DEPARTAMENTO.nombre_dpto as departamento','PAIS.nombre_pais as pais')
+            ->where('PERSONA.cui','=',$cui_esposo)
+            ->get()
+            ->first();
+
+        $mujer = DB::table('PERSONA')
+            ->join('MUNICIPIO','PERSONA.id_muni','=','MUNICIPIO.id_muni')
+            ->join('DEPARTAMENTO','MUNICIPIO.id_dpto','=','DEPARTAMENTO.id_dpto')
+            ->join('PAIS','DEPARTAMENTO.id_pais','=','PAIS.id_pais')
+            ->select('PERSONA.nombres', 'PERSONA.apellidos','PERSONA.genero','MUNICIPIO.nombre as municipio',
+                    'DEPARTAMENTO.nombre_dpto as departamento','PAIS.nombre_pais as pais')
+            ->where('PERSONA.cui','=',$cui_esposa)
+            ->get()
+            ->first();
+
+        if($existe == "[]"){
+                $d = new Objeto;
+                $d->mensaje = "El matrimonio buscado no existe";
+                $d->status = "-1";
+                $d->data = [];
+                return response()->json($d);
+        }
+
+        $json_response = [
+            'mensaje' => 'El acata de matrimonio se recupero con éxito',
+            'status' => '1',
+            'data' => [
+                'cuiHombre' => $cui_esposo,
+                'nombreHombre' => $hombre->nombres,
+                'apellidoHombre' => $hombre->apellidos,
+                'paisHombre' => $hombre->pais,
+                'departamentoHombre' => $hombre->departamento,
+                'municipioHombre' => $hombre->municipio,
+                'cuiMujer' => $cui_esposa,
+                'nombreMujer' => $mujer->nombres,
+                'apellidoMujer' => $mujer->apellidos,
+                'paisMujer' => $mujer->pais,
+                'departamentoMujer' => $mujer->departamento,
+                'municipioMujer' => $mujer->municipio
+
+            ]
+            
+        ];
+
+        return response()->json($json_response);
+    }
 }

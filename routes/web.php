@@ -11,11 +11,15 @@
 |
 */
 
+<<<<<<< HEAD
 use app\Http\Controllers\ServNacimientoController;
 
 Route::get('/', function () {
     return view('index');
 });
+=======
+Route::get('/', 'HomeController@index');
+>>>>>>> f7d1296a3122f346376a155c09acd6622cd9d90d
 
 Route::get('/nacimiento/', function (){
 
@@ -44,6 +48,9 @@ Route::get('api/v1/muni/{valor}','MunicipioController@getMuni');
 Route::get('api/v1/dpi_consulta/{valor}','DpiController@ConsultarDpi');
 
 Route::get('api/v1/reg_matri/{valor}','MatrimonioController@registrarMatrimonio');
+
+Route::get('api/v1/consul_matri/{valor}','MatrimonioController@consultarMatrimonio');
+
 Route::get('api/defuncion/registro_defuncion/{valor}','DefuncioneController@registrarDefuncion');
 
 Route::get('api/defuncion/imprimir_defuncion/{valor}','DefuncioneController@imprimirDefuncion');
