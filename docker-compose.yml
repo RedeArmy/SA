@@ -1,0 +1,18 @@
+version: '3.5'
+services:
+    web:
+    image: test
+    restart: always
+    volumes:
+        - .:/srv/www
+        - /var/run/mysqld:/var/run/mysqld:ro
+    lb:
+    image: tutum/haproxy
+    links:
+    - web
+    environment:
+    - BACKEND_PORT=80
+    # - BALANCE=leastconn
+    - BALANCE=roundrobin
+    environment:
+    #VIRTUAL_HOST: localhost
