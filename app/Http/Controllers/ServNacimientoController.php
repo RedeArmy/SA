@@ -250,14 +250,19 @@ class ServNacimientoController extends Controller
 
         //CODIGO DE LA CONSULTA PARA CONOCER SI EXISTE EL CUI GENERADO
 
-        $users = DB::table('PERSONA')->get();
-        
-        foreach ($users as $user) {
-            echo "<br>existe mi cui: ".$user->nombres;
-            echo "<br>";
-        }
+        $existe = DB::table('PERSONA')
+        ->select('cui')
+        ->where('cui','=',$cui)
+        ->get();
 
-        return false;
+
+        if($existe == "[]")
+        {
+            return true;
+        }else{
+            return false;
+        }
+        
     }
 
     /**
@@ -284,7 +289,7 @@ class ServNacimientoController extends Controller
         do{
             $cui_generado = $objeto->generarCUI();
             $validadorExistencia = $objeto->validarExistenciaCUI($cui_generado);
-        }while($validadorExistencia != false);
+        }while($validadorExistencia == false);
 
         $valor_cui_valodi = $objeto->valida_CUI_Nacimiento($cui_generado);
         $valor_fake = $objeto->valida_CUI_Nacimiento(256461546);
