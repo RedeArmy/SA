@@ -289,7 +289,9 @@ class ServNacimientoController extends Controller
         $objeto = new ServNacimientoController;
         $json_enviado = json_decode($valor,true);
 
-        echo "<BR><BR>ENTRADA:".json_encode($json_enviado)."<br>";
+        echo "<BR><BR>ENTRADA1:".json_encode($json_enviado)."<br>";
+
+        echo "<BR><BR>ENTRADA2:".$valor."<br>";
 
         $nombre = $json_enviado['nombre'];
         $apellido = $json_enviado['apellido'];
