@@ -267,6 +267,8 @@ class ServNacimientoController extends Controller
 
     public function obtenerDepartamento($municipio_id){
 
+        echo "<BR><BR>BUSCANDO EL SIGUIENTE DEPARTAMENTOS:".$municipio_id."<BR><BR><BR>";
+
         $existe = DB::table('MUNICIPIO')
         ->select('id_dpto')
         ->where('id_muni','=',$municipio_id)
