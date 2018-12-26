@@ -306,13 +306,13 @@ class ServNacimientoController extends Controller
         $cui_generado = 0;
 
         $id_departamento = $objeto->obtenerDepartamento($municipio);
-        //echo "<br><br> IMPRIMIENDO LOS VALORES:<br><br> ";
-        //echo json_encode($id_departamento);
-        //echo "<br><br>";
+        echo "<br><br> IMPRIMIENDO LOS VALORES:<br><br> ";
+        echo json_encode($id_departamento);
+        echo "<br><br>";
         
         do{
             $cui_generado = $objeto->generarCUI();
-            $cui_final_generado = $cui_generado.$id_departamento['id_dpto'].$municipio;
+            $cui_final_generado = $cui_generado;//.$id_departamento['id_dpto'].$municipio;
             $validadorExistencia = $objeto->validarExistenciaCUI($cui_final_generado);
         }while($validadorExistencia == false);
 
