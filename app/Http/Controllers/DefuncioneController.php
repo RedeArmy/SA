@@ -20,6 +20,8 @@ class DefuncioneController extends Controller
         ->select('*')
         ->where('cui_difunto','=',$cui)
         ->get();
+
+        return $person;
     }
 
     public function imprimirDefuncion($valor){
