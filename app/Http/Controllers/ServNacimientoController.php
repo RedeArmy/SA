@@ -274,7 +274,7 @@ class ServNacimientoController extends Controller
         ->where('id_muni','=',$municipio_id)
         ->get();
 
-        echo "DESDE LA CONSULTA".$existe."<br><br>";
+        //echo "DESDE LA CONSULTA".$existe."<br><br>";
 
         return json_decode($existe);
     }
@@ -307,14 +307,14 @@ class ServNacimientoController extends Controller
         $validadorExistencia = false;
         $cui_generado = 0;
 
-        $id_departamento = $objeto->obtenerDepartamento($municipio);
+        $id_departamento = json_decode($objeto->obtenerDepartamento($municipio),true);
         echo "<br><br> IMPRIMIENDO LOS VALORES:<br><br> ";
         echo json_encode($id_departamento);
         echo "<br><br>";
         
         do{
             $cui_generado = $objeto->generarCUI();
-            $cui_final_generado = $cui_generado;//.$id_departamento['id_dpto'].$municipio;
+            $cui_final_generado = $cui_generado.$id_departamento['id_dpto'].$municipio;
             $validadorExistencia = $objeto->validarExistenciaCUI($cui_final_generado);
         }while($validadorExistencia == false);
 
