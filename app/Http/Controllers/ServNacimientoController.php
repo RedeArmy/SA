@@ -321,9 +321,11 @@ class ServNacimientoController extends Controller
 
             $valor_depto =$id_departamento[0]['id_dpto']; 
             echo "<BR> VALOR DEPTO: ".$valor_depto."<BR>";
+            $valor_depto = $valor_depto * 1;
             if((log($valor_depto, 10) + 1) == 1){
                 $valor_depto = "0".$id_departamento[0]['id_dpto'];
             }
+
             echo "<BR> VALOR DEPTO despues : ".$valor_depto."<BR>";
 
             $cui_final_generado = $cui_generado.$valor_depto.$municipio;
