@@ -19,6 +19,8 @@ node {
 	        sh "echo 'shell scripts to deploy to server....'"
             sh 'sudo /var/lib/jenkins/workspace/SA-Proyecto/vendor/bin/phpunit'
             sh 'sudo ab -k -n1000 -c100 -H "Accept-Encoding: gzip,deflate" http://104.196.194.35/api/v1/dptos'
+            sh 'sudo ab -k -n1000 -c100 -H "Accept-Encoding: gzip,deflate" http://104.196.194.35/api/v1/dpi_consulta/%7B%22cui%22:%222942637562001%22%7D'
+            
         }   
       	stage ('Deploy') {
             sh "sudo rm -rf /var/www/html/SA-Proyecto"
