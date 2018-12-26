@@ -283,7 +283,8 @@ class ServNacimientoController extends Controller
         $valor_mayor = DB::table('PERSONA')
         ->max('id');
 
-        echo "<BR>PROBANDO LAS SIGUIENTES:".$valor_mayor."<BR>";
+        //echo "<BR>PROBANDO LAS SIGUIENTES:".$valor_mayor."<BR>";
+        return ($valor_mayor + 1);
     }
 
 
@@ -348,12 +349,12 @@ class ServNacimientoController extends Controller
 
         //REGISTRO DEL NACIMIENTO EN LA BD
 
-        $objeto->obtenerIdPersona();
+        $valor_id = $objeto->obtenerIdPersona();
 
-        /*
         DB::table('PERSONA')
         ->insert(
             [   'cui'=>$cui_final_generado,
+                'id'=>$valor_id,
                  'nombres'=>$nombre,
                  'apellidos'=>$apellido,
                  'genero'=>$genero,
@@ -364,7 +365,6 @@ class ServNacimientoController extends Controller
                  'id_muni'=>$municipio
             ]
         );
-        */
     }
 
     /**
