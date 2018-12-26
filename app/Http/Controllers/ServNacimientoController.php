@@ -297,9 +297,6 @@ class ServNacimientoController extends Controller
         $objeto = new ServNacimientoController;
         $json_enviado = json_decode($valor,true);
 
-        ////echo "<BR><BR>ENTRADA1:".json_encode($json_enviado)."<br>";
-
-        ////echo "<BR><BR>ENTRADA2:".$valor."<br>";
 
         $nombre = $json_enviado['nombre'];
         $apellido = $json_enviado['apellido'];
@@ -314,9 +311,6 @@ class ServNacimientoController extends Controller
         $cui_generado = 0;
 
         $id_departamento = json_decode($objeto->obtenerDepartamento($municipio),true);
-        //echo "<br><br> IMPRIMIENDO LOS VALORES:<br><br> ";
-        //echo json_encode($id_departamento);
-        //echo "<br><br>";
         
         do{
             $cui_generado = $objeto->generarCUI();
@@ -342,29 +336,51 @@ class ServNacimientoController extends Controller
         $valor_cui_valodi = $objeto->valida_CUI_Nacimiento($cui_final_generado);
         $valor_fake = $objeto->valida_CUI_Nacimiento(256461546);
 
-        //echo "<br><br><br><br><br>CUI GENERADO ES VALIDO: ".$valor_cui_valodi."<br>";
-        //echo "CUI GENERADO ES VALIDO: ".$valor_fake."<br>";
-        //echo "<br>CUI: ".$cui_final_generado."<br>";
-        
-
+      
         //REGISTRO DEL NACIMIENTO EN LA BD
 
         $valor_id = $objeto->obtenerIdPersona();
 
-        DB::table('PERSONA')
-        ->insert(
-            [   'cui'=>$cui_final_generado,
-                'id'=>$valor_id,
-                 'nombres'=>$nombre,
-                 'apellidos'=>$apellido,
-                 'genero'=>$genero,
-                 'estado_civil'=>1,
-                 'huella'=>"sin valor",
-                 'direccion'=>"ciudad",
-                 'vivo_muerto'=>1,
-                 'id_muni'=>$municipio
-            ]
-        );
+        $existe_madre = $objeto->validarExistenciaCUI($cuiMadre);
+        $existe_padre = $objeto->validarExistenciaCUI($cuiPadre);
+
+        if($existe_padre == true && $existe_madre == true){
+
+            DB::table('PERSONA')
+            ->insert(
+                [   'cui'=>$cui_final_generado,
+                    'id'=>$valor_id,
+                    'nombres'=>$nombre,
+                     'apellidos'=>$apellido,
+                     'genero'=>$genero,
+                     'estado_civil'=>1,
+                     'huella'=>"sin valor",
+                     'direccion'=>"ciudad",
+                     'vivo_muerto'=>1,
+                     'id_muni'=>$municipio
+                ]
+            );
+            
+            $resultado_final =  [
+                'cui' => $cui_final_generado,
+                'status' => 1,
+                'mensaje' => "Registro de persona añadido"
+            ];
+
+            return response()->json($resultado_final);
+        
+        }else{
+            
+            $resultado_final =  [
+                'cui' => 0,
+                'status' => 0,
+                'mensaje' => "Registro de persona no realizado, no existe padre o madre"
+            ];
+
+            return response()->json($resultado_final);
+
+        }
+
     }
 
     /**
@@ -381,8 +397,6 @@ class ServNacimientoController extends Controller
         $json_desmembrar = json_decode($valor_desmembrar,true);
         $valor_simple_cui = $json_desmembrar['valorCUI'];
 
-        ////echo "Buscando el Nacimiento: ".$valor_cui."\n";
-        ////echo "Valor del CUI Basico: ".$valor_simple_cui."\n";
 
         $valor_cui_valido = $objeto->valida_CUI_Nacimiento($valor_simple_cui);
 
@@ -391,7 +405,11 @@ class ServNacimientoController extends Controller
 
             //CONSULTA A LA BASE DE DATOS DEL SISTEMA
 
-            $json_response = [
+            $json_response =
+            [
+                'status' => '1',
+                'mensaje' => "DPI encontrado",
+                'data' => "[]",
             ];
             
             return response()->json($json_response);
@@ -399,6 +417,13 @@ class ServNacimientoController extends Controller
         }else{
             //echo "DPI INCORRECTO\n";
 
+            $json_response =
+            [
+                'status' => '0',
+                'mensaje' => "Número de DPI incorrecto",
+                'data' => "[]",
+            ];
+/*
             $json_response = [
                 'cui' => '',
                 'nombre' => '',
@@ -422,11 +447,9 @@ class ServNacimientoController extends Controller
                 'fechaNacimientoMadre' => '',
                 'paisMadre' => '',
                 'departamentoMadre' => '',
-                'municipioMadre' => '',
-                'codigoMensaje' => '0',
-                'mensaje' => 'Error el DPI, no es valido.'
+                'municipioMadre' => ''
             ];
-
+*/
             return response()->json($json_response);
         }
 
