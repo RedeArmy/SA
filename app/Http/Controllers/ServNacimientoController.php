@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class ServNacimientoController extends Controller
 {
@@ -363,6 +364,18 @@ class ServNacimientoController extends Controller
                      'id_muni'=>$municipio
                 ]
             );
+
+            DB::table('PERSONA')
+            ->insert([
+                'cui' => $cui_final_generado,
+                'cui_padre' => $cuiPadre,
+                'cui_madre' => $cuiMadre,
+                'id_muni' => $municipio,
+                'fecha' => Carbon::now(),
+                'direccion_nac' => "ciudad",
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+             ]);
             
             $resultado_final =  [
                 'cui' => $cui_final_generado,
