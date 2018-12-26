@@ -417,55 +417,69 @@ class ServNacimientoController extends Controller
         $valor_cui_valido = $objeto->valida_CUI_Nacimiento($valor_simple_cui);
 
         if($valor_cui_valido === true){
-            //echo "DPI CORRECTO";
 
-            //CONSULTA A LA BASE DE DATOS DEL SISTEMA
+            $existencia_cui = $objeto->validarExistenciaCUI($valor_cui);
 
-            $json_response =
-            [
-                'status' => '1',
-                'mensaje' => "DPI encontrado",
-                'data' => "[]",
-            ];
-            
-            return response()->json($json_response);
+            if($existencia_cui == false){
+                //CONSULTA A LA BASE DE DATOS DEL SISTEMA
+
+                $persona_info = [
+                    'cui' => '',
+                    'nombre' => '',
+                    'apellido' => '',
+                    'genero' => '',
+                    'fechaNacimiento' => '',
+                    'pais' => '',
+                    'departamento' => '',
+                    'municipio' => '',
+                    'lugarNacimiento' => '',
+                    'cuiPadre' => '',
+                    'nombrePadre' => '',
+                    'apellidoPadre' => '',
+                    'fechaNacimientoPadre' => '',
+                    'paisPadre' => '',
+                    'departamentoPadre' => '',
+                    'municipioPadre' => '',
+                    'cuiMadre' => '',
+                    'nombreMadre' => '',
+                    'apellidoMadre' => '',
+                    'fechaNacimientoMadre' => '',
+                    'paisMadre' => '',
+                    'departamentoMadre' => '',
+                    'municipioMadre' => ''
+                ];
+                
+                $json_response =
+                [
+                    'status' => '1',
+                    'mensaje' => "DPI encontrado",
+                    'data' => "[".json_encode($persona_info)."]",
+                ];
+                
+                return response()->json($json_response);
+
+            }else{
+                    
+                $json_response =
+                [
+                    'status' => '0',
+                    'mensaje' => "No existe el numero de DPI registrado",
+                    'data' => "[]",
+                ];
+
+                return response()->json($json_response);
+            }
+
 
         }else{
-            //echo "DPI INCORRECTO\n";
-
+            
             $json_response =
             [
                 'status' => '0',
                 'mensaje' => "Número de DPI incorrecto",
                 'data' => "[]",
             ];
-/*
-            $json_response = [
-                'cui' => '',
-                'nombre' => '',
-                'apellido' => '',
-                'genero' => '',
-                'fechaNacimiento' => '',
-                'pais' => '',
-                'departamento' => '',
-                'municipio' => '',
-                'lugarNacimiento' => '',
-                'cuiPadre' => '',
-                'nombrePadre' => '',
-                'apellidoPadre' => '',
-                'fechaNacimientoPadre' => '',
-                'paisPadre' => '',
-                'departamentoPadre' => '',
-                'municipioPadre' => '',
-                'cuiMadre' => '',
-                'nombreMadre' => '',
-                'apellidoMadre' => '',
-                'fechaNacimientoMadre' => '',
-                'paisMadre' => '',
-                'departamentoMadre' => '',
-                'municipioMadre' => ''
-            ];
-*/
+
             return response()->json($json_response);
         }
 
