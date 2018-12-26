@@ -343,9 +343,19 @@ class ServNacimientoController extends Controller
 
         //REGISTRO DEL NACIMIENTO EN LA BD
 
-
-
-
+        DB::table('PERSONA')
+        ->insert(
+            [   'cui'=>$cui_final_generado,
+                 'nombres'=>$nombre,
+                 'apellido'=>$apellido,
+                 'genero'=>$genero,
+                 'estado_civil'=>1,
+                 'huella'=>"sin valor",
+                 'direccion'=>"ciudad",
+                 'vivo_muerto'=>1,
+                 'id_muni'=>$municipio
+            ]
+        );
         
     }
 
