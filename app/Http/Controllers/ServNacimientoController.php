@@ -300,10 +300,11 @@ class ServNacimientoController extends Controller
         $cui_generado = 0;
 
         $id_departamento = $objeto->obtenerDepartamento($municipio);
+        echo "<br><br> IMPRIMIENDO LOS VALORES: ".$id_departamento."<br><br>";
         
         do{
             $cui_generado = $objeto->generarCUI();
-            $cui_final_generado = $cui_generado.$id_departamento['id_dpto'].$municipio;
+            $cui_final_generado = $cui_generado;//.$id_departamento['id_dpto'].$municipio;
             $validadorExistencia = $objeto->validarExistenciaCUI($cui_final_generado);
         }while($validadorExistencia == false);
 
