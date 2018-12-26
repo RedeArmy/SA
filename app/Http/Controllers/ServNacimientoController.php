@@ -281,7 +281,7 @@ class ServNacimientoController extends Controller
 
     public function obtenerIdPersona(){
         $valor_mayor = DB::table('PERSONA')
-        ->select('max id')
+        ->max('id')
         ->get();
 
         echo "<BR>PROBANDO LAS SIGUIENTES:".$valor_mayor."<BR>";
