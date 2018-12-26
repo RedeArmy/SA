@@ -453,7 +453,7 @@ class ServNacimientoController extends Controller
                 [
                     'status' => '1',
                     'mensaje' => "DPI encontrado",
-                    'data' => "[".json_encode($persona_info)."]",
+                    'data' => [$persona_info],
                 ];
                 
                 return response()->json($json_response);
