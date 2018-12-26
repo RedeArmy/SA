@@ -254,7 +254,7 @@ class ServNacimientoController extends Controller
         
         foreach ($users as $user) {
             echo "<br>existe mi cui: ".$user->nombres;
-            echo "<br>"
+            echo "<br>";
         }
 
         return false;
