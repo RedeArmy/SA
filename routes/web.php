@@ -22,8 +22,8 @@ Route::get('/', function () {
 Route::get('/', 'HomeController@index');
 
 Route::get('/nacimiento/', function (){
-
-    $objeto = new ServNacimientoController;
+    //$getData = `http://localhost/WebServiceApp/public/api/user/tipoprojeto/`
+    //$objeto = new ServNacimientoController;
     return view('nacimientos');
 });
 
