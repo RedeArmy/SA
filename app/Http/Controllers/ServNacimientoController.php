@@ -365,7 +365,7 @@ class ServNacimientoController extends Controller
                 ]
             );
 
-            DB::table('PERSONA')
+            DB::table('NACIMIENTO')
             ->insert([
                 'cui' => $cui_final_generado,
                 'cui_padre' => $cuiPadre,
