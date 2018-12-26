@@ -320,6 +320,7 @@ class ServNacimientoController extends Controller
             }
 
             $valor_depto =$id_departamento[0]['id_dpto']; 
+            echo "<BR> VALOR DEPTO: ".$valor_depto."<BR>";
             if((log($valor_depto, 10) + 1) == 1){
                 $valor_depto = "0".$id_departamento[0]['id_dpto'];
             }
