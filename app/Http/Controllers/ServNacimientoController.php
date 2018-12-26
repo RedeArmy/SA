@@ -399,6 +399,15 @@ class ServNacimientoController extends Controller
 
     }
 
+    public function obtenerNacimiento($cui){
+        $person = DB::table('NACIMIENTO')
+        ->select('*')
+        ->where('cui','=',$cui)
+        ->get();
+
+        return $person;
+    }
+
     /**
      * SERVICIOS WEB - IMPRIMIR NACIMIENTOS
      */
@@ -422,6 +431,8 @@ class ServNacimientoController extends Controller
 
             if($existencia_cui == false){
                 //CONSULTA A LA BASE DE DATOS DEL SISTEMA
+
+                $valor_persona_datos = $objeto->obtenerNacimiento($valor_cui);
 
                 $persona_info = [
                     'cui' => '',
@@ -453,7 +464,7 @@ class ServNacimientoController extends Controller
                 [
                     'status' => '1',
                     'mensaje' => "DPI encontrado",
-                    'data' => [$persona_info],
+                    'data' => [$valor_persona_datos],
                 ];
                 
                 return response()->json($json_response);
