@@ -347,7 +347,7 @@ class ServNacimientoController extends Controller
         ->insert(
             [   'cui'=>$cui_final_generado,
                  'nombres'=>$nombre,
-                 'apellido'=>$apellido,
+                 'apellidos'=>$apellido,
                  'genero'=>$genero,
                  'estado_civil'=>1,
                  'huella'=>"sin valor",
