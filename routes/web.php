@@ -11,15 +11,13 @@
 |
 */
 
-<<<<<<< HEAD
 use app\Http\Controllers\ServNacimientoController;
 
 Route::get('/', function () {
     return view('index');
 });
-=======
+
 Route::get('/', 'HomeController@index');
->>>>>>> f7d1296a3122f346376a155c09acd6622cd9d90d
 
 Route::get('/nacimiento/', function (){
 
