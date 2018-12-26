@@ -255,7 +255,6 @@ class ServNacimientoController extends Controller
         ->where('cui','=',$cui)
         ->get();
 
-
         if($existe == "[]")
         {
             return true;
@@ -344,11 +343,11 @@ class ServNacimientoController extends Controller
         $existe_madre = $objeto->validarExistenciaCUI($cuiMadre);
         $existe_padre = $objeto->validarExistenciaCUI($cuiPadre);
 
-        if($existe_madre == true && $existe_padre == true){
+        if($existe_madre == false && $existe_padre == false){
             echo "se pudo realizar el ingreso!!1";
         }
 
-        if($existe_padre == true && $existe_madre == true){
+        if($existe_padre == false && $existe_madre == false){
 
             DB::table('PERSONA')
             ->insert(
