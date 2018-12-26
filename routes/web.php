@@ -34,6 +34,9 @@ Route::get('api/v1/muni/{valor}','MunicipioController@getMuni');
 Route::get('api/v1/dpi_consulta/{valor}','DpiController@ConsultarDpi');
 
 Route::get('api/v1/reg_matri/{valor}','MatrimonioController@registrarMatrimonio');
+
+Route::get('api/v1/consul_matri/{valor}','MatrimonioController@consultarMatrimonio');
+
 Route::get('api/defuncion/registro_defuncion/{valor}','DefuncioneController@registrarDefuncion');
 
 Route::get('api/defuncion/imprimir_defuncion/{valor}','DefuncioneController@imprimirDefuncion');
