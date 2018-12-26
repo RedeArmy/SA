@@ -12,6 +12,7 @@
 */
 
 namespace app\Http\Controllers;
+use Illuminate\Routing\Controller;
 use ServNacimientoController;
 
 Route::get('/', function () {
