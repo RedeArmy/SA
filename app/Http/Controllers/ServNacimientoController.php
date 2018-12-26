@@ -262,8 +262,21 @@ class ServNacimientoController extends Controller
         }else{
             return false;
         }
-        
+
     }
+
+    public function obtenerDepartamento($municipio_id){
+
+        $existe = DB::table('MUNICIPIO')
+        ->select('id_dpto')
+        ->where('id_muni','=',$municipio_id)
+        ->get();
+
+        return json_decode($existe);
+    }
+
+
+
 
     /**
      * SERVICIOS WEB - REGISTRAR NACIMIENTOS
@@ -286,17 +299,20 @@ class ServNacimientoController extends Controller
         $validadorExistencia = false;
         $cui_generado = 0;
 
+        $id_departamento = $objeto->obtenerDepartamento($municipio);
+        
         do{
             $cui_generado = $objeto->generarCUI();
-            $validadorExistencia = $objeto->validarExistenciaCUI($cui_generado);
+            $cui_final_generado = ($cui_generado * 10000) + ($id_departamento * 100) + ($municipio);
+            $validadorExistencia = $objeto->validarExistenciaCUI($cui_final_generado);
         }while($validadorExistencia == false);
 
-        $valor_cui_valodi = $objeto->valida_CUI_Nacimiento($cui_generado);
+        $valor_cui_valodi = $objeto->valida_CUI_Nacimiento($cui_final_generado);
         $valor_fake = $objeto->valida_CUI_Nacimiento(256461546);
 
         echo "<br><br><br><br><br>CUI GENERADO ES VALIDO: ".$valor_cui_valodi."<br>";
         echo "CUI GENERADO ES VALIDO: ".$valor_fake."<br>";
-        echo "<br>CUI: ".$cui_generado."<br>";
+        echo "<br>CUI: ".$cui_final_generado."<br>";
         
 
         //REGISTRO DEL NACIMIENTO EN LA BD
