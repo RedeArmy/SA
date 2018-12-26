@@ -17,9 +17,9 @@ class DpiController extends Controller
         $cui = $json_recibido['cui'];
         $d = new Dpi;
         
-        $existe = DB::table('PERSONA')
-            ->select('cui')
-            ->where('cui','=',$cui)
+        $existe = DB::table('DPI')
+            ->select('cui_persona')
+            ->where('cui_persona','=',$cui)
             ->get();
 
         if($existe == "[]"){
