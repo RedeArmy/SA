@@ -301,7 +301,7 @@ class ServNacimientoController extends Controller
 
         $id_departamento = $objeto->obtenerDepartamento($municipio);
         echo "<br><br> IMPRIMIENDO LOS VALORES:<br><br> ";
-        echo $id_departamento;
+        echo json_encode($id_departamento);
         echo "<br><br>";
         
         do{
