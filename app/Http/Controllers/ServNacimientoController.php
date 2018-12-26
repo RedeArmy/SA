@@ -274,6 +274,8 @@ class ServNacimientoController extends Controller
         ->where('id_muni','=',$municipio_id)
         ->get();
 
+        echo "DESDE LA CONSULTA".$existe."<br><br>";
+
         return json_decode($existe);
     }
 
