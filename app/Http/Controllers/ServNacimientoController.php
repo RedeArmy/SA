@@ -283,7 +283,6 @@ class ServNacimientoController extends Controller
         do{
             $cui_generado = $objeto->generarCUI();
             $validadorExistencia = $objeto->validarExistenciaCUI($cui_generado);
-
         }while($validadorExistencia != false);
 
         $valor_cui_valodi = $objeto->valida_CUI_Nacimiento($cui_generado);
