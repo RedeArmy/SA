@@ -11,9 +11,9 @@
 |
 */
 
-namespace app\Http\Controllers;
-use Illuminate\Routing\Controller;
-use ServNacimientoController;
+//namespace app\Http\Controllers;
+//use Illuminate\Routing\Controller;
+//use ServNacimientoController;
 
 Route::get('/', function () {
     return view('index');
