@@ -40,7 +40,7 @@ class DefuncioneController extends Controller
                 'data' => [],
             ];
 
-            return response()->json($resultado_final);
+            return response()->json($json_response);
         }else{
 
             $json_response =
@@ -50,7 +50,7 @@ class DefuncioneController extends Controller
                 'data' => [$defuncion_obtenida],
             ];
             
-            return response()->json($resultado_final);
+            return response()->json($json_response);
         }
 
     }
