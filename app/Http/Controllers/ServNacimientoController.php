@@ -344,6 +344,10 @@ class ServNacimientoController extends Controller
         $existe_madre = $objeto->validarExistenciaCUI($cuiMadre);
         $existe_padre = $objeto->validarExistenciaCUI($cuiPadre);
 
+        if($existe_madre == true && $existe_padre == true){
+            echo "se pudo realizar el ingreso!!1";
+        }
+
         if($existe_padre == true && $existe_madre == true){
 
             DB::table('PERSONA')
