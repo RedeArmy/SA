@@ -276,7 +276,7 @@ class ServNacimientoController extends Controller
 
         //echo "DESDE LA CONSULTA".$existe."<br><br>";
 
-        return json_decode($existe);
+        return json_encode($existe);
     }
 
 
