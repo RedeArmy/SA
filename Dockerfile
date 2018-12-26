@@ -54,6 +54,6 @@ RUN chown -Rf www-data:www-data /srv/www/
 WORKDIR /srv/www
 
 # Expose Ports
-EXPOSE 80
+EXPOSE 1080
 
 CMD ["/usr/bin/supervisord"]  
