@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "f97b82bd7208284f7c5d7a85a1afcfa5",
@@ -639,16 +639,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.7.17",
+            "version": "v5.7.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "a15898e2de5f5ae5548a09349c558ef0435d495a"
+                "reference": "5c1d1ec7e8563ea31826fd5eb3f6791acf01160c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/a15898e2de5f5ae5548a09349c558ef0435d495a",
-                "reference": "a15898e2de5f5ae5548a09349c558ef0435d495a",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/5c1d1ec7e8563ea31826fd5eb3f6791acf01160c",
+                "reference": "5c1d1ec7e8563ea31826fd5eb3f6791acf01160c",
                 "shasum": ""
             },
             "require": {
@@ -781,7 +781,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-12-12T14:38:09+00:00"
+            "time": "2018-12-18T14:00:38+00:00"
         },
         {
             "name": "laravel/nexmo-notification-channel",
@@ -1240,16 +1240,16 @@
         },
         {
             "name": "nexmo/client",
-            "version": "1.5.2",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Nexmo/nexmo-php.git",
-                "reference": "f192c84ec3cc3e2657fc754e0da1a17e39ac5542"
+                "reference": "01809cc1e17a5af275913c49bb5d444eb6cc06d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Nexmo/nexmo-php/zipball/f192c84ec3cc3e2657fc754e0da1a17e39ac5542",
-                "reference": "f192c84ec3cc3e2657fc754e0da1a17e39ac5542",
+                "url": "https://api.github.com/repos/Nexmo/nexmo-php/zipball/01809cc1e17a5af275913c49bb5d444eb6cc06d4",
+                "reference": "01809cc1e17a5af275913c49bb5d444eb6cc06d4",
                 "shasum": ""
             },
             "require": {
@@ -1284,7 +1284,7 @@
                 }
             ],
             "description": "PHP Client for using Nexmo's API.",
-            "time": "2018-11-14T14:12:22+00:00"
+            "time": "2018-12-17T10:47:50+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -3505,16 +3505,16 @@
         },
         {
             "name": "laravel/dusk",
-            "version": "v4.0.3",
+            "version": "v4.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/dusk.git",
-                "reference": "94a2497d4a7ff3b4fc75acb55f9faeb50dcb4585"
+                "reference": "3b2df334d92b6215400ddd183253eb4bcc07debb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/dusk/zipball/94a2497d4a7ff3b4fc75acb55f9faeb50dcb4585",
-                "reference": "94a2497d4a7ff3b4fc75acb55f9faeb50dcb4585",
+                "url": "https://api.github.com/repos/laravel/dusk/zipball/3b2df334d92b6215400ddd183253eb4bcc07debb",
+                "reference": "3b2df334d92b6215400ddd183253eb4bcc07debb",
                 "shasum": ""
             },
             "require": {
@@ -3562,7 +3562,7 @@
                 "testing",
                 "webdriver"
             ],
-            "time": "2018-11-25T14:35:43+00:00"
+            "time": "2018-12-19T13:55:39+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -4999,20 +4999,21 @@
         },
         {
             "name": "webmozart/assert",
-            "version": "1.3.0",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webmozart/assert.git",
-                "reference": "0df1908962e7a3071564e857d86874dad1ef204a"
+                "reference": "83e253c8e0be5b0257b881e1827274667c5c17a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webmozart/assert/zipball/0df1908962e7a3071564e857d86874dad1ef204a",
-                "reference": "0df1908962e7a3071564e857d86874dad1ef204a",
+                "url": "https://api.github.com/repos/webmozart/assert/zipball/83e253c8e0be5b0257b881e1827274667c5c17a9",
+                "reference": "83e253c8e0be5b0257b881e1827274667c5c17a9",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.3.3 || ^7.0"
+                "php": "^5.3.3 || ^7.0",
+                "symfony/polyfill-ctype": "^1.8"
             },
             "require-dev": {
                 "phpunit/phpunit": "^4.6",
@@ -5045,7 +5046,7 @@
                 "check",
                 "validate"
             ],
-            "time": "2018-01-29T19:49:41+00:00"
+            "time": "2018-12-25T11:19:39+00:00"
         }
     ],
     "aliases": [],
