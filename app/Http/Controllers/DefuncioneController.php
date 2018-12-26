@@ -18,7 +18,7 @@ class DefuncioneController extends Controller
     public function obtenerDefuncion($cui){
         $person = DB::table('DEFUNCION')
         ->select('*')
-        ->where('cui','=',$cui)
+        ->where('cui_difunto','=',$cui)
         ->get();
     }
 
