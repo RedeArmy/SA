@@ -130,7 +130,7 @@
                     <form class="form-signin">
 
                         <div class="form-label-group">
-                            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                            <input type="number" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
                             <label for="inputEmail">CUI</label>
                         </div>
 
