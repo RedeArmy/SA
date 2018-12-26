@@ -105,9 +105,9 @@ class ServNacimientoController extends Controller
         for($x = 0; $x < ($num_digits - 1); $x++){
             $valor_multiplicacion = $x + 2;
             $total_sumandos += ($valor_multiplicacion * $array[$x]);
-            echo "Valor inicio: ".$array[$x]." * ".$valor_multiplicacion." = ";
-            echo $total_sumandos;
-            echo "\n";
+            //echo "Valor inicio: ".$array[$x]." * ".$valor_multiplicacion." = ";
+            //echo $total_sumandos;
+            //echo "\n";
             //Log::info($total_sumandos);
         }
 
@@ -133,7 +133,7 @@ class ServNacimientoController extends Controller
         $longitud_entero = sizeof($primer_digito);
         $primer_digito_v2 = $primer_digito[$longitud_entero - 1];
 
-        //echo "\n\nValor de Modulo 11 = ".$primer_digito_v2."\n\n";
+        ////echo "\n\nValor de Modulo 11 = ".$primer_digito_v2."\n\n";
 
         return $primer_digito_v2;
     }
@@ -142,14 +142,14 @@ class ServNacimientoController extends Controller
         $objeto = new ServNacimientoController;
         $valor = $objeto->CalcularModulo11($Sumatoria);
 
-        echo "\nVALIDACION DE VALORES: ".$valor." === ".$ultimoDigito."\n"; 
+        //echo "\nVALIDACION DE VALORES: ".$valor." === ".$ultimoDigito."\n"; 
         
         if($valor == $ultimoDigito){
-            echo 'resultado true';
+            //echo 'resultado true';
             return true;
         }
         else{
-            echo 'resultado false';
+            //echo 'resultado false';
             return false;
         }
 
@@ -197,7 +197,7 @@ class ServNacimientoController extends Controller
             for($x =8; $x >= 0; $x--){
 
                 $valor_unitario = $valores_cui[$x];
-                //echo "VALORES: ".$valor_unitario."\n\n";
+                ////echo "VALORES: ".$valor_unitario."\n\n";
                 $valor_real = $valor_unitario * $ponderacion;
                 $ponderacion = $ponderacion * 10;
 
@@ -267,14 +267,14 @@ class ServNacimientoController extends Controller
 
     public function obtenerDepartamento($municipio_id){
 
-        echo "<BR><BR>BUSCANDO EL SIGUIENTE DEPARTAMENTOS:".$municipio_id."<BR><BR><BR>";
+        //echo "<BR><BR>BUSCANDO EL SIGUIENTE DEPARTAMENTOS:".$municipio_id."<BR><BR><BR>";
 
         $existe = DB::table('MUNICIPIO')
         ->select('id_dpto')
         ->where('id_muni','=',$municipio_id)
         ->get();
 
-        //echo "DESDE LA CONSULTA".$existe."<br><br>";
+        ////echo "DESDE LA CONSULTA".$existe."<br><br>";
 
         return json_encode($existe);
     }
@@ -291,9 +291,9 @@ class ServNacimientoController extends Controller
         $objeto = new ServNacimientoController;
         $json_enviado = json_decode($valor,true);
 
-        //echo "<BR><BR>ENTRADA1:".json_encode($json_enviado)."<br>";
+        ////echo "<BR><BR>ENTRADA1:".json_encode($json_enviado)."<br>";
 
-        //echo "<BR><BR>ENTRADA2:".$valor."<br>";
+        ////echo "<BR><BR>ENTRADA2:".$valor."<br>";
 
         $nombre = $json_enviado['nombre'];
         $apellido = $json_enviado['apellido'];
@@ -308,9 +308,9 @@ class ServNacimientoController extends Controller
         $cui_generado = 0;
 
         $id_departamento = json_decode($objeto->obtenerDepartamento($municipio),true);
-        echo "<br><br> IMPRIMIENDO LOS VALORES:<br><br> ";
-        echo json_encode($id_departamento);
-        echo "<br><br>";
+        //echo "<br><br> IMPRIMIENDO LOS VALORES:<br><br> ";
+        //echo json_encode($id_departamento);
+        //echo "<br><br>";
         
         do{
             $cui_generado = $objeto->generarCUI();
@@ -320,14 +320,14 @@ class ServNacimientoController extends Controller
             }
 
             $valor_depto =$id_departamento[0]['id_dpto']; 
-            echo "<BR> VALOR DEPTO: ".$valor_depto."<BR>";
+            //echo "<BR> VALOR DEPTO: ".$valor_depto."<BR>";
             
-            
+
             if(strlen((string)$valor_depto) == 1){
                 $valor_depto = "0".$valor_depto;
             }
 
-            echo "<BR> VALOR DEPTO despues : ".$valor_depto."<BR>";
+            //echo "<BR> VALOR DEPTO despues : ".$valor_depto."<BR>";
 
             $cui_final_generado = $cui_generado.$valor_depto.$municipio;
             $validadorExistencia = $objeto->validarExistenciaCUI($cui_final_generado);
@@ -336,9 +336,9 @@ class ServNacimientoController extends Controller
         $valor_cui_valodi = $objeto->valida_CUI_Nacimiento($cui_final_generado);
         $valor_fake = $objeto->valida_CUI_Nacimiento(256461546);
 
-        echo "<br><br><br><br><br>CUI GENERADO ES VALIDO: ".$valor_cui_valodi."<br>";
-        echo "CUI GENERADO ES VALIDO: ".$valor_fake."<br>";
-        echo "<br>CUI: ".$cui_final_generado."<br>";
+        //echo "<br><br><br><br><br>CUI GENERADO ES VALIDO: ".$valor_cui_valodi."<br>";
+        //echo "CUI GENERADO ES VALIDO: ".$valor_fake."<br>";
+        //echo "<br>CUI: ".$cui_final_generado."<br>";
         
 
         //REGISTRO DEL NACIMIENTO EN LA BD
@@ -363,13 +363,13 @@ class ServNacimientoController extends Controller
         $json_desmembrar = json_decode($valor_desmembrar,true);
         $valor_simple_cui = $json_desmembrar['valorCUI'];
 
-        //echo "Buscando el Nacimiento: ".$valor_cui."\n";
-        //echo "Valor del CUI Basico: ".$valor_simple_cui."\n";
+        ////echo "Buscando el Nacimiento: ".$valor_cui."\n";
+        ////echo "Valor del CUI Basico: ".$valor_simple_cui."\n";
 
         $valor_cui_valido = $objeto->valida_CUI_Nacimiento($valor_simple_cui);
 
         if($valor_cui_valido === true){
-            echo "DPI CORRECTO";
+            //echo "DPI CORRECTO";
 
             //CONSULTA A LA BASE DE DATOS DEL SISTEMA
 
@@ -379,7 +379,7 @@ class ServNacimientoController extends Controller
             return response()->json($json_response);
 
         }else{
-            echo "DPI INCORRECTO\n";
+            //echo "DPI INCORRECTO\n";
 
             $json_response = [
                 'cui' => '',
