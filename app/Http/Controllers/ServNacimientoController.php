@@ -300,7 +300,9 @@ class ServNacimientoController extends Controller
         $cui_generado = 0;
 
         $id_departamento = $objeto->obtenerDepartamento($municipio);
-        echo "<br><br> IMPRIMIENDO LOS VALORES: ".$id_departamento."<br><br>";
+        echo "<br><br> IMPRIMIENDO LOS VALORES:<br><br> ";
+        echo $id_departamento;
+        echo "<br><br>";
         
         do{
             $cui_generado = $objeto->generarCUI();
