@@ -314,6 +314,15 @@ class ServNacimientoController extends Controller
         
         do{
             $cui_generado = $objeto->generarCUI();
+            if((log($municipio, 10) + 1) == 1)
+            {
+                $municipio = "0".$municipio;
+            }
+
+            if((log($id_departamento[0]['id_dpto'], 10) + 1) == 1){
+                $id_departamento[0]['id_dpto'] = "0".$id_departamento[0]['id_dpto'];
+            }
+
             $cui_final_generado = $cui_generado.$id_departamento[0]['id_dpto'].$municipio;
             $validadorExistencia = $objeto->validarExistenciaCUI($cui_final_generado);
         }while($validadorExistencia == false);
