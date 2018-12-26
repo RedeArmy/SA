@@ -279,7 +279,13 @@ class ServNacimientoController extends Controller
         return json_encode($existe);
     }
 
+    public function obtenerIdPersona(){
+        $valor_mayor = DB::table('PERSONA')
+        ->select('max id')
+        ->get();
 
+        echo "<BR>PROBANDO LAS SIGUIENTES:".$valor_mayor."<BR>";
+    }
 
 
     /**
@@ -343,6 +349,9 @@ class ServNacimientoController extends Controller
 
         //REGISTRO DEL NACIMIENTO EN LA BD
 
+        $objeto->obtenerIdPersona();
+
+        /*
         DB::table('PERSONA')
         ->insert(
             [   'cui'=>$cui_final_generado,
@@ -356,7 +365,7 @@ class ServNacimientoController extends Controller
                  'id_muni'=>$municipio
             ]
         );
-        
+        */
     }
 
     /**
