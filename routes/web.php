@@ -32,3 +32,5 @@ Route::get('api/v1/dptos','DepartamentoController@getDptos');
 Route::get('api/v1/muni/{valor}','MunicipioController@getMuni');
 
 Route::get('api/v1/dpi_consulta/{valor}','DpiController@ConsultarDpi');
+
+Route::get('api/v1/reg_matri/{valor}','MatrimonioController@registrarMatrimonio');
