@@ -11,7 +11,9 @@
 |
 */
 
-use app\Http\Controllers\ServNacimientoController;
+namespace app\Http\Controllers;
+use Illuminate\Routing\Controller;
+use ServNacimientoController;
 
 Route::get('/', function () {
     return view('index');
@@ -22,8 +24,6 @@ Route::get('/', 'HomeController@index');
 Route::get('/nacimiento/', function (){
 
     $objeto = new ServNacimientoController;
-    
-
     return view('nacimientos');
 });
 
