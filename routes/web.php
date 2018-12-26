@@ -30,3 +30,5 @@ Route::resource('departamento','DepartamentoController');
 Route::get('api/v1/dptos','DepartamentoController@getDptos');
 
 Route::get('api/v1/muni/{valor}','MunicipioController@getMuni');
+
+Route::get('api/v1/dpi_consulta/{valor}','DpiController@ConsultarDpi');
