@@ -324,6 +324,7 @@ class ServNacimientoController extends Controller
             if((log($valor_depto, 10) + 1) == 1){
                 $valor_depto = "0".$id_departamento[0]['id_dpto'];
             }
+            echo "<BR> VALOR DEPTO despues : ".$valor_depto."<BR>";
 
             $cui_final_generado = $cui_generado.$valor_depto.$municipio;
             $validadorExistencia = $objeto->validarExistenciaCUI($cui_final_generado);
