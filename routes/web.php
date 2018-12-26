@@ -11,8 +11,18 @@
 |
 */
 
+use app\Http\Controllers\ServNacimientoController;
+
 Route::get('/', function () {
     return view('index');
+});
+
+Route::get('/nacimiento/', function (){
+
+    $objeto = new ServNacimientoController;
+    
+
+    return view('nacimientos');
 });
 
 Route::resource('servicionacimiento','ServNacimientoController');
