@@ -7,12 +7,10 @@
 			<th>Mensaje</th>
 			<th>Data</th>
 		</thead>
-		@foreach($imprimir as $imp)
 			<tbody>
-				<td>{{$imp['status']}}</td>
-				<td>{{$imp['mensaje']}}</td>
-				<td>{{$imp['data']}}</td>
+				<td>{{$imprimir['status']}}</td>
+				<td>{{$imprimir['mensaje']}}</td>
+				<td>{{$imprimir['data']}}</td>
 			</tbody>
-		@endforeach
 	</table>
 	@endsection
