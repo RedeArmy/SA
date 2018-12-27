@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Objeto;
 use Illuminate\Support\Facades\DB;
+use Session;
+use Redirect;
 
 class DivorcioController extends Controller
 {
