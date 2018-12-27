@@ -25,6 +25,10 @@ Route::get('/nacimiento/', function (){
     return view('nacimientos');
 });
 
+Route::get('/mostrarnac/',function(){
+    return view('mostrarnac');
+});
+
 Route::resource('servicionacimiento','ServNacimientoController');
 
 Route::get('api/v1/nacs','ServNacimientoController@getPrueba');

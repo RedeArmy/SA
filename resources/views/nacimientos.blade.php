@@ -130,11 +130,15 @@
                     <form class="form-signin">
 
                         <div class="form-label-group">
+
                             <input type="number" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
                             <label for="inputEmail">CUI</label>
+                        
                         </div>
 
-                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Imprimir Nacimiento</button>
+                        <form action="/mostrarnac/">
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Imprimir Nacimiento</button>
+                        </form>
     
                     </form>
                 </div>
