@@ -28,9 +28,10 @@ class MatrimonioController extends Controller
             $mensaje= json_decode($objeto->registrarMatrimonio($json_response),true);
             if($mensaje['status']==-1){
                 Session::flash('alert','No se pudo ingresar el matrimonio');
+                return Redirect::to('matrimonio/create')->with('message','fail');
             }else{
                 Session::flash('message','Matrimonio registrado correctamente');
-                return Redirect::to('matrimonio/create');
+                return Redirect::to('matrimonio/create')->with('message','store');
             }
             
     }
