@@ -24,7 +24,7 @@ class MatrimonioController extends Controller
         $objeto = new MatrimonioController;
         $json_response= '{'. '"cuiHombre":"'.$request['cuiHombre'] .'","cuiMujer":"'.$request['cuiMujer'].'"}';
         $imprimir=json_decode($objeto->consultarMatrimonio($json_response),true);
-        return view('matrimonio.show', $compact('imprimir'));
+        return view('matrimonio.show', compact('imprimir'));
     }
     public function store(Request $request)
     {
