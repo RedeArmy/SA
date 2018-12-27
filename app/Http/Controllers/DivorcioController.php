@@ -8,7 +8,31 @@ use Illuminate\Support\Facades\DB;
 
 class DivorcioController extends Controller
 {
+    public function create()
+    {
+        return view('divorcio.registrar');
+    }
     //
+    public function store(Request $request)
+    {
+        //
+        //$json_salida = $objeto->registrarDefuncion(response()->json($request));
+        error_log(json_encode($request));
+        $json_response= '{'. '"cuiHombre":"'.$request['cuiHombre'] .'","cuiMujer":"'.$request['cuiMujer'].
+            '","municipio":"'.$request['municipio'].'","lugarDivorcio":"'.$request['lugarDivorcio'].
+            '","fechaDivorcio":"'.$request['fechaDivorcio'].'"}';
+            $objeto = new DivorcioController;
+            echo 'salida:' . $json_response;
+            $mensaje= json_decode($objeto->registrarDivorcio($json_response),true);
+            if($mensaje['status']==-1){
+                Session::flash('alert','No se pudo ingresar el matrimonio');
+            }else{
+                Session::flash('message','Matrimonio registrado correctamente');
+                return Redirect::to('divorcio/create');
+            }
+            
+    }
+
     public function registrarDivorcio($valor){
         $json_recibido = json_decode($valor,true);
 
