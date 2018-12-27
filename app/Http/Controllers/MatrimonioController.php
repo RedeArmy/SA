@@ -23,6 +23,7 @@ class MatrimonioController extends Controller
             '","municipio":"'.$request['municipio'].'","lugarMatrimonio":"'.$request['lugarMatrimonio'].
             '","fechaMatrimonio":"'.$request['fechaMatrimonio'].'","regimenMatrimonial":"'.$request['regimenMatrimonial'] .'"}';
             $objeto = new MatrimonioController;
+            echo 'salida:' . $json_response;
             return $objeto->registrarMatrimonio($json_response);
     }
     public function registrarMatrimonio($valor){
