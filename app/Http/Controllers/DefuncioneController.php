@@ -31,14 +31,8 @@ class DefuncioneController extends Controller
                 'fechaDeDefuncion' => $request['fechaDeDefuncion'],
                 'causa' => $request['causa']
             ];
-            $mensaje=$objeto->registrarDefuncion(json_encode($json_response));
-            if($mensaje["status"]==-1){
-                Session::flash('alert','No se pudo ingresar el matrimonio');
-                return Redirect::to('defuncion/create')->with('message','fail');
-            }else{
-                Session::flash('message','Matrimonio registrado correctamente');
-                return Redirect::to('defuncion/create')->with('message','store');
-            }
+            return $objeto->registrarDefuncion(json_encode($json_response));
+            
     }
 
     public function create()
