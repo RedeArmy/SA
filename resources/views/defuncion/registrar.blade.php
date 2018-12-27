@@ -23,7 +23,7 @@
 	</div>
     <div class="form-group">
 		{!!Form::label('c','Fecha de Defuncion:')!!}
-		{!!Form::date('causa',null,['class'=>'form-control','placeholder'=>'Ingresa la fecha de muerte'])!!}
+		{!!Form::text('causa',null,['class'=>'form-control','placeholder'=>'Ingresa la fecha de muerte'])!!}
 	</div>
 	{!!Form::submit('Registrar Defuncion',['class'=>'btn btn-primary'])!!}
 	{!!Form::close()!!}
