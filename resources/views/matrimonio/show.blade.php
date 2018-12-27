@@ -8,9 +8,9 @@
 			<th>Data</th>
 		</thead>
 			<tbody>
-				<td>{{$imp['status']}}</td>
-				<td>{{$imp['mensaje']}}</td>
-				<td>{{$imp['data']}}</td>
+				<td>{{$imprimir['status']}}</td>
+				<td>{{$imprimir['mensaje']}}</td>
+				<td>{{$imprimir['data']}}</td>
 			</tbody>
 	</table>
 	@endsection
