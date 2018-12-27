@@ -326,8 +326,9 @@ class ServNacimientoController extends Controller
                 $municipio = "0".$municipio;
             }
 
-            $valor_depto =$id_departamento[0]['id_dpto']; 
-            //echo "<BR> VALOR DEPTO: ".$valor_depto."<BR>";
+
+            $valor_depto = "1";//$valor_depto =$id_departamento[0]['id_dpto']; 
+            echo "<BR> VALOR DEPTO: ".$id_departamento."<BR>";
             
 
             if(strlen((string)$valor_depto) == 1){
