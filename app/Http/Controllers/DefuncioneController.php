@@ -52,8 +52,8 @@ class DefuncioneController extends Controller
         $cui_persona = $json_recibido['cui'];
         $cui_compita = $json_recibido['cuiCompareciente'];
         $municipio = $json_recibido['municipio'];
-        $lugar_defuncion = $json_recibido['lugarDefuncion'];
-        $fecha_defuncion = $json_recibido['fechaDefuncion'];
+        $lugar_defuncion = $json_recibido['lugarDeDefuncion'];
+        $fecha_defuncion = $json_recibido['fechaDeDefuncion'];
         $causa = $json_recibido['causa'];
         
         $response_existencia = $objeto->validarExistenciaCUI($cui_persona);
