@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 	@section('content')
-	{!!Form::open(['route'=>'matrimonio.show', 'method'=>'POST'])!!}
+	{!!Form::open(['route'=>'matrimonio.mostrar', 'method'=>'POST'])!!}
 	<div class="form-group">
 		{!!Form::label('hombre','CUI Hombre:')!!}
 		{!!Form::text('cuiHombre',null,['class'=>'form-control','placeholder'=>'Ingresa el CUI del usuario'])!!}
