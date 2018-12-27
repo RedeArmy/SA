@@ -1,59 +1,49 @@
-FROM ubuntu:14.04
+#start with our base image (the foundation) - version 7.1.5
+FROM php:7.1.5-apache
 
-ENV DEBIAN_FRONTEND noninteractive
+#install all the system dependencies and enable PHP modules 
+RUN apt-get update && apt-get install -y \
+      libicu-dev \
+      libpq-dev \
+      libmcrypt-dev \
+      git \
+      zip \
+      unzip \
+    && rm -r /var/lib/apt/lists/* \
+    && docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd \
+    && docker-php-ext-install \
+      intl \
+      mbstring \
+      mcrypt \
+      pcntl \
+      pdo_mysql \
+      pdo_pgsql \
+      pgsql \
+      zip \
+      opcache
 
-RUN apt-get update -y  
-RUN apt-get install -y software-properties-common  
-RUN add-apt-repository ppa:nginx/development  
-RUN apt-get update -y  
-RUN apt-get upgrade -y  
-RUN apt-get install -y \  
-supervisor \  
-nginx \  
-php5-fpm \  
-php5-cli \  
-php5-curl \  
-php5-gd \  
-php5-mysql \  
-php5-memcached \  
-php5-mcrypt
+#install composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
 
-# Clean up to reduce container size
-RUN apt-get remove --purge -y software-properties-common  
-RUN apt-get autoremove -y  
-RUN apt-get clean  
-RUN apt-get autoclean  
-RUN echo -n > /var/lib/apt/extended_states
-RUN rm -rf /var/lib/apt/lists/*  
-RUN rm -rf /usr/share/man/??  
-RUN rm -rf /usr/share/man/??_*
+#set our application folder as an environment variable
+ENV APP_HOME /var/www/html
 
-# Configure php-fpm
-RUN sed -e 's/;daemonize = yes/daemonize = no/' -i /etc/php5/fpm/php-fpm.conf  
-RUN sed -e 's/;listen\.owner/listen.owner/' -i /etc/php5/fpm/pool.d/www.conf  
-RUN sed -e 's/;listen\.group/listen.group/' -i /etc/php5/fpm/pool.d/www.conf
+#change uid and gid of apache to docker user uid/gid
+RUN usermod -u 1000 www-data && groupmod -g 1000 www-data
 
-# Configure nginx to not run in daemonized mode
-RUN echo "daemon off;" >> /etc/nginx/nginx.conf
+#change the web_root to laravel /var/www/html/public folder
+RUN sed -i -e "s/html/html\/public/g" /etc/apache2/sites-enabled/000-default.conf
 
-# Configure nginx virtualhost
-RUN rm -Rf /etc/nginx/conf.d/*  
-RUN rm -Rf /etc/nginx/sites-available/default  
-ADD ./nginx-vhost.conf /etc/nginx/sites-available/default.conf  
-RUN ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/default.conf
+# enable apache module rewrite
+RUN a2enmod rewrite
 
-# Add the application code into the container
-ADD . /srv/www
+#copy source files and run composer
+COPY . $APP_HOME
 
-# Configure Supervisor
-ADD ./supervisord.conf /etc/supervisor/conf.d/supervisor.conf
+# install all PHP dependencies
+RUN composer install --no-interaction
 
-# Fix permissions
-RUN chown -Rf www-data:www-data /srv/www/
+#change ownership of our applications
+RUN chown -R www-data:www-data $APP_HOME
 
-WORKDIR /srv/www
-
-# Expose Ports
-EXPOSE 1080
-
-CMD ["/usr/bin/supervisord"]  
+EXPOSE 80

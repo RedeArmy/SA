@@ -5,11 +5,35 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Objeto;
 use Illuminate\Support\Facades\DB;
-
+use Session;
+use Redirect;
 
 class MatrimonioController extends Controller
 {
-    //
+    
+    public function create()
+    {
+        return view('matrimonio.registrar');
+    }
+    public function store(Request $request)
+    {
+        //
+        //$json_salida = $objeto->registrarDefuncion(response()->json($request));
+        error_log(json_encode($request));
+        $json_response= '{'. '"cuiHombre":"'.$request['cuiHombre'] .'","cuiMujer":"'.$request['cuiMujer'].
+            '","municipio":"'.$request['municipio'].'","lugarMatrimonio":"'.$request['lugarMatrimonio'].
+            '","fechaMatrimonio":"'.$request['fechaMatrimonio'].'","regimenMatrimonial":"'.$request['regimenMatrimonial'] .'"}';
+            $objeto = new MatrimonioController;
+            echo 'salida:' . $json_response;
+            $mensaje= json_decode($objeto->registrarMatrimonio($json_response),true);
+            if($mensaje['status']==-1){
+                Session::flash('alert','No se pudo ingresar el matrimonio');
+            }else{
+                Session::flash('message','Matrimonio registrado correctamente');
+                return Redirect::to('matrimonio.registrar');
+            }
+            
+    }
     public function registrarMatrimonio($valor){
         $json_recibido = json_decode($valor,true);
 
@@ -27,7 +51,6 @@ class MatrimonioController extends Controller
                 'cui','=',$cui_esposo)
                 ->where('estado_civil','<>','2')
                 ->where('genero','=','1')
-                ->where('vivo_muerto','=','1')
             ->get();
 
         $existe2 = DB::table('PERSONA')
@@ -35,8 +58,7 @@ class MatrimonioController extends Controller
             ->where(
                 'cui','=',$cui_esposa)
                 ->where('estado_civil','<>','2')
-                ->where('genero','=','0')
-                ->where('vivo_muerto','=','1')
+                ->where('genero','=','2')
             ->get();
 
         $existe3 = DB::table('MUNICIPIO')

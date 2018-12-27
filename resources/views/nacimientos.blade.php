@@ -127,16 +127,17 @@
                 <div class="card-body">
                     <h5 class="card-title text-center">INGRESAR EL NUMERO DE CUI DEL NACIMIENTO A CONSULTAR: </h5>
     
-                    <form class="form-signin">
+                        <form action="/mostrarnac/">
+                            
+                            <div class="form-label-group">
 
-                        <div class="form-label-group">
-                            <input type="number" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                            <label for="inputEmail">CUI</label>
-                        </div>
-
-                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Imprimir Nacimiento</button>
+                                <input type="number" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                                <label for="inputEmail">CUI</label>
+                            
+                            </div>
+                            <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Imprimir Nacimiento</button>
+                        </form>
     
-                    </form>
                 </div>
                 </div>
             </div>
