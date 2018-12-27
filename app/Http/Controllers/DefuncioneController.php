@@ -18,6 +18,11 @@ class DefuncioneController extends Controller
         //
     }
 
+    public function create()
+    {
+        return view('defuncion.registrar');
+    }
+
     public function registrarDefuncion($valor){
 
         $objeto = new DefuncioneController;
