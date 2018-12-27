@@ -43,7 +43,13 @@ class ServNacimientoController extends Controller
             ',"fechanacimiento":'.$request['fechanacimiento'].',"municipio":'.$request['municipio'].',"lugarNacimiento":'.
             $request['lugarNacimiento'].',"cuiPadre":'.$request['cuiPadre'].',"cuiMadre":'.$request['cuiMadre'] .'}';
             $objeto = new ServNacimientoController;
-            return $objeto->registrarNacimiento($json_response);
+
+            echo "TRABAJO:".json_encode($json_response)."<br>";
+
+            $json_cosita = ["status" => 1];
+            
+            //return $objeto->registrarNacimiento($json_response);
+            return $json_cosita;
     }
 
     /**
