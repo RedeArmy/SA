@@ -16,6 +16,11 @@ class MatrimonioController extends Controller
         return view('matrimonio.indice');
     }
 
+    public function show()
+    {
+        return view('matrimonio.indice');
+    }
+    
     public function create()
     {
         return view('matrimonio.registro');
