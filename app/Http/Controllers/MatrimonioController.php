@@ -24,7 +24,14 @@ class MatrimonioController extends Controller
             '","fechaMatrimonio":"'.$request['fechaMatrimonio'].'","regimenMatrimonial":"'.$request['regimenMatrimonial'] .'"}';
             $objeto = new MatrimonioController;
             echo 'salida:' . $json_response;
-            return $objeto->registrarMatrimonio($json_response);
+            $mensaje= json_decode($objeto->registrarMatrimonio($json_response),true);
+            if($mensaje['status']==-1){
+                Session::flash('alert','No se pudo ingresar el matrimonio');
+            }else{
+                Session::flash('message','Matrimonio registrado correctamente');
+                return Redirect::to('/');
+            }
+            
     }
     public function registrarMatrimonio($valor){
         $json_recibido = json_decode($valor,true);
