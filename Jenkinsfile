@@ -22,7 +22,7 @@ node {
             sh 'sudo ab -k -n1000 -c100 -H "Accept-Encoding: gzip,deflate" http://104.196.194.35/api/v1/dpi_consulta/%7B%22cui%22:%222942637562001%22%7D'
             sh 'sudo ab -k -n1000 -c100 -H "Accept-Encoding: gzip,deflate" http://104.196.194.35/api/v1/reg_matri/{"cuiHombre":"2120000470507","cuiMujer":"2120010811308","municipio":"1","lugarMatrimonio":"Ciudad","fechaMatrimonio":"1999-01-01","regimenMatrimonial":"bienes mancomunados"}'
             sh 'sudo ab -k -n1000 -c100 -H "Accept-Encoding: gzip,deflate" http://104.196.194.35/api/v1/consul_matri/%7B"cuiHombre":"2120000470507","cuiMujer":"2120010811308"%7D'
-            sh 'sudo ab -k -n1000 -c100 -H "Accept-Encoding: gzip,deflate" http://104.196.194.35/api/v1/registrarNacimiento/%7B "nombre" : "xxxxxx", "apellido" : "xxxxxx", "genero" : "xxxxxx", "fechaNacimiento" : "xxxxxx", "municipio" : "xxxxxx", "lugarNacimiento" : "xxxxxx", "cuiPadre" : "xxxxxx", "cuiMadre" : "xxxxxx" %7D'
+            sh 'sudo ab -k -n1000 -c100 -H "Accept-Encoding: gzip,deflate" http://104.196.194.35/api/v1/registrarNacimiento/%7B"nombre":"xxxxxx","apellido":"xxxxxx","genero":"xxxxxx","fechaNacimiento":"xxxxxx","municipio":"xxxxxx","lugarNacimiento":"xxxxxx","cuiPadre":"xxxxxx","cuiMadre":"xxxxxx"%7D'
 
 
         }   
