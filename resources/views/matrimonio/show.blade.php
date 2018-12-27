@@ -9,9 +9,9 @@
 		</thead>
 			<tbody>
                 {{$imprime=json_encode($imprimir,true)}}
-				<td>{{$imprime['status']}}</td>
-				<td>{{$imprime['mensaje']}}</td>
-				<td>{{$imprime['data']}}</td>
+				<td>{{}}</td>
+				<td>{{}}</td>
+				<td>{{$imprimir}}</td>
 			</tbody>
 	</table>
 	@endsection
