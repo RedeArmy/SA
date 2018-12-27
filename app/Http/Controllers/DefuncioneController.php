@@ -14,8 +14,23 @@ class DefuncioneController extends Controller
         //
     }
 
-    public function middleDefuncion(Request $request){
-        //
+    public function store(Request $request){
+        
+        error_log(json_encode($request));
+        
+        $objeto = new DefuncionController;
+
+            $json_response = [
+                'cui' => $request['cui'],
+                'cuiCompareciente' => $request['cuiCompareciente'],
+                'genero' => $request['genero'],
+                'lugarDeDefuncion' => $request['lugarDeDefuncion'],
+                'municipio' => $request['municipio'],
+                'lugarNacimiento' => $request['lugarNacimiento'],
+                'fechaDeDefuncion' => $request['fechaDeDefuncion'],
+                'causa' => $request['causa']
+            ];
+            return $objeto->registrarDefuncion(json_encode($json_response));
     }
 
     public function create()
