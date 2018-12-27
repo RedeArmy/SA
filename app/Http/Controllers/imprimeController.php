@@ -36,8 +36,8 @@ class imprimeController extends Controller
     {
         $json_response= '{'. '"cuiHombre":"'.$request['cuiHombre'] .'","cuiMujer":"'.$request['cuiMujer'].'"}';
         $objeto = new MatrimonioController;
-        //return view('matrimonio.show', compact('imprimir'));
-        return $objeto->consultarMatrimonio($json_response);
+        $imprimir=$objeto->consultarMatrimonio($json_response);
+        return view('matrimonio.show', compact('imprimir'));
     }
 
     
