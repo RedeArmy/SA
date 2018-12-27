@@ -8,9 +8,10 @@
 			<th>Data</th>
 		</thead>
 			<tbody>
-				<td>{{$imprimir['status']}}</td>
-				<td>{{$imprimir['mensaje']}}</td>
-				<td>{{$imprimir['data']}}</td>
+                {{$imprime=json_encode($imprimir,true)}}
+				<td>{{}}</td>
+				<td>{{}}</td>
+				<td>{{$imprimir}}</td>
 			</tbody>
 	</table>
 	@endsection

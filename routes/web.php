@@ -43,7 +43,9 @@ Route::get('api/v1/muni/{valor}','MunicipioController@getMuni');
 Route::get('api/v1/dpi_consulta/{valor}','DpiController@ConsultarDpi');
 
 //SERVICIOS DE MATRIMONIO
+Route::resource('imprime','imprimeController');
 Route::resource('matrimonio','MatrimonioController');
+Route::get('matrimonio/mostrar','MatrimonioController@mostrar');
 Route::get('api/v1/reg_matri/{valor}','MatrimonioController@registrarMatrimonio');
 Route::get('api/v1/consul_matri/{valor}','MatrimonioController@consultarMatrimonio');
 
