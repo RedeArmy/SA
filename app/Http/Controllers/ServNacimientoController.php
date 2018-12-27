@@ -15,7 +15,7 @@ class ServNacimientoController extends Controller
      */
     public function index()
     {
-        
+       return view('nacimiento.show'); 
     }
 
     /**
@@ -321,15 +321,15 @@ class ServNacimientoController extends Controller
         
         do{
             $cui_generado = $objeto->generarCUI();
-            if((log($municipio, 10) + 1) == 1)
+            if(strlen($municipio) == 1)
             {
                 $municipio = "0".$municipio;
             }
 
-            $valor_depto =$id_departamento[0]['id_dpto']; 
-            //echo "<BR> VALOR DEPTO: ".$valor_depto."<BR>";
+            //$valor_depto = "1";//
+            $valor_depto = $id_departamento[0]['id_dpto']; 
+            //echo "<BR> VALOR DEPTO: ".json_encode($id_departamento)."<BR>";
             
-
             if(strlen((string)$valor_depto) == 1){
                 $valor_depto = "0".$valor_depto;
             }
