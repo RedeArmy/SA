@@ -21,10 +21,10 @@ Route::get('/', function () {
 
 Route::get('/', 'HomeController@index');
 
-Route::get('/nacimiento/', function (){
-    return view('nacimientos');
+/*Route::get('/nacimiento/', function (){
+    return view('nacimiento.registrar');
 });
-
+*/
 Route::resource('servicionacimiento','ServNacimientoController');
 
 Route::get('api/v1/nacs','ServNacimientoController@getPrueba');
@@ -41,9 +41,12 @@ Route::get('api/v1/muni/{valor}','MunicipioController@getMuni');
 Route::get('api/v1/dpi_consulta/{valor}','DpiController@ConsultarDpi');
 
 //SERVICIOS DE MATRIMONIO
+Route::resource('matrimonio','MatrimonioController');
 Route::get('api/v1/reg_matri/{valor}','MatrimonioController@registrarMatrimonio');
 Route::get('api/v1/consul_matri/{valor}','MatrimonioController@consultarMatrimonio');
 
 //SERVICIOS DE DEFUNCION
 Route::get('api/defuncion/registro_defuncion/{valor}','DefuncioneController@registrarDefuncion');
 Route::get('api/defuncion/imprimir_defuncion/{valor}','DefuncioneController@imprimirDefuncion');
+
+

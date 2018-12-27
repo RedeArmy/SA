@@ -10,6 +10,14 @@ class DefuncioneController extends Controller
 {
     //
 
+    public function ingresarDefuncion(){
+        //
+    }
+
+    public function middleDefuncion(Request $request){
+        //
+    }
+
     public function registrarDefuncion($valor){
 
         $objeto = new DefuncioneController;

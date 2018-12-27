@@ -9,7 +9,22 @@ use Illuminate\Support\Facades\DB;
 
 class MatrimonioController extends Controller
 {
-    //
+    
+    public function create()
+    {
+        return view('matrimonio.registrar');
+    }
+    public function store(Request $request)
+    {
+        //
+        //$json_salida = $objeto->registrarDefuncion(response()->json($request));
+        error_log(json_encode($request));
+        $json_response= '{'. '"cuiHombre":"'.$request['cuiHombre'] .'","cuiMujer":"'.$request['cuiMujer'].
+            '","municipio":"'.$request['municipio'].'","lugarMatrimonio":"'.$request['lugarMatrimonio'].
+            '","fechaMatrimonio":"'.$request['fechaMatrimonio'].'","regimenMatrimonial":"'.$request['regimenMatrimonial'] .'"}';
+            $objeto = new MatrimonioController;
+            return $objeto->registrarMatrimonio($json_response);
+    }
     public function registrarMatrimonio($valor){
         $json_recibido = json_decode($valor,true);
 
