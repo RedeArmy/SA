@@ -63,7 +63,7 @@
                             <a href="#"><i class="fa fa-film fa-fw"></i> Nacimientos<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#"><i class='fa fa-plus fa-fw'></i> Registrar</a>
+                                    <a href="servicionacimiento/create"><i class='fa fa-plus fa-fw'></i> Registrar</a>
                                 </li>
                                 <li>
                                     <a href="#"><i class='fa fa-list-ol fa-fw'></i> Consultar</a>
@@ -75,7 +75,7 @@
                             <a href="#"><i class="fa fa-child fa-fw"></i> Divorcios<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#"><i class='fa fa-plus fa-fw'></i> Registrar</a>
+                                    <a href="divorcio/create"><i class='fa fa-plus fa-fw'></i> Registrar</a>
                                 </li>
                                 <li>
                                     <a href="#"><i class='fa fa-list-ol fa-fw'></i> Consultar</a>
@@ -83,7 +83,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-child fa-fw"></i> Matrimonios<span class="fa arrow"></span></a>
+                            <a href="matrimonio/create"><i class="fa fa-child fa-fw"></i> Matrimonios<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="#"><i class='fa fa-plus fa-fw'></i> Registrar</a>
