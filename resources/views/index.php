@@ -32,7 +32,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="full">
 			<div class="menu">
 				<ul>
-					<li><a class="active" href="{{url('matrimonio/create')}}""><i class="home"></i></a></li>
+					<li><a class="active" href="matrimonio/create"><i class="home"></i></a></li>
 					<li><a href="#"><div class="cnt"><i class="contact"></i><i class="contact1"></i></div></a></li>
 				</ul>
 			</div>
