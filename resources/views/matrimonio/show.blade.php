@@ -8,9 +8,8 @@
 			<th>Data</th>
 		</thead>
 			<tbody>
-                {{$imprime=json_encode($imprimir,true)}}
-				<td>{{}}</td>
-				<td>{{}}</td>
+                <td></td>
+				<td></td>
 				<td>{{$imprimir}}</td>
 			</tbody>
 	</table>
