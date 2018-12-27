@@ -15,7 +15,7 @@ class ServNacimientoController extends Controller
      */
     public function index()
     {
-        
+       return view('nacimiento.show'); 
     }
 
     /**

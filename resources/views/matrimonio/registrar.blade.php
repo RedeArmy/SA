@@ -1,4 +1,18 @@
 @extends('layouts.admin')
+<?php $message=Session::get('message')?>
+
+@if($message == 'store')
+<div class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  Matrimonio creado exitosamente
+</div>
+@endif
+@if($message == 'fail')
+<div class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  Me cague en todo
+</div>
+@endif
 	@section('content')
 	{!!Form::open(['route'=>'matrimonio.store', 'method'=>'POST'])!!}
 	<div class="form-group">
