@@ -314,7 +314,7 @@ class ServNacimientoController extends Controller
         
         do{
             $cui_generado = $objeto->generarCUI();
-            if((log($municipio, 10) + 1) == 1)
+            if(strlen($municipio) == 1)
             {
                 $municipio = "0".$municipio;
             }
