@@ -26,7 +26,6 @@ class DefuncioneController extends Controller
                 'genero' => $request['genero'],
                 'lugarDeDefuncion' => $request['lugarDeDefuncion'],
                 'municipio' => $request['municipio'],
-                'lugarNacimiento' => $request['lugarNacimiento'],
                 'fechaDeDefuncion' => $request['fechaDeDefuncion'],
                 'causa' => $request['causa']
             ];
