@@ -11,9 +11,25 @@ use Redirect;
 class MatrimonioController extends Controller
 {
     
+    public function inicio()
+    {
+        return view('matrimonio.indice');
+    }
+
+    public function show()
+    {
+        return view('matrimonio.indice');
+    }
+    
     public function create()
     {
-        return view('matrimonio.registrar');
+        return view('matrimonio.registro');
+    }
+    public function mostrar(Request $request){
+        $objeto = new MatrimonioController;
+        $json_response= '{'. '"cuiHombre":"'.$request['cuiHombre'] .'","cuiMujer":"'.$request['cuiMujer'].'"}';
+        $imprimir=json_decode($objeto->consultarMatrimonio($json_response),true);
+        return view('matrimonio.show', compact('imprimir'));
     }
     public function store(Request $request)
     {
@@ -26,7 +42,7 @@ class MatrimonioController extends Controller
             $objeto = new MatrimonioController;
             echo 'salida:' . $json_response;
             $mensaje= json_decode($objeto->registrarMatrimonio($json_response),true);
-            if($mensaje['status']==-1){
+            if($mensaje["status"]==-1){
                 Session::flash('alert','No se pudo ingresar el matrimonio');
                 return Redirect::to('matrimonio/create')->with('message','fail');
             }else{
@@ -144,7 +160,7 @@ class MatrimonioController extends Controller
         }
 
         $json_response = [
-            'mensaje' => 'El acata de matrimonio se recupero con éxito',
+            'mensaje' => 'El acta de matrimonio se recupero con éxito',
             'status' => '1',
             'data' => [
                 'cuiHombre' => $cui_esposo,
