@@ -47,3 +47,6 @@ Route::get('api/v1/consul_matri/{valor}','MatrimonioController@consultarMatrimon
 //SERVICIOS DE DEFUNCION
 Route::get('api/defuncion/registro_defuncion/{valor}','DefuncioneController@registrarDefuncion');
 Route::get('api/defuncion/imprimir_defuncion/{valor}','DefuncioneController@imprimirDefuncion');
+
+//SERVICIOS DE DIVORCIO
+Route::get('api/divorcio/registro_divorcio/{valor}','DivorcioController@registrarDivorcio');
