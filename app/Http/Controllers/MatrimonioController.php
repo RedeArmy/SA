@@ -43,7 +43,6 @@ class MatrimonioController extends Controller
                 'cui','=',$cui_esposo)
                 ->where('estado_civil','<>','2')
                 ->where('genero','=','1')
-                ->where('vivo_muerto','=','1')
             ->get();
 
         $existe2 = DB::table('PERSONA')
@@ -51,8 +50,7 @@ class MatrimonioController extends Controller
             ->where(
                 'cui','=',$cui_esposa)
                 ->where('estado_civil','<>','2')
-                ->where('genero','=','0')
-                ->where('vivo_muerto','=','1')
+                ->where('genero','=','2')
             ->get();
 
         $existe3 = DB::table('MUNICIPIO')
