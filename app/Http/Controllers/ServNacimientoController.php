@@ -43,9 +43,10 @@ class ServNacimientoController extends Controller
         $json_response= '{'. '"nombre":'.$request['nombre'] .',"apellido":'.$request['apellido'].',"genero":'.$request['genero'].
             ',"fechanacimiento":'.$request['fechanacimiento'].',"municipio":'.$request['municipio'].',"lugarNacimiento":'.
             $request['lugarNacimiento'].',"cuiPadre":'.$request['cuiPadre'].',"cuiMadre":'.$request['cuiMadre'] .'}';
-            $objeto = new ServNacimientoController;
 
 */
+$objeto = new ServNacimientoController;
+
             $json_response = [
                 'nombre' => $request['nombre'],
                 'apellido' => $request['apellido'],
