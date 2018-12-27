@@ -328,7 +328,7 @@ class ServNacimientoController extends Controller
 
 
             $valor_depto = "1";//$valor_depto =$id_departamento[0]['id_dpto']; 
-            echo "<BR> VALOR DEPTO: ".$id_departamento."<BR>";
+            echo "<BR> VALOR DEPTO: ".json_encode($id_departamento)."<BR>";
             
 
             if(strlen((string)$valor_depto) == 1){
