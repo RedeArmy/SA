@@ -30,7 +30,7 @@ class MatrimonioController extends Controller
                 Session::flash('alert','No se pudo ingresar el matrimonio');
             }else{
                 Session::flash('message','Matrimonio registrado correctamente');
-                return Redirect::to('matrimonio.registrar');
+                return Redirect::to('matrimonio/create');
             }
             
     }
