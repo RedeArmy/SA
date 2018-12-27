@@ -63,7 +63,7 @@ $objeto = new ServNacimientoController;
 
 
             //$json_cosita = ["status" => 1];
-            return $objeto->registrarNacimiento($json_response);
+            return $objeto->registrarNacimiento(json_encode($json_response));
             //return $json_cosita;
     }
 
