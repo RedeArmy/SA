@@ -39,15 +39,29 @@ class ServNacimientoController extends Controller
         //
         //$json_salida = $objeto->registrarDefuncion(response()->json($request));
         error_log(json_encode($request));
+        /*
         $json_response= '{'. '"nombre":'.$request['nombre'] .',"apellido":'.$request['apellido'].',"genero":'.$request['genero'].
             ',"fechanacimiento":'.$request['fechanacimiento'].',"municipio":'.$request['municipio'].',"lugarNacimiento":'.
             $request['lugarNacimiento'].',"cuiPadre":'.$request['cuiPadre'].',"cuiMadre":'.$request['cuiMadre'] .'}';
             $objeto = new ServNacimientoController;
 
+            $json_cosita = ["status" => 1];
+*/
+            $json_response = [
+                'nombre' => $request['nombre'],
+                'apellido' => $request['apellido'],
+                'genero' => $request['genero'],
+                'fechaNacimiento' => $request['fechaNacimiento'],
+                'municipio' => $request['municipio'],
+                'lugarNacimiento' => $request['lugarNacimiento'],
+                'cuiPadre' => $request['cuiPadre'],
+                'cuiMadre' => $request['cuiMadre']
+            ];
+
+            
             echo "TRABAJO:".json_encode($json_response)."<br>";
 
-            $json_cosita = ["status" => 1];
-            
+
             //return $objeto->registrarNacimiento($json_response);
             return $json_cosita;
     }
