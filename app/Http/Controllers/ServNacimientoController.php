@@ -15,7 +15,7 @@ class ServNacimientoController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -25,7 +25,7 @@ class ServNacimientoController extends Controller
      */
     public function create()
     {
-        //
+        return view('nacimiento.registrar');
     }
 
     /**
@@ -37,6 +37,13 @@ class ServNacimientoController extends Controller
     public function store(Request $request)
     {
         //
+        //$json_salida = $objeto->registrarDefuncion(response()->json($request));
+        error_log(json_encode($request));
+        $json_response= '{'. '"nombre":'.$request['nombre'] .',"apellido":'.$request['apellido'].',"genero":'.$request['genero'].
+            ',"fechanacimiento":'.$request['fechanacimiento'].',"municipio":'.$request['municipio'].',"lugarNacimiento":'.
+            $request['lugarNacimiento'].',"cuiPadre":'.$request['cuiPadre'].',"cuiMadre":'.$request['cuiMadre'] .'}';
+            $objeto = new ServNacimientoController;
+            return $objeto->registrarNacimiento($json_response);
     }
 
     /**
