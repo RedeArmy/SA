@@ -11,26 +11,17 @@ use Redirect;
 class MatrimonioController extends Controller
 {
     
-    public function inicio()
-    {
-        return view('matrimonio.indice');
-    }
-
     public function show()
     {
-        return view('matrimonio.indice');
+        return view('matrimonio.index');
     }
     
+
     public function create()
     {
-        return view('matrimonio.registro');
+        return view('matrimonio.registrar');
     }
-    public function mostrar(Request $request){
-        $objeto = new MatrimonioController;
-        $json_response= '{'. '"cuiHombre":"'.$request['cuiHombre'] .'","cuiMujer":"'.$request['cuiMujer'].'"}';
-        $imprimir=json_decode($objeto->consultarMatrimonio($json_response),true);
-        return view('matrimonio.show', compact('imprimir'));
-    }
+    
     public function store(Request $request)
     {
         //
