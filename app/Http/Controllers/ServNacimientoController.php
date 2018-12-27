@@ -58,12 +58,12 @@ class ServNacimientoController extends Controller
             ];
 
             
-            echo "TRABAJO:".json_encode($json_response)."<br>";
+            //echo "TRABAJO:".json_encode($json_response)."<br>";
 
 
-            $json_cosita = ["status" => 1];
-            //return $objeto->registrarNacimiento($json_response);
-            return $json_cosita;
+            //$json_cosita = ["status" => 1];
+            return $objeto->registrarNacimiento($json_response);
+            //return $json_cosita;
     }
 
     /**
