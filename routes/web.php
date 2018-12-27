@@ -25,6 +25,8 @@ Route::get('/', 'HomeController@index');
     return view('nacimiento.registrar');
 });
 */
+
+
 Route::resource('servicionacimiento','ServNacimientoController');
 
 Route::get('api/v1/nacs','ServNacimientoController@getPrueba');
@@ -50,3 +52,6 @@ Route::get('api/defuncion/registro_defuncion/{valor}','DefuncioneController@regi
 Route::get('api/defuncion/imprimir_defuncion/{valor}','DefuncioneController@imprimirDefuncion');
 
 
+//SERVICIOS DE DIVORCIO
+Route::get('api/divorcio/registro_divorcio/{valor}','DivorcioController@registrarDivorcio');
+Route::get('api/divorcio/consultar_divorcio/{valor}','DivorcioController@consultarDivorcio');
