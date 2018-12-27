@@ -50,3 +50,4 @@ Route::get('api/defuncion/imprimir_defuncion/{valor}','DefuncioneController@impr
 
 //SERVICIOS DE DIVORCIO
 Route::get('api/divorcio/registro_divorcio/{valor}','DivorcioController@registrarDivorcio');
+Route::get('api/divorcio/consultar_divorcio/{valor}','DivorcioController@consultarDivorcio');
