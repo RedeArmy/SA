@@ -8,7 +8,7 @@
 			<th>Data</th>
 		</thead>
 			<tbody>
-                $imprime=json_encode($imprimir,true);
+                {{$imprime=json_encode($imprimir,true)}}
 				<td>{{$imprime['status']}}</td>
 				<td>{{$imprime['mensaje']}}</td>
 				<td>{{$imprime['data']}}</td>
