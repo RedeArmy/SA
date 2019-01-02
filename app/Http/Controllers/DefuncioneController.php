@@ -236,6 +236,34 @@ class DefuncioneController extends Controller
 
     public function Imprimir(Request $re){
         
+        $objeto = new DefuncioneController;
+
+        $valor_cui = $re->input('cui');
+
+        $defuncion_obtenida = $objeto->obtenerDefuncion($valor_cui);
+
+        if($defuncion_obtenida == "[]"){
+            
+            $json_response =
+            [
+                'status' => 0,
+                'mensaje' => "Registro de defucion con el DPI no encontrado",
+                'data' => [],
+            ];
+
+            return response()->json($json_response);
+        }else{
+
+            $json_response =
+            [
+                'status' => 1,
+                'mensaje' => "DPI encontrado",
+                'data' => [$defuncion_obtenida],
+            ];
+            
+            return response()->json($json_response);
+        }
+
     }
 
 

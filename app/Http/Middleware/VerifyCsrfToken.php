@@ -23,6 +23,8 @@ class VerifyCsrfToken extends Middleware
         '/login/',
         '/login2/',
         '/nacimiento/registrar/',
-        '/nacimiento/imprimir/'
+        '/nacimiento/imprimir/',
+        '/defuncion/registrar/',
+        '/defuncion/imprimir/'
     ];
 }
