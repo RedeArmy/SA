@@ -112,4 +112,33 @@ class MunicipioController extends Controller
         $d->data->listaMunicipios = $dptos;
         return response()->json($d);
     }
+
+    public function ListaMunis(Request $req){
+
+        $id_dpto = $req['idDepartamento'];
+        $d = new Municipio;
+
+        $existe = DB::table('DEPARTAMENTO')
+            ->select('id_dpto')
+            ->where('id_dpto','=',$id_dpto)
+            ->get();
+
+        if($existe == "[]"){
+            $d->mensaje = "No hay Departamento con ese codigo";
+            $d->status = "-1";
+            $d->data = [];
+            return response()->json($d);
+        }
+
+        $dptos = DB::table('MUNICIPIO')
+            ->select('id_muni as idMunicipio', 'nombre as municipio')
+            ->where('id_dpto','=',$id_dpto)
+            ->get();
+
+        $d->mensaje = "Lista de municipios recuperada con exito";
+        $d->status = '1';
+        $d->data = new Municipio;
+        $d->data->listaMunicipios = $dptos;
+        return response()->json($d);
+    }
 }
