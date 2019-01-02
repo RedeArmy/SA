@@ -645,6 +645,7 @@ class ServNacimientoController extends Controller
         $json_desmembrar = json_decode($valor_desmembrar,true);
         $valor_simple_cui = $json_desmembrar['valorCUI'];
 
+        
 
         $valor_cui_valido = $objeto->valida_CUI_Nacimiento($valor_simple_cui);
 

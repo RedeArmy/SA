@@ -83,3 +83,5 @@ Route::post('/login',function(Request $re){
 Route::post('/nacimiento/registrar','ServNacimientoController@Registrar');
 Route::post('/nacimiento/imprimir','ServNacimientoController@Imprimir');
 
+Route::post('/defuncion/registrar','DefuncioneController@Registrar');
+Route::post('/defuncion/imprimir','DefuncioneController@Imprimir');

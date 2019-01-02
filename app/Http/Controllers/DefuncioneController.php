@@ -166,5 +166,78 @@ class DefuncioneController extends Controller
 
     }
 
+    // -------- SERVICIOS POST --------
+    // DEFUNCIONES
+
+    public function Registrar(Request $re){
+        
+        $objeto = new DefuncioneController;
+        //$json_recibido = json_decode($valor,true);
+
+        $cui_persona = $re->input('cui');
+        $cui_compita = $re->input('cuiCompareciente');
+        $municipio =$re->input('municipio'); 
+        $lugar_defuncion = $re->input('lugarDeDefuncion');
+        $fecha_defuncion = $re->input('fechaDeDefuncion');
+        $causa = $re->input('causa');
+
+        $response_existencia = $objeto->validarExistenciaCUI($cui_persona);
+
+        if($response_existencia == false){
+            
+            $resultado_final =[
+                'status' => 0,
+                'mensaje' => "Defuncion no registrada, el DPI no existe",
+                'data' => []
+            ];
+            
+            return response()->json($resultado_final);
+
+        }else{
+
+            $existe_compita = $objeto->validarExistenciaCUI($cui_compita);
+
+            if($existe_compita == true){
+
+                DB::table('DEFUNCION')
+                ->insert([
+                    'cui_difunto' => $cui_persona,
+                    'cui_compareciente' => $cui_compita,
+                    'muni_defuncion' => $municipio,
+                    'direccion_defuncion' => $lugar_defuncion,
+                    'fecha_hora' => Carbon::now(),
+                    'causa' => $causa,
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now()
+                ]);
+
+                $resultado_final =[
+                    'status' => 1,
+                    'mensaje' => "Defuncion registrada",
+                    'data' => []
+                ];
+                
+                return response()->json($resultado_final);
+
+            }else{
+
+                $resultado_final =[
+                    'status' => 0,
+                    'mensaje' => "Defuncion no registrada, el DPI del compareciente no existe",
+                    'data' => []
+                ];
+                
+                return response()->json($resultado_final);
+        
+            }
+
+        }
+    }
+
+    public function Imprimir(Request $re){
+        
+    }
+
+
 
 }
