@@ -15,6 +15,8 @@
 //use Illuminate\Routing\Controller;
 //use ServNacimientoController;
 
+use Illuminate\Http\Request;
+
 Route::get('/', function () {
     return view('index');
 });
@@ -59,3 +61,25 @@ Route::get('api/defuncion/imprimir_defuncion/{valor}','DefuncioneController@impr
 Route::resource('divorcio','DivorcioController');
 Route::get('api/divorcio/registro_divorcio/{valor}','DivorcioController@registrarDivorcio');
 Route::get('api/divorcio/consultar_divorcio/{valor}','DivorcioController@consultarDivorcio');
+
+//SERVICIOS CON POST
+Route::post('/login2','ServNacimientoController@pruebas');
+
+Route::post('/login',function(Request $re){
+ 
+    $usuario = $re->input("usuario");
+    $password = $re->input("password");
+ 
+    if($usuario == "AndoCodeando" && $password == "1.2..3...")
+        return response()->json(["mensaje" => "hola " . $usuario]);
+    else
+        return response()->json(["mensaje" => "login fallido"]);
+    
+});
+
+
+// SERVICIOS - NUEVAS RUTAS
+
+Route::post('/nacimiento/registrar','ServNacimientoController@Registrar');
+Route::post('/nacimiento/imprimir','ServNacimientoController@Imprimir');
+

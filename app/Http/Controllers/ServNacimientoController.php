@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -39,13 +40,8 @@ class ServNacimientoController extends Controller
         //
         //$json_salida = $objeto->registrarDefuncion(response()->json($request));
         error_log(json_encode($request));
-        /*
-        $json_response= '{'. '"nombre":'.$request['nombre'] .',"apellido":'.$request['apellido'].',"genero":'.$request['genero'].
-            ',"fechanacimiento":'.$request['fechanacimiento'].',"municipio":'.$request['municipio'].',"lugarNacimiento":'.
-            $request['lugarNacimiento'].',"cuiPadre":'.$request['cuiPadre'].',"cuiMadre":'.$request['cuiMadre'] .'}';
-
-*/
-$objeto = new ServNacimientoController;
+  
+        $objeto = new ServNacimientoController;
 
             $json_response = [
                 'nombre' => $request['nombre'],
@@ -523,4 +519,203 @@ $objeto = new ServNacimientoController;
         }
 
     }
+
+    public function pruebas(Request $re){
+        $data = $re->input("usuario");
+        $mensaje = $data."cosa bien hecha";
+        return response()->json(["mensaje" => $mensaje]);
+    }
+
+
+    // -------- SERVICIOS POST -----------
+    // NACIMIENTOS        
+
+    public function Registrar(Request $re){
+
+        $objeto = new ServNacimientoController;
+
+        $nombre = $re->input('nombre');
+        $apellido = $re->input('apellido');
+        $genero = $re->input('genero');
+        $fechaNacimiento = $re->input('fechaNacimiento');
+        $municipio = $re->input('municipio');
+        $lugarNacimiento = $re->input('lugarNacimiento');
+        $cuiPadre = $re->input('cuiPadre');
+        $cuiMadre = $re->input('cuiMadre');
+
+        
+        $validadorExistencia = false;
+        $cui_generado = 0;
+
+        $id_departamento = json_decode($objeto->obtenerDepartamento($municipio),true);
+        
+        do{
+            $cui_generado = $objeto->generarCUI();
+            if(strlen($municipio) == 1)
+            {
+                $municipio = "0".$municipio;
+            }
+
+            //$valor_depto = "1";//
+            $valor_depto = $id_departamento[0]['id_dpto']; 
+            //echo "<BR> VALOR DEPTO: ".json_encode($id_departamento)."<BR>";
+            
+            if(strlen((string)$valor_depto) == 1){
+                $valor_depto = "0".$valor_depto;
+            }
+
+            //echo "<BR> VALOR DEPTO despues : ".$valor_depto."<BR>";
+
+            $cui_final_generado = $cui_generado.$valor_depto.$municipio;
+            $validadorExistencia = $objeto->validarExistenciaCUI($cui_final_generado);
+        }while($validadorExistencia == false);
+
+        $valor_cui_valodi = $objeto->valida_CUI_Nacimiento($cui_final_generado);
+        $valor_fake = $objeto->valida_CUI_Nacimiento(256461546);
+
+      
+        //REGISTRO DEL NACIMIENTO EN LA BD
+
+        $valor_id = $objeto->obtenerIdPersona();
+
+        $existe_madre = $objeto->validarExistenciaCUI($cuiMadre);
+        $existe_padre = $objeto->validarExistenciaCUI($cuiPadre);
+
+        if($existe_madre == false && $existe_padre == false){
+            echo "se pudo realizar el ingreso!!1";
+        }
+
+        if($existe_padre == false && $existe_madre == false){
+
+            DB::table('PERSONA')
+            ->insert(
+                [   'cui'=>$cui_final_generado,
+                    'id'=>$valor_id,
+                    'nombres'=>$nombre,
+                     'apellidos'=>$apellido,
+                     'genero'=>$genero,
+                     'estado_civil'=>1,
+                     'huella'=>"sin valor",
+                     'direccion'=>"ciudad",
+                     'vivo_muerto'=>1,
+                     'id_muni'=>$municipio
+                ]
+            );
+
+            DB::table('NACIMIENTO')
+            ->insert([
+                'cui' => $cui_final_generado,
+                'cui_padre' => $cuiPadre,
+                'cui_madre' => $cuiMadre,
+                'id_muni' => $municipio,
+                'fecha' => Carbon::now(),
+                'direccion_nac' => "ciudad",
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+             ]);
+            
+            $resultado_final =  [
+                'cui' => $cui_final_generado,
+                'status' => 1,
+                'mensaje' => "Registro de persona añadido"
+            ];
+
+            return response()->json($resultado_final);
+        
+        }else{
+            
+            $resultado_final =  [
+                'cui' => 0,
+                'status' => 0,
+                'mensaje' => "Registro de persona no realizado, no existe padre o madre"
+            ];
+
+            return response()->json($resultado_final);
+
+        }
+    }
+
+    public function Imprimir(Request $re){
+
+        $objeto = new ServNacimientoController;
+    
+        $valor_cui = $re->input('cui');
+
+        $valor_desmembrar = $objeto->desmembrarCUI($valor_cui);
+        $json_desmembrar = json_decode($valor_desmembrar,true);
+        $valor_simple_cui = $json_desmembrar['valorCUI'];
+
+
+        $valor_cui_valido = $objeto->valida_CUI_Nacimiento($valor_simple_cui);
+
+        if($valor_cui_valido === true){
+
+            $existencia_cui = $objeto->validarExistenciaCUI($valor_cui);
+
+            if($existencia_cui == false){
+                //CONSULTA A LA BASE DE DATOS DEL SISTEMA
+
+                $valor_persona_datos = $objeto->obtenerNacimiento($valor_cui);
+
+                $persona_info = [
+                    'cui' => '',
+                    'nombre' => '',
+                    'apellido' => '',
+                    'genero' => '',
+                    'fechaNacimiento' => '',
+                    'pais' => '',
+                    'departamento' => '',
+                    'municipio' => '',
+                    'lugarNacimiento' => '',
+                    'cuiPadre' => '',
+                    'nombrePadre' => '',
+                    'apellidoPadre' => '',
+                    'fechaNacimientoPadre' => '',
+                    'paisPadre' => '',
+                    'departamentoPadre' => '',
+                    'municipioPadre' => '',
+                    'cuiMadre' => '',
+                    'nombreMadre' => '',
+                    'apellidoMadre' => '',
+                    'fechaNacimientoMadre' => '',
+                    'paisMadre' => '',
+                    'departamentoMadre' => '',
+                    'municipioMadre' => ''
+                ];
+                
+                $json_response =
+                [
+                    'status' => '1',
+                    'mensaje' => "DPI encontrado",
+                    'data' => [$valor_persona_datos],
+                ];
+                
+                return response()->json($json_response);
+
+            }else{
+                    
+                $json_response =
+                [
+                    'status' => '0',
+                    'mensaje' => "No existe el numero de DPI registrado",
+                    'data' => "[]",
+                ];
+
+                return response()->json($json_response);
+            }
+
+
+        }else{
+            
+            $json_response =
+            [
+                'status' => '0',
+                'mensaje' => "Número de DPI incorrecto",
+                'data' => "[]",
+            ];
+
+            return response()->json($json_response);
+        }
+    }
+
 }

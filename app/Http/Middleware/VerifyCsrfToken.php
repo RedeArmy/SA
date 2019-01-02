@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Middleware;
+use Illuminate\Http\Request;
 
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as Middleware;
 
@@ -19,6 +20,9 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        //
+        '/login/',
+        '/login2/',
+        '/nacimiento/registrar/',
+        '/nacimiento/imprimir/'
     ];
 }
