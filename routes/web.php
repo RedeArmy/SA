@@ -88,3 +88,6 @@ Route::post('/defuncion/imprimir','DefuncioneController@Imprimir');
 
 Route::post('/matrimonio/registrar','MatrimonioController@Registrar');
 Route::post('/matrimonio/imprimir','MatrimonioController@Imprimir');
+
+Route::post('/divorcio/registrar','DivorcioController@Registrar');
+Route::post('/divorcio/imprimir','DivorcioController@Imprimir');
