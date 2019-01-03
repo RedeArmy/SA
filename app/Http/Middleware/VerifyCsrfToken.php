@@ -25,6 +25,10 @@ class VerifyCsrfToken extends Middleware
         '/nacimiento/registrar/',
         '/nacimiento/imprimir/',
         '/defuncion/registrar/',
-        '/defuncion/imprimir/'
+        '/defuncion/imprimir/',
+        '/matrimonio/imprimir/',
+        '/matrimonio/registrar/',
+        '/divorcio/registrar/',
+        '/divorcio/imprimir/'
     ];
 }
