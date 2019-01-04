@@ -666,7 +666,7 @@ class ServNacimientoController extends Controller
                 //CONSULTA A LA BASE DE DATOS DEL SISTEMA
 
                 $valor_persona_datos_1 = $objeto->obtenerNacimiento($valor_cui);
-                $valor_persona_datos = $valor_persona_datos_1[0];
+                $valor_persona_datos = $valor_persona_datos_1;
                 $persona_1 = $objeto->obtenerPersona($valor_cui);
                 $persona_p = $objeto->obtenerPersona($valor_persona_datos['cui_padre']);
                 $persona_m = $objeto->obtenerPersona($valor_persona_datos['cui_madre']);
