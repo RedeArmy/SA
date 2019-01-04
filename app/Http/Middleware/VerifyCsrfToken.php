@@ -29,6 +29,7 @@ class VerifyCsrfToken extends Middleware
         '/matrimonio/imprimir/',
         '/matrimonio/registrar/',
         '/divorcio/registrar/',
-        '/divorcio/imprimir/'
+        '/divorcio/imprimir/',
+        '//municipio/lista/'
     ];
 }
