@@ -93,3 +93,5 @@ Route::post('/divorcio/registrar','DivorcioController@Registrar');
 Route::post('/divorcio/imprimir','DivorcioController@Imprimir');
 
 Route::post('/municipio/lista','MunicipioController@ListaMunis');
+Route::post('/departamento/lista','DepartamentoController@ListaDptos');
+

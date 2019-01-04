@@ -95,4 +95,15 @@ class DepartamentoController extends Controller
         return response()->json($d);
     }
 
+    public function ListaDptos(Request $req){
+        $dptos = DB::table('DEPARTAMENTO')
+            ->select('id_dpto as idDepartamento', 'nombre_dpto as Departamento')
+            ->get();
+        $d = new Departamento;
+        $d->mensaje = "Lista recuperada con exito";
+        $d->codigoMensaje = 1;
+        $d->listaDepartamentos = $dptos;
+        return response()->json($d);
+    }
+
 }
