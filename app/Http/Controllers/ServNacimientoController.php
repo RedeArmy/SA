@@ -668,10 +668,10 @@ class ServNacimientoController extends Controller
                 $valor_persona_datos = $objeto->obtenerNacimiento($valor_cui);
 
                 $persona_1 = $objeto->obtenerPersona($valor_cui);
-                $persona_p = $objeto->obtenerPersona($valor_persona_datos['cui_padre']);
-                $persona_m = $objeto->obtenerPersona($valor_persona_datos['cui_madre']);
+//                $persona_p = $objeto->obtenerPersona($valor_persona_datos['cui_padre']);
+ //               $persona_m = $objeto->obtenerPersona($valor_persona_datos['cui_madre']);
 
-                $id_departamento = json_decode($objeto->obtenerDepartamento($valor_persona_datos['id_muni']),true);
+//                $id_departamento = json_decode($objeto->obtenerDepartamento($valor_persona_datos['id_muni']),true);
 
                 /*
                 $persona_info = [
