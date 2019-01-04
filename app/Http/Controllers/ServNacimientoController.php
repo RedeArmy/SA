@@ -676,25 +676,25 @@ class ServNacimientoController extends Controller
 
                 $id_departamento = json_decode($objeto->obtenerDepartamento($json_persona[0]['id_muni']),true);
                 
-                /*
+                
                 $persona_info = [
-                    'cui' => $valor_persona_datos['cui'],
+                    'cui' => $json_persona['cui'],
                     'nombre' => $persona_1['nombres'],
                     'apellido' => $persona_1['apellidos'],
                     'genero' => $persona_1['genero'],
-                    'fechaNacimiento' => $valor_persona_datos['fecha'],
+                    'fechaNacimiento' => $json_persona['fecha'],
                     'pais' => '1',
                     'departamento' => $id_departamento,
-                    'municipio' => $valor_persona_datos['id_muni'],
-                    'lugarNacimiento' => $valor_persona_datos['direccion_nac'],
-                    'cuiPadre' => $valor_persona_datos['cui_padre'],
+                    'municipio' => $json_persona['id_muni'],
+                    'lugarNacimiento' => $json_persona['direccion_nac'],
+                    'cuiPadre' => $json_persona['cui_padre'],
                     'nombrePadre' => $persona_p['nombres'],
                     'apellidoPadre' => $persona_p['apellidos'],
                     'fechaNacimientoPadre' => $persona_p['created_at'],
                     'paisPadre' => '1',
                     'departamentoPadre' => '',
                     'municipioPadre' => $persona_p['id_muni'],
-                    'cuiMadre' => $valor_persona_datos['cui_madre'],
+                    'cuiMadre' => $json_persona['cui_madre'],
                     'nombreMadre' => $persona_m['nombres'],
                     'apellidoMadre' => $persona_m['apellidos'],
                     'fechaNacimientoMadre' => $persona_m['created_at'],
@@ -702,12 +702,12 @@ class ServNacimientoController extends Controller
                     'departamentoMadre' => '',
                     'municipioMadre' => $persona_m['id_muni']
                 ];
-                */
+
                 $json_response =
                 [
                     'status' => '1',
                     'mensaje' => "DPI encontrado",
-                    'data' => $json_persona,
+                    'data' => $persona_info,
                 ];
                 
                 return response()->json($json_response);
