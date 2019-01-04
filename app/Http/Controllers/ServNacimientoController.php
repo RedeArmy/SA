@@ -673,6 +673,7 @@ class ServNacimientoController extends Controller
 
                 $id_departamento = json_decode($objeto->obtenerDepartamento($valor_persona_datos['id_muni']),true);
 
+                /*
                 $persona_info = [
                     'cui' => $valor_persona_datos['cui'],
                     'nombre' => $persona_1['nombres'],
@@ -698,12 +699,12 @@ class ServNacimientoController extends Controller
                     'departamentoMadre' => '',
                     'municipioMadre' => $persona_m['id_muni']
                 ];
-                
+                */
                 $json_response =
                 [
                     'status' => '1',
                     'mensaje' => "DPI encontrado",
-                    'data' => [$persona_info],
+                    'data' => [$valor_persona_datos],
                 ];
                 
                 return response()->json($json_response);
