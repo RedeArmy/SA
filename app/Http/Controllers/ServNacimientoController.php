@@ -670,7 +670,6 @@ class ServNacimientoController extends Controller
                 $valor_persona_datos = $objeto->obtenerNacimiento($valor_cui);
                 $json_persona = json_decode($valor_persona_datos,true);
                 $persona_1 = $objeto->obtenerPersona($valor_cui);
-
                 $persona_p = $objeto->obtenerPersona($json_persona[0]['cui_padre']);
                 $persona_m = $objeto->obtenerPersona($json_persona[0]['cui_madre']);
 
@@ -678,23 +677,23 @@ class ServNacimientoController extends Controller
                 
                 
                 $persona_info = [
-                    'cui' => $json_persona['cui'],
+                    'cui' => $persona_1['cui'],
                     'nombre' => $persona_1['nombres'],
                     'apellido' => $persona_1['apellidos'],
                     'genero' => $persona_1['genero'],
-                    'fechaNacimiento' => $json_persona['fecha'],
+                    'fechaNacimiento' => $json_persona[0]['fecha'],
                     'pais' => '1',
                     'departamento' => $id_departamento,
-                    'municipio' => $json_persona['id_muni'],
-                    'lugarNacimiento' => $json_persona['direccion_nac'],
-                    'cuiPadre' => $json_persona['cui_padre'],
+                    'municipio' => $json_persona[0]['id_muni'],
+                    'lugarNacimiento' => $json_persona[0]['direccion_nac'],
+                    'cuiPadre' => $json_persona[0]['cui_padre'],
                     'nombrePadre' => $persona_p['nombres'],
                     'apellidoPadre' => $persona_p['apellidos'],
                     'fechaNacimientoPadre' => $persona_p['created_at'],
                     'paisPadre' => '1',
                     'departamentoPadre' => '',
                     'municipioPadre' => $persona_p['id_muni'],
-                    'cuiMadre' => $json_persona['cui_madre'],
+                    'cuiMadre' => $json_persona[0]['cui_madre'],
                     'nombreMadre' => $persona_m['nombres'],
                     'apellidoMadre' => $persona_m['apellidos'],
                     'fechaNacimientoMadre' => $persona_m['created_at'],
