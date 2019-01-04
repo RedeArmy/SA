@@ -668,7 +668,7 @@ class ServNacimientoController extends Controller
                 //CONSULTA A LA BASE DE DATOS DEL SISTEMA
 
                 $valor_persona_datos = $objeto->obtenerNacimiento($valor_cui);
-                $json_persona = $valor_persona_datos;
+                $json_persona = json_decode($valor_persona_datos);
 /*
                 
                 $persona_1 = $objeto->obtenerPersona($valor_cui);
@@ -708,7 +708,7 @@ class ServNacimientoController extends Controller
                 [
                     'status' => '1',
                     'mensaje' => "DPI encontrado",
-                    'data' => $valor_persona_datos,
+                    'data' => $json_persona,
                 ];
                 
                 return response()->json($json_response);
