@@ -671,7 +671,6 @@ class ServNacimientoController extends Controller
                 $json_persona = $valor_persona_datos;
 
                 $persona_1 = $objeto->obtenerPersona($valor_cui);
-
                 $persona_p = $objeto->obtenerPersona($json_persona['cui_padre']);
                 $persona_m = $objeto->obtenerPersona($json_persona['cui_madre']);
 
