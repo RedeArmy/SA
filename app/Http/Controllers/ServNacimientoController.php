@@ -429,7 +429,8 @@ class ServNacimientoController extends Controller
         ->where('cui','=',$cui)
         ->get();
 
-        return $person;
+        //return $person;
+        return json_encode($person);
     }
 
     public function obtenerPersona($cui){
@@ -438,7 +439,8 @@ class ServNacimientoController extends Controller
         ->where('cui','=',$cui)
         ->get();
 
-        return $person;
+        //return $person;
+        return json_encode($person);
     }
 
     /**
@@ -666,7 +668,7 @@ class ServNacimientoController extends Controller
                 //CONSULTA A LA BASE DE DATOS DEL SISTEMA
 
                 $valor_persona_datos = $objeto->obtenerNacimiento($valor_cui);
-                $json_persona = json_encode($valor_persona_datos)[0];
+                $json_persona = $valor_persona_datos;
 
                 $persona_1 = $objeto->obtenerPersona($valor_cui);
 
