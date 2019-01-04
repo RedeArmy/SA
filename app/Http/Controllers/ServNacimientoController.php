@@ -717,7 +717,7 @@ class ServNacimientoController extends Controller
                 [
                     'status' => '0',
                     'mensaje' => "No existe el numero de DPI registrado",
-                    'data' => "[]",
+                    'data' => "{}",
                 ];
 
                 return response()->json($json_response);
@@ -730,7 +730,7 @@ class ServNacimientoController extends Controller
             [
                 'status' => '0',
                 'mensaje' => "Número de DPI incorrecto",
-                'data' => "[]",
+                'data' => "{}",
             ];
 
             return response()->json($json_response);
