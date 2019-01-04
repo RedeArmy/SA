@@ -130,7 +130,7 @@ class DefuncioneController extends Controller
         ->where('cui_difunto','=',$cui)
         ->get();
 
-        return $person;
+        return json_encode($person);
     }
 
     public function imprimirDefuncion($valor){
@@ -240,7 +240,7 @@ class DefuncioneController extends Controller
 
         $valor_cui = $re->input('cui');
 
-        $defuncion_obtenida = $objeto->obtenerDefuncion($valor_cui);
+        $defuncion_obtenida = json_decode($objeto->obtenerDefuncion($valor_cui),true)[0];
 
         if($defuncion_obtenida == "[]"){
             
@@ -258,7 +258,7 @@ class DefuncioneController extends Controller
             [
                 'status' => 1,
                 'mensaje' => "DPI encontrado",
-                'data' => [$defuncion_obtenida],
+                'data' => $defuncion_obtenida,
             ];
             
             return response()->json($json_response);
