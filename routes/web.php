@@ -95,3 +95,4 @@ Route::post('/divorcio/imprimir','DivorcioController@Imprimir');
 Route::post('/municipio/lista','MunicipioController@ListaMunis');
 Route::post('/departamento/lista','DepartamentoController@ListaDptos');
 
+Route::post('/dpi/consultar','DpiController@Consultar');
