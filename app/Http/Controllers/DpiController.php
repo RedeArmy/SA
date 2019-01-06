@@ -82,7 +82,6 @@ class DpiController extends Controller
 
     public function Consultar(Request $req){
 
-        $json_recibido = json_decode($json,true);
         $cui = $req['cui'];
         $d = new Dpi;
         

@@ -241,7 +241,6 @@ class MatrimonioController extends Controller
     }
 
     public function Imprimir(Request $req){
-        $json_recibido = json_decode($valor,true);
 
         $cui_esposo = $req['cuiHombre'];
         $cui_esposa = $req['cuiMujer'];
