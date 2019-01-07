@@ -302,12 +302,11 @@ class DefuncioneController extends Controller
             
             $json_casado;
 
-            if($persona_casada == 2){
+            if($persona_casada == 1){
                 //PERSONA CASADA
                 $json_casado = [
                     'nombre_c' => "",
                     'apellido_c' => "",
-
                 ];
             }else{
                 //PERSONA SOLTERA
