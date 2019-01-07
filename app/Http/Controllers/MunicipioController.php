@@ -125,7 +125,7 @@ class MunicipioController extends Controller
 
         if($existe == "[]"){
             $d->mensaje = "No hay Departamento con ese codigo";
-            $d->status = "-1";
+            $d->status = "0";
             $d->data = [];
             return response()->json($d);
         }

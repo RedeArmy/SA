@@ -90,7 +90,7 @@ class DepartamentoController extends Controller
             ->get();
         $d = new Departamento;
         $d->mensaje = "Lista recuperada con exito";
-        $d->codigoMensaje = 1;
+        $d->status = 1;
         $d->listaDepartamentos = $dptos;
         return response()->json($d);
     }
@@ -101,7 +101,7 @@ class DepartamentoController extends Controller
             ->get();
         $d = new Departamento;
         $d->mensaje = "Lista recuperada con exito";
-        $d->codigoMensaje = 1;
+        $d->status = 1;
         $d->data = new Departamento;
         $d->data->listaDepartamentos = $dptos;
         return response()->json($d);
