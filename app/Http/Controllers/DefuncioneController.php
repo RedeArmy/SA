@@ -133,6 +133,15 @@ class DefuncioneController extends Controller
         return json_encode($person);
     }
 
+    public function obtenerPersona($cui){
+        $person = DB::table('PERSONA')
+        ->select('*')
+        ->where('cui','=',$cui)
+        ->get();
+
+        return json_encode($person);
+    }
+
     public function imprimirDefuncion($valor){
 
         $objeto = new DefuncioneController;
@@ -254,11 +263,42 @@ class DefuncioneController extends Controller
             return response()->json($json_response);
         }else{
 
+            $persona_dif = json_decode($objeto->obtenerPersona($defuncion_obtenida['cui_difunto']),true)[0];
+            $persona_com = json_decode($objeto->obtenerPersona($defuncion_obtenida['cui_compareciente']),true)[0];
+
+            $persona_casada = false;
+
+            $json_respuesta_contenido = [
+                "cui" => $defuncion_obtenida['cui_difunto'],
+                "nombre" => "",
+                "apellido" => "",
+                "genero" => "",
+                "fechaNacimiento" => "",
+                "pais" => "",
+                "departamento" => "",
+                "municipio" => "",
+                "lugarNacimiento" => "",
+                "estadoCivil" => "",
+                "nombreConyuge" => "",
+                "apellidoConyuge" => "",
+                "cuiCompareciente" => $defuncion_obtenida['cui_compareciente'],
+                "nombreCompareciente" => "",
+                "apellidoCompareciente" => "",
+                "paisCompareciente" => "",
+                "municipioCompareciente" => "",
+                "recidenciaCompareciente" => "",
+                "paisDefuncion" => "",
+                "departamentoDefuncion" => "",
+                "lugarDefuncion" => "",
+                "fechaDefuncion" => "",
+                "causa" => ""
+            ];
+
             $json_response =
             [
-                'status' => 1,
+                'status' => "1",
                 'mensaje' => "DPI encontrado",
-                'data' => $defuncion_obtenida,
+                'data' => [$defuncion_obtenida,"",$json_respuesta_contenido,"",$persona_dif, "", $persona_com]
             ];
             
             return response()->json($json_response);
