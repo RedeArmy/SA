@@ -78,7 +78,7 @@ Route::post('/matrimonio/registrar','MatrimonioController@Registrar');
 Route::get('/matrimonio/imprimir',function(){
     return view('matrimonio.index');
 });
-Route::post('/matrimonio/imprimir','MatrimonioController@Imprimir');
+Route::post('/matrimonio/imprimir','MatrimonioController@results');
 
 Route::post('/divorcio/registrar','DivorcioController@Registrar');
 Route::post('/divorcio/imprimir','DivorcioController@Imprimir');
