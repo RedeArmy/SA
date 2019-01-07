@@ -142,6 +142,15 @@ class DefuncioneController extends Controller
         return json_encode($person);
     }
 
+    public function obtenerNacimiento($cui){
+        $person = DB::table('NACIMIENTO')
+        ->select('*')
+        ->where('cui','=',$cui)
+        ->get();
+    }
+
+
+
     public function imprimirDefuncion($valor){
 
         $objeto = new DefuncioneController;
@@ -265,40 +274,56 @@ class DefuncioneController extends Controller
 
             $persona_dif = json_decode($objeto->obtenerPersona($defuncion_obtenida['cui_difunto']),true)[0];
             $persona_com = json_decode($objeto->obtenerPersona($defuncion_obtenida['cui_compareciente']),true)[0];
+            $nacimiento_dif = json_decode($objeto->obtenerNacimiento($defuncion_obtenida['cui_difunto']),true)[0];
 
-            $persona_casada = false;
+            $persona_casada = $persona_dif['estado_civil'];
+            
+            $json_casado;
+
+            if($persona_casada == 2){
+                //PERSONA CASADA
+                $json_casado = [
+                    'nombre_c' => "",
+                    'apellido_c' => "",
+
+                ];
+            }else{
+                //PERSONA SOLTERA
+            }
+
 
             $json_respuesta_contenido = [
                 "cui" => $defuncion_obtenida['cui_difunto'],
-                "nombre" => "",
-                "apellido" => "",
-                "genero" => "",
-                "fechaNacimiento" => "",
-                "pais" => "",
+                "nombre" => $persona_dif['nombres'],
+                "apellido" => $persona_dif['apellidos'],
+                "genero" => $persona_dif['genero'],
+                "fechaNacimiento" => $nacimiento_dif['fecha'],
+                "pais" => "6",
                 "departamento" => "",
-                "municipio" => "",
-                "lugarNacimiento" => "",
-                "estadoCivil" => "",
+                "municipio" => $persona_dif['id_muni'],
+                "lugarNacimiento" => $nacimiento_dif['direccion_nac'],
+                "estadoCivil" => $persona_dif['estado_civil'],
                 "nombreConyuge" => "",
                 "apellidoConyuge" => "",
                 "cuiCompareciente" => $defuncion_obtenida['cui_compareciente'],
-                "nombreCompareciente" => "",
-                "apellidoCompareciente" => "",
-                "paisCompareciente" => "",
-                "municipioCompareciente" => "",
-                "recidenciaCompareciente" => "",
-                "paisDefuncion" => "",
+                "nombreCompareciente" => $persona_com['nombres'],
+                "apellidoCompareciente" => $persona_com['apellidos'],
+                "paisCompareciente" => "6",
+                "municipioCompareciente" => $persona_com['id_muni'],
+                "recidenciaCompareciente" => $persona_com['direccion'],
+                "paisDefuncion" => "6",
                 "departamentoDefuncion" => "",
-                "lugarDefuncion" => "",
+                "lugarDefuncion" => $defuncion_obtenida['direccion_defuncion'],
                 "fechaDefuncion" => "",
-                "causa" => ""
+                "causa" => $defuncion_obtenida['causa']
             ];
 
             $json_response =
             [
                 'status' => "1",
                 'mensaje' => "DPI encontrado",
-                'data' => [$defuncion_obtenida,"",$json_respuesta_contenido,"",$persona_dif, "", $persona_com]
+                'data' => $json_respuesta_contenido
+                //'data' => [$defuncion_obtenida,"",$json_respuesta_contenido,"",$persona_dif, "", $persona_com]
             ];
             
             return response()->json($json_response);
