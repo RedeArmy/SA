@@ -646,6 +646,14 @@ class ServNacimientoController extends Controller
         }
     }
 
+    public function vista(){
+        return view('nacimiento.consultar');
+    }
+
+    public function mostrar(){
+        //retornar vista con los datos    
+    }
+    
     public function Imprimir(Request $re){
 
         $objeto = new ServNacimientoController;
