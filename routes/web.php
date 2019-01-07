@@ -99,6 +99,10 @@ Route::get('/iniciov2', function(){
 });
 
 
+Route::post('/retorno',function(){
+    return response()->json(['mensaje'=>'hola mundo']);
+});
+
 // SERVICIOS - NUEVAS RUTAS
 
 Route::post('/nacimiento/registrar','ServNacimientoController@Registrar');
