@@ -98,6 +98,9 @@ Route::get('/iniciov2', function(){
 
 });
 
+Route::post('/retorno2',function(){
+    return response()->json(['mensaje'=>'hola mundo']);
+});
 
 Route::get('/retorno',function(){
     return response()->json(['mensaje'=>'hola mundo']);
