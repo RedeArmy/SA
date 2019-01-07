@@ -84,6 +84,5 @@ Route::post('/municipio/lista','MunicipioController@ListaMunis');
 Route::post('/departamento/lista','DepartamentoController@ListaDptos');
 Route::get('/departamento/lista','DepartamentoController@ListaDptos');
 
-
 Route::post('/dpi/consultar','DpiController@Consultar');
 Route::post('/dpi/actualizar','DpiController@Actualizar');
