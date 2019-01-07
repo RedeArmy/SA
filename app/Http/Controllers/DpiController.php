@@ -155,11 +155,11 @@ class DpiController extends Controller
         $existe = DB::table('PERSONA')
             ->select('cui')
             ->where('cui','=',$cui)
-            ->get();
+            ->count();
 
-        if($existe == ""){
+        if($existe == 0){
                 $d->mensaje = "No hay Persona con cui " . $cui;
-                $d->status = "0";
+                $d->status = $existe;
                 $d->data = [];
                 return response()->json($d);
         }
