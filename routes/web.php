@@ -67,28 +67,34 @@ Route::post('/login',function(Request $re){
 
 Route::get('/iniciov2', function(){
 
-    $client = new http\Client;
-    $request = new http\Client\Request;
+    $curl = curl_init();
 
-    $body = new http\Message\Body;
-    $body->append('{
-        "cui" : "2967871080332" 
-    }');
-
-    $request->setRequestUrl('http://104.196.194.35/defuncion/imprimir');
-    $request->setRequestMethod('POST');
-    $request->setBody($body);
-
-    $request->setHeaders(array(
-    'Postman-Token' => '2b678d3d-ae40-482e-9252-af41ae77089c',
-    'cache-control' => 'no-cache',
-    'Content-Type' => 'application/json'
+    curl_setopt_array($curl, array(
+      CURLOPT_URL => "http://104.196.194.35/defuncion/imprimir",
+      CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_ENCODING => "",
+      CURLOPT_MAXREDIRS => 10,
+      CURLOPT_TIMEOUT => 30,
+      CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+      CURLOPT_CUSTOMREQUEST => "POST",
+      CURLOPT_POSTFIELDS => "{\n\t\"cui\" : \"2967871080332\" \n}",
+      CURLOPT_HTTPHEADER => array(
+        "Content-Type: application/json",
+        "Postman-Token: 2b655ed0-d367-49ef-9a7d-22c349f78a3b",
+        "cache-control: no-cache"
+      ),
     ));
-
-    $client->enqueue($request)->send();
-    $response = $client->getResponse();
-
-    echo $response->getBody();
+    
+    $response = curl_exec($curl);
+    $err = curl_error($curl);
+    
+    curl_close($curl);
+    
+    if ($err) {
+      echo "cURL Error #:" . $err;
+    } else {
+      echo $response;
+    }
 
 });
 
