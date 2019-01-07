@@ -240,6 +240,22 @@ class MatrimonioController extends Controller
         //{"cuiHombre":"2942637562001","cuiMujer":"2942637562002","municipio":"1","lugarMatrimonio":"Ciudad","fecharMatrimonio":"1999-01-01","regimenMatrimonial":"bianes mancomunados"}
     }
 
+    public function consultar(){
+        return view('matrimonio.index');
+    }
+
+    public function results(Request $req){
+        $objeto = new MatrimonioController;
+        $jsonresp = $objeto->Imprimir($req);
+        $respData = json_decode($jsonresp);
+        if($respData->mensaje=='El acta de matrimonio se recupero con éxito'){
+            $dataMat=json_decode($respData->data);
+            return view('matrimonio.resultado', compact('dataMat'));
+        }
+        $messagge=$respData->mensaje;
+        return view('matrimonio.error', compact('messagge'));
+    }
+    
     public function Imprimir(Request $req){
 
         $cui_esposo = $req['cuiHombre'];

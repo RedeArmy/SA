@@ -651,7 +651,7 @@ class ServNacimientoController extends Controller
     }
 
     public function mostrar(){
-        
+        //retornar vista con los datos    
     }
     
     public function Imprimir(Request $re){
