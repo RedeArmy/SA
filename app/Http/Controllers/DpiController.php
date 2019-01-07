@@ -151,6 +151,7 @@ class DpiController extends Controller
 
     public function Actualizar(Request $req){
         $cui = $req['cui'];
+        $d = new Dpi;
 
         $existe = DB::table('PERSONA')
             ->select('cui')
@@ -158,7 +159,7 @@ class DpiController extends Controller
             ->count();
 
         if($existe == 0){
-                $d->mensaje = "No hay Persona con cui ";
+                $d->mensaje = "No hay Persona con cui " . $cui;
                 $d->status = $existe;
                 $d->data = [];
                 return response()->json($d);
