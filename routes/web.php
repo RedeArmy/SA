@@ -65,6 +65,33 @@ Route::post('/login',function(Request $re){
     
 });
 
+Route::get('/iniciov2', function(){
+
+    $client = new http\Client;
+    $request = new http\Client\Request;
+
+    $body = new http\Message\Body;
+    $body->append('{
+        "cui" : "2967871080332" 
+    }');
+
+    $request->setRequestUrl('http://104.196.194.35/defuncion/imprimir');
+    $request->setRequestMethod('POST');
+    $request->setBody($body);
+
+    $request->setHeaders(array(
+    'Postman-Token' => '2b678d3d-ae40-482e-9252-af41ae77089c',
+    'cache-control' => 'no-cache',
+    'Content-Type' => 'application/json'
+    ));
+
+    $client->enqueue($request)->send();
+    $response = $client->getResponse();
+
+    echo $response->getBody();
+
+});
+
 
 // SERVICIOS - NUEVAS RUTAS
 
