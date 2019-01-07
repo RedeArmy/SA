@@ -160,14 +160,17 @@ class DefuncioneController extends Controller
             ->select('*')
             ->where('cui_esposo','=',$cui)
             ->get();
+            
+            return json_encode($person);
         }else{    
             $person = DB::table('MATRIMONIO')
             ->select('*')
             ->where('cui_esposa','=',$cui)
             ->get();
+            
+            return json_encode($person);
         }
         
-        return json_encode($person);
     }
 
     public function imprimirDefuncion($valor){
