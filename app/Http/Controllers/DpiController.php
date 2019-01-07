@@ -158,7 +158,7 @@ class DpiController extends Controller
             ->count();
 
         if($existe == 0){
-                $d->mensaje = "No hay Persona con cui " . $cui;
+                $d->mensaje = "No hay Persona con cui ";
                 $d->status = $existe;
                 $d->data = [];
                 return response()->json($d);
