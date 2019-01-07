@@ -157,7 +157,7 @@ class DpiController extends Controller
             ->where('cui','=',$cui)
             ->get();
 
-        if($existe == "[]"){
+        if($existe === "[]"){
                 $d->mensaje = "No hay Persona con cui " . $cui;
                 $d->status = "0";
                 $d->data = [];
