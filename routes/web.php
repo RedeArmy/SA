@@ -32,12 +32,12 @@ Route::get('/', 'HomeController@index');
 Route::resource('servicionacimiento','ServNacimientoController');
 
 Route::get('api/v1/nacs','ServNacimientoController@getPrueba');
-/*Route::resource('imprime','imprimeController');
+Route::resource('imprime','imprimeController');
 Route::resource('matrimonio','MatrimonioController');
 Route::get('matrimonio/mostrar','MatrimonioController@mostrar');
 Route::get('api/v1/reg_matri/{valor}','MatrimonioController@registrarMatrimonio');
 Route::get('api/v1/consul_matri/{valor}','MatrimonioController@consultarMatrimonio');
-*/
+
 
 //SERVICIOS DE DEFUNCION
 Route::resource('defuncion','DefuncioneController');
@@ -75,9 +75,6 @@ Route::post('/defuncion/registrar','DefuncioneController@Registrar');
 Route::post('/defuncion/imprimir','DefuncioneController@Imprimir');
 
 Route::post('/matrimonio/registrar','MatrimonioController@Registrar');
-Route::get('/matrimonio/imprimir',function(){
-    return view('matrimonio.index');
-});
 Route::post('/matrimonio/imprimir','MatrimonioController@Imprimir');
 
 Route::post('/divorcio/registrar','DivorcioController@Registrar');
