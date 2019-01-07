@@ -33,8 +33,8 @@ Route::resource('servicionacimiento','ServNacimientoController');
 
 //Route::get('api/v1/nacs','ServNacimientoController@getPrueba');
 Route::resource('imprime','imprimeController');
-/*/Route::resource('matrimonio','MatrimonioController');
-Route::get('matrimonio/mostrar','MatrimonioController@mostrar');
+Route::resource('matrimonio','MatrimonioController');
+/*Route::get('matrimonio/mostrar','MatrimonioController@mostrar');
 Route::get('api/v1/reg_matri/{valor}','MatrimonioController@registrarMatrimonio');
 Route::get('api/v1/consul_matri/{valor}','MatrimonioController@consultarMatrimonio');
 */
