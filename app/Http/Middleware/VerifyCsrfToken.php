@@ -32,7 +32,8 @@ class VerifyCsrfToken extends Middleware
         '/divorcio/imprimir/',
         '/municipio/lista/',
         '/departamento/lista/',
-        '/dpi/consultar/'
+        '/dpi/consultar/',
+        '/dpi/actualizar/'
 
     ];
 }

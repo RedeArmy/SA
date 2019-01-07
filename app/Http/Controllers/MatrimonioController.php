@@ -252,6 +252,14 @@ class MatrimonioController extends Controller
             ->orderByRaw('acta_matrimonio DESC')
             ->get();
 
+        if($existe == "[]"){
+                $d = new Objeto;
+                $d->mensaje = "El matrimonio buscado no existe";
+                $d->status = "0";
+                $d->data = [];
+                return response()->json($d);
+        }
+
         $hombre = DB::table('PERSONA')
             ->join('MUNICIPIO','PERSONA.id_muni','=','MUNICIPIO.id_muni')
             ->join('DEPARTAMENTO','MUNICIPIO.id_dpto','=','DEPARTAMENTO.id_dpto')
@@ -271,14 +279,6 @@ class MatrimonioController extends Controller
             ->where('PERSONA.cui','=',$cui_esposa)
             ->get()
             ->first();
-
-        if($existe == "[]"){
-                $d = new Objeto;
-                $d->mensaje = "El matrimonio buscado no existe";
-                $d->status = "-1";
-                $d->data = [];
-                return response()->json($d);
-        }
 
         $json_response = [
             'mensaje' => 'El acta de matrimonio se recupero con éxito',

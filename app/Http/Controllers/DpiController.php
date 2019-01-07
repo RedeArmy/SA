@@ -148,6 +148,22 @@ class DpiController extends Controller
         
     }
 
+
+    public function Actualizar(Request $req){
+        $cui = $req['cui'];
+
+        $existe = DB::table('PERSONA')
+            ->select('cui')
+            ->where('cui','=',$cui)
+            ->get();
+
+        if($existe == "[]"){
+                $d->mensaje = "No hay Persona con cui " . $cui;
+                $d->status = "0";
+                $d->data = [];
+                return response()->json($d);
+        }
+    }
     
     
 }
