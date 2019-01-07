@@ -98,30 +98,6 @@ Route::get('/iniciov2', function(){
 
 });
 
-Route::get('/iniciov3',function(){
-    $request = new HttpRequest();
-    $request->setUrl('http://104.196.194.35/defuncion/imprimir');
-    $request->setMethod(HTTP_METH_POST);
-
-    $request->setHeaders(array(
-    'Postman-Token' => '1b24bb4d-4138-4449-b2d3-c67df27f745e',
-    'cache-control' => 'no-cache',
-    'Content-Type' => 'application/json'
-    ));
-
-    $request->setBody('{
-        "cui" : "2967871080332" 
-    }');
-
-    try {
-    $response = $request->send();
-
-    echo $response->getBody();
-    } catch (HttpException $ex) {
-    echo $ex;
-    }
-});
-
 
 // SERVICIOS - NUEVAS RUTAS
 
