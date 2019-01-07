@@ -147,9 +147,28 @@ class DefuncioneController extends Controller
         ->select('*')
         ->where('cui','=',$cui)
         ->get();
+        
+        return json_encode($person);
     }
 
+    public function obtenerMatrimonio($cui, $tipo){
 
+        if($tipo == 1){
+            //hombre
+
+            $person = DB::table('MATRIMONIO')
+            ->select('*')
+            ->where('cui_esposo','=',$cui)
+            ->get();
+        }else{    
+            $person = DB::table('MATRIMONIO')
+            ->select('*')
+            ->where('cui_esposa','=',$cui)
+            ->get();
+        }
+        
+        return json_encode($person);
+    }
 
     public function imprimirDefuncion($valor){
 
@@ -289,6 +308,21 @@ class DefuncioneController extends Controller
                 ];
             }else{
                 //PERSONA SOLTERA
+                $matrimonio;
+                $persona_casada;
+
+                if($persona_dif['genero'] == 1){
+                    $matrimonio = json_decode($objeto->obtenerMatrimonio($defuncion_obtenida['cui_difunto'],1),true)[0];
+                    $persona_casada = json_decode($objeto->obtenerPersona($matrimonio['cui_esposa'],0),true)[0];
+                }else{
+                    $matrimonio = json_decode($objeto->obtenerMatrimonio($defuncion_obtenida['cui_difunto'],0),true)[0];
+                    $persona_casada = json_decode($objeto->obtenerPersona($matrimonio['cui_esposo'],0),true)[0];
+                }
+
+                $json_casado = [
+                    'nombre_c' => $persona_casada['nombres'],
+                    'apellido_c' => $persona_casada['apellidos']
+                ];
             }
 
 
@@ -303,8 +337,8 @@ class DefuncioneController extends Controller
                 "municipio" => $persona_dif['id_muni'],
                 "lugarNacimiento" => $nacimiento_dif['direccion_nac'],
                 "estadoCivil" => $persona_dif['estado_civil'],
-                "nombreConyuge" => "",
-                "apellidoConyuge" => "",
+                "nombreConyuge" => $json_casado['nombre_c'],
+                "apellidoConyuge" => $json_casado['apellido_c'],
                 "cuiCompareciente" => $defuncion_obtenida['cui_compareciente'],
                 "nombreCompareciente" => $persona_com['nombres'],
                 "apellidoCompareciente" => $persona_com['apellidos'],
