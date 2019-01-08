@@ -171,7 +171,7 @@ class DpiController extends Controller
 
         $existe = DB::table('DPI')
             ->select('cui_persona')
-            ->where('cui','=',$cui)
+            ->where('cui_persona','=',$cui)
             ->count();
 
         if($existe == 0){
