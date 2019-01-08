@@ -151,6 +151,10 @@ class DpiController extends Controller
 
     public function Actualizar(Request $req){
         $cui = $req['cui'];
+        $dpto = $req['departamento'];
+        $muni = $req['municipio'];
+        $resi = $req['recidencia'];
+        $huella = $req['huella'];
         $d = new Dpi;
 
         $existe = DB::table('PERSONA')
@@ -164,6 +168,28 @@ class DpiController extends Controller
                 $d->data = [];
                 return response()->json($d);
         }
+
+        $existe = DB::table('DPI')
+            ->select('cui_persona')
+            ->where('cui','=',$cui)
+            ->count();
+
+        if($existe == 0){
+            //SE CREA EL DPI
+            DB::table('DPI')->insert([
+                [
+                    'cui_persona' => $cui, 
+                    'fecha_vence' => (date('Y')+10).'-'.date('n').'-'.date('d')
+                ]
+            ]);
+        }
+
+        DB::table('PERSONA')
+            ->where('cui', $cui)
+            ->update(['id_muni' => $muni],
+                    ['direccion' => $resi],
+                    ['huella' => $huella]
+                );
     }
     
     
