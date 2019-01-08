@@ -209,7 +209,7 @@ class MatrimonioController extends Controller
             $d = new Objeto;
             $d->mensaje = "Problemas con el cui o con Municipio";
             $d->status = "-1";
-            $d->data = [];
+            $d->data = [$existe,$existe2,$existe3];
             return response()->json($d);
         }
 
