@@ -267,7 +267,7 @@ class DefuncioneController extends Controller
         $cui_persona = $re->input('cui');
         $cui_compita = $re->input('cuiCompareciente');
         $municipio =$re->input('municipio'); 
-        $lugar_defuncion = $re->input('lugarDeDefuncion');
+        $lugar_defuncion = $re->input('lugarDefuncion');
         $fecha_defuncion = $re->input('fechaDefuncion');
         $causa = $re->input('causa');
 
