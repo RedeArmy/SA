@@ -36,7 +36,6 @@ class DefuncioneController extends Controller
             $curl = curl_init();
             $cuimuerto=(int)$request->input('cui');
             $cuicompareciente=(int)$request->input('cuiCompareciente');
-            alert($request->input('cuiCompareciente'));
             curl_setopt_array($curl, array(
             CURLOPT_URL => "http://104.196.194.35/defuncion/imprimir",
             CURLOPT_RETURNTRANSFER => true,
