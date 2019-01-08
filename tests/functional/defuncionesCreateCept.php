@@ -8,8 +8,8 @@ $I->amOnPage('/defuncion/create');
 $I->fillField('cui_muerto','2120000031615');
 $I->fillField('cuiCompareciente','2120010811308');
 $I->fillField('municipio','1');
-$I->fillField('lugarDeDefuncion','guatemala');
-$I->fillField('fechaDeDefuncion','05/01/2019');
+$I->fillField('lugarDefuncion','guatemala');
+$I->fillField('fechaDefuncion','05/01/2019');
 $I->fillField('causa','murio por causas naturales');
 //And
 $I->click('Registrar Defuncion');
