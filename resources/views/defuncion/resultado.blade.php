@@ -3,7 +3,7 @@
     <h1>Datos del fallecido</h1>
     <div class="panel panel-default">
         <div class="panel-body">
-            <b>dfsf: </b>{{$respData}}            
+            <b>dfsf: </b>{{$response}}            
         </div>
     </div>
 </div>
