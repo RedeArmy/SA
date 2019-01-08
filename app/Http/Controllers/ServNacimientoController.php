@@ -609,7 +609,9 @@ class ServNacimientoController extends Controller
                      'huella'=>"sin valor",
                      'direccion'=>"ciudad",
                      'vivo_muerto'=>1,
-                     'id_muni'=>$municipio
+                     'id_muni'=>$municipio,
+                     'created_at' => Carbon::now(),
+                     'updated_at' => Carbon::now()
                 ]
             );
 
