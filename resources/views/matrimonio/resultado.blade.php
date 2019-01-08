@@ -3,48 +3,37 @@
     <h1>Datos de Matrimonio</h1>
     <div class="panel panel-default">
         <div class="panel-body">
-            {{$dataMat->cuiHombre}}
+            {{$info['mensaje']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            {{$dataMat->nombreHombre}}
+            {{$info['data']['cuiMujer']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            {{$dataMat->apellidoHombre}}
+        {{$info['data']['cuiHombre']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            {{$dataMat->paisHombre}}
+        {{$info['data']['municipio']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            {{$dataMat->departamentoHombre}}
+        {{$info['data']['lugarMatrimonio']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            {{$dataMat->municipioHombre}}
+        {{$info['data']['fechaMatrimonio']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            {{$dataMat->cuiMujer}}
+        {{$info['data']['regimenMatrimonial']}}
         </div>
     </div>
-    <div class="panel panel-default">
-        <div class="panel-body">
-            {{$dataMat->nombreMujer}}
-        </div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-body">
-            {{$dataMat->apellidoMujer}}
-        </div>
-    </div>
-
 </div>
