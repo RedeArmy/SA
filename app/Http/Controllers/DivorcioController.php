@@ -284,7 +284,7 @@ class DivorcioController extends Controller
             ->first();
 
             $json_response = [
-                'mensaje' => 'El acata de matrimonio se recupero con éxito',
+                'mensaje' => 'El acata de divorcio se recupero con éxito',
                 'status' => '1',
                 'data' => [
                     'cuiHombre' => $cui_esposo,
@@ -301,8 +301,7 @@ class DivorcioController extends Controller
                     'municipioMujer' => $mujer->municipio,
                     'municipio' => $municipio->nombre,
                     'lugarDivorcio' => $existe->direccion_divorcio,
-                    'fechaDivorcio' => strtotime((int)$existe->fecha_divorcio),
-                    'regimenMatrimonial' => $matrimonio->regimen_eco
+                    'fechaDivorcio' => strtotime((int)$existe->fecha_divorcio)
                     //'regimenMatrimonial' => $matrimonio->regimen_eco
                 ]
                 
