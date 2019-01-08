@@ -28,7 +28,7 @@ Route::get('/', 'HomeController@index');
 });
 */
 
-
+Route::resource('imprimeNac','imprimeNac');
 Route::resource('servicionacimiento','ServNacimientoController');
 
 //Route::get('api/v1/nacs','ServNacimientoController@getPrueba');
@@ -50,6 +50,7 @@ Route::get('defuncion/consulta', function(){
 
 
 //SERVICIOS DE DIVORCIO
+Route::resource('imprimeDiv','imprimeDiv');
 Route::resource('divorcio','DivorcioController');
 Route::get('api/divorcio/registro_divorcio/{valor}','DivorcioController@registrarDivorcio');
 Route::get('api/divorcio/consultar_divorcio/{valor}','DivorcioController@consultarDivorcio');

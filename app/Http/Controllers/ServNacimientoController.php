@@ -37,30 +37,41 @@ class ServNacimientoController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        //$json_salida = $objeto->registrarDefuncion(response()->json($request));
-        error_log(json_encode($request));
-  
-        $objeto = new ServNacimientoController;
+        $curl = curl_init();
 
-            $json_response = [
-                'nombre' => $request['nombre'],
-                'apellido' => $request['apellido'],
-                'genero' => $request['genero'],
-                'fechaNacimiento' => $request['fechaNacimiento'],
-                'municipio' => $request['municipio'],
-                'lugarNacimiento' => $request['lugarNacimiento'],
-                'cuiPadre' => $request['cuiPadre'],
-                'cuiMadre' => $request['cuiMadre']
-            ];
+            curl_setopt_array($curl, array(
+        CURLOPT_URL => "http://104.196.194.35/nacimiento/Registrar",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        CURLOPT_POSTFIELDS => "{\n\t\"nombre\" : \"".$request->input('nombre')."\",".
+            "\"apellido\" : \"".$request->input('apellido')."\", \"genero\" : \"".$request->input('genero')."\",".
+            "\"fechaNacimiento\" : \"".$request->input('fechaNacimiento')."\", \"municipio\" : \"".$request->input('municipio')."\"".
+            "\" lugarNacimiento : \".$request->input('lugarNacimiento').\", \"cuiPadre\" : \"".$request->input('cuiPadre')."\", \"cuiMadre\" : \"".$request->input('cuiMadre')."\"\n}",
+        CURLOPT_HTTPHEADER => array(
+            "Content-Type: application/json",
+            "Postman-Token: 2b655ed0-d367-49ef-9a7d-22c349f78a3b",
+            "cache-control: no-cache"
+        ),
+        ));
+        
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        
+        curl_close($curl);
+        
+        if ($err) {
+            $err="cURL Error #:" . $err;
+            return view('nacimiento.error', compact('err'));
+        } else {
+            $info = json_decode($response, true);
 
-            
-            //echo "TRABAJO:".json_encode($json_response)."<br>";
-
-
-            //$json_cosita = ["status" => 1];
-            return $objeto->registrarNacimiento(json_encode($json_response));
-            //return $json_cosita;
+            //$info = $respData['data'];
+            return view('nacimiento.resultado',compact('info'));
+        }
     }
 
     /**

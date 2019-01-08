@@ -17,22 +17,41 @@ class DivorcioController extends Controller
     //
     public function store(Request $request)
     {
-        //
-        //$json_salida = $objeto->registrarDefuncion(response()->json($request));
-        error_log(json_encode($request));
-        $json_response= '{'. '"cuiHombre":"'.$request['cuiHombre'] .'","cuiMujer":"'.$request['cuiMujer'].
-            '","municipio":"'.$request['municipio'].'","lugarDivorcio":"'.$request['lugarDivorcio'].
-            '","fechaDivorcio":"'.$request['fechaDivorcio'].'"}';
-            $objeto = new DivorcioController;
-            echo 'salida:' . $json_response;
-            $mensaje= json_decode($objeto->registrarDivorcio($json_response),true);
-            if($mensaje['status']==-1){
-                Session::flash('alert','No se pudo ingresar el matrimonio');
-            }else{
-                Session::flash('message','Matrimonio registrado correctamente');
-                return Redirect::to('divorcio/create');
-            }
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+            CURLOPT_URL => "http://104.196.194.35//divorcio/Registrar",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => "{\n\t\"cuiHombre\" : \"".$request->input('cuiHombre')."\", \"cuiMujer\" : \"".$request->input('cuiMujer')."\",".
+                "\"municipio\" : \"".$request->input('municipio')."\", \"lugarDivorcio\" : \"".$request->input('lugarDivorcio')."\",".
+                "\"fechaDivorcio\" : \"".$request->input('fechaDivorcio')."\" \n}",
+            CURLOPT_HTTPHEADER => array(
+                "Content-Type: application/json",
+                "Postman-Token: 2b655ed0-d367-49ef-9a7d-22c349f78a3b",
+                "cache-control: no-cache"
+            ),
+            ));
             
+            $response = curl_exec($curl);
+            $err = curl_error($curl);
+            
+            curl_close($curl);
+            
+            if ($err) {
+                $err="cURL Error #:" . $err;
+                return view('divorcio.error', compact('err'));
+            } else {
+                $info = json_decode($response, true);
+
+                //$info = $respData['data'];
+                return view('divorcio.resultado',compact('info'));
+            }
+                   
     }
 
     public function registrarDivorcio($valor){
