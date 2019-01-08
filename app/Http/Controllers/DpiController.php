@@ -186,10 +186,9 @@ class DpiController extends Controller
 
         DB::table('PERSONA')
             ->where('cui', $cui)
-            ->update(['id_muni' => $muni],
-                    ['direccion' => $resi],
-                    ['huella' => $huella]
-                );
+            ->update(['id_muni' => $muni])
+            ->update(['direccion' => $resi])
+            ->update(['huella' => $huella]);
 
                 $json_response = [
                     'mensaje' => 'DPI actualizado',
