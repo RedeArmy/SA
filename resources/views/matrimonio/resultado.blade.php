@@ -3,37 +3,37 @@
     <h1>Datos de Matrimonio</h1>
     <div class="panel panel-default">
         <div class="panel-body">
-            {{$info['mensaje']}}
+        <b>Mensaje: </b>{{$info['mensaje']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            {{$info['data']['cuiMujer']}}
+        <b>CUI Esposa: </b>{{$info['data']['cuiMujer']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-        {{$info['data']['cuiHombre']}}
+        <b>CUI Esposo: </b>{{$info['data']['cuiHombre']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-        {{$info['data']['municipio']}}
+        <b>Municipio: </b>{{$info['data']['municipio']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-        {{$info['data']['lugarMatrimonio']}}
+        <b>Direccion: </b>{{$info['data']['lugarMatrimonio']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-        {{$info['data']['fechaMatrimonio']}}
+        <b>Fecha: </b>{{$info['data']['fechaMatrimonio']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-        {{$info['data']['regimenMatrimonial']}}
+        <b>Regimen Matrimonial: </b>{{$info['data']['regimenMatrimonial']}}
         </div>
     </div>
 </div>

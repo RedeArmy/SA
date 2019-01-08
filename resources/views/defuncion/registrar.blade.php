@@ -2,9 +2,15 @@
 	@section('content')
 	{!!Form::open(['route'=>'defuncion.store', 'method'=>'POST'])!!}
 	<div class="form-group">
+		{!!Form::label('IDpais','ID del pais:')!!}
+		{!!Form::text('idPais',null,['class'=>'form-control','placeholder'=>'ID del pais'])!!}
+	</div>
+	
+	<div class="form-group">
 		{!!Form::label('cui_hombre','CUI muerto:')!!}
 		{!!Form::text('cui_muerto',null,['class'=>'form-control','placeholder'=>'Ingresa el CUI del muerto'])!!}
 	</div>
+
 	<div class="form-group">
 		{!!Form::label('cui_compa','CUI Compareciente:')!!}
 		{!!Form::text('cuiCompareciente',null,['class'=>'form-control','placeholder'=>'Ingresa el CUI del compareciente'])!!}
