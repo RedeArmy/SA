@@ -174,7 +174,7 @@ class MatrimonioController extends Controller
         return response()->json($json_response);
     }
 
-    public function Registrar(Resquest $req){
+    public function Registrar(Request $req){
 
         $cui_esposo = $req['cuiHombre'];
         $cui_esposa = $req['cuiMujer'];
