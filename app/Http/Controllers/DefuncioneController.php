@@ -402,7 +402,7 @@ class DefuncioneController extends Controller
                 $json_response =
                 [
                     'status' => "1",
-                    'mensaje' => "DPI encontrado",
+                    'mensaje' => "Acta de defuncion y DPI encontrados.",
                     'data' => $json_respuesta_contenido
                     //'data' => [$json_respuesta_contenido, $nacimiento_dif, $persona_com, $persona_dif, $defuncion_obtenida]
                     //'data' => [$defuncion_obtenida,"",$json_respuesta_contenido,"",$persona_dif, "", $persona_com]
@@ -414,7 +414,7 @@ class DefuncioneController extends Controller
                 
                 $json_response =
                 [
-                    'status' => -1,
+                    'status' => "-1",
                     'mensaje' => "Registro de defucion con el DPI, no existe.",
                     'data' => "",
                 ];
@@ -427,7 +427,7 @@ class DefuncioneController extends Controller
 
             $json_response =
             [
-                'status' => -1,
+                'status' => "-1",
                 'mensaje' => "No existe el DPO ingresado",
                 'data' => "",
             ];
