@@ -185,16 +185,14 @@ class MatrimonioController extends Controller
 
         $existe = DB::table('PERSONA')
             ->select('cui')
-            ->where(
-                'cui','=',$cui_esposo)
+            ->where('cui','=',$cui_esposo)
                 ->where('estado_civil','<>','2')
                 ->where('genero','=','1')
             ->get();
 
         $existe2 = DB::table('PERSONA')
             ->select('cui')
-            ->where(
-                'cui','=',$cui_esposa)
+            ->where('cui','=',$cui_esposa)
                 ->where('estado_civil','<>','2')
                 ->where('genero','=','0')
             ->get();
@@ -222,32 +220,32 @@ class MatrimonioController extends Controller
             $d->status = "-1";
             $d->data = "";
             return response()->json($d);
+        }else{
+
+            DB::table('MATRIMONIO')->insert([
+                [
+                    'cui_esposo' => $cui_esposo, 
+                    'cui_esposa' => $cui_esposa,
+                    'id_muni' => $muni,
+                    'direccion_matri' => $lugar_matri,
+                    'regimen_eco' => $regimen,
+                    'fecha_matri' => date("Y-m-d H:i:s",strtotime((int)$fecha))
+                ]
+            ]);
+    
+            DB::table('PERSONA')
+                ->where('cui', $cui_esposa)
+                ->orWhere('cui',$cui_esposo)
+                ->update(['estado_civil' => 2]);
+    
+            $json_response = [
+                'mensaje' => 'Matrimonio registrado',
+                'status' => '1',
+                'data' => ""
+            ];
+            
+            return response()->json($json_response);
         }
-
-        DB::table('MATRIMONIO')->insert([
-            [
-                'cui_esposo' => $cui_esposo, 
-                'cui_esposa' => $cui_esposa,
-                'id_muni' => $muni,
-                'direccion_matri' => $lugar_matri,
-                'regimen_eco' => $regimen,
-                'fecha_matri' => date("Y-m-d H:i:s",strtotime((int)$fecha))
-            ]
-        ]);
-
-        DB::table('PERSONA')
-            ->where('cui', $cui_esposa)
-            ->orWhere('cui',$cui_esposo)
-            ->update(['estado_civil' => 2]);
-
-        $json_response = [
-            'mensaje' => 'Matrimonio registrado',
-            'status' => '1',
-            'data' => ""
-        ];
-        
-        return response()->json($json_response);
-        //{"cuiHombre":"2942637562001","cuiMujer":"2942637562002","municipio":"1","lugarMatrimonio":"Ciudad","fecharMatrimonio":"1999-01-01","regimenMatrimonial":"bianes mancomunados"}
     }
 
     public function consultar(){
