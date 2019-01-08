@@ -42,7 +42,8 @@ class MatrimonioController extends Controller
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-            CURLOPT_URL => "http://104.196.194.35/matrimonio/registrar",
+            CURLOPT_URL => "http://localhost:8083/matrimonio/registrar",
+            //CURLOPT_URL => "http://104.196.194.35/matrimonio/registrar",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -50,7 +51,7 @@ class MatrimonioController extends Controller
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "POST",
             CURLOPT_POSTFIELDS => "{\n\t\"cuiHombre\" : \"".$request->input('cuiHombre')."\", \"cuiMujer\" : \"".$request->input('cuiMujer')."\",".
-                "\"municipio\" : \"".$request->input('municipio')."\", \"lugarMatrimonio\" : \"".$request->input('lugarMatrimonio')."\",".
+                "\"municipio\" : \"".$request->input('municipio')."\", \"lugarMatrimonio\" : \"".$request->input('lugarMatrimonio')."\","."\"idPais\" : \"".$request->input('idPais')."\",".
                 "\"fechaMatrimonio\" : \"".$request->input('fechaMatrimonio')."\", \"regimenMatrimonial\" : \"".$request->input('regimenMatrimonial')."\" \n}",
             CURLOPT_HTTPHEADER => array(
                 "Content-Type: application/json",
