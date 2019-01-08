@@ -62,7 +62,7 @@ class DefuncioneController extends Controller
             } else {
                 $info = json_decode($response, true);
                 //$info = $respData['data'];
-                return view('defuncion.resultado',compact('info'));
+                return $info['mensaje'];
             }
                         
     }
