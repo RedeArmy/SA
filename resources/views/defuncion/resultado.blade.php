@@ -4,7 +4,7 @@
     <div class="panel panel-default">
         <div class="panel-body">
 
-            <b>dfsf: </b>{{$respData['message']}}            
+            <b>dfsf: </b>{{$respData}}            
         </div>
     </div>
 </div>
