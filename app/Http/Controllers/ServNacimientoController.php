@@ -619,7 +619,8 @@ class ServNacimientoController extends Controller
                 'cui_padre' => $cuiPadre,
                 'cui_madre' => $cuiMadre,
                 'id_muni' => $municipio,
-                'fecha' => date("Y-m-d H:i:s", (int)$fechaNacimiento),
+                //'fecha' => date("Y-m-d H:i:s", (int)$fechaNacimiento),
+                'fecha' =>  strtotime((int)$fechaNacimiento),
                 'direccion_nac' => "ciudad",
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
