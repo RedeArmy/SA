@@ -12,8 +12,14 @@ node {
 		sh "echo 'shell scripts to deploy to server....'"
             sh "sudo composer install -d /var/lib/jenkins/workspace/SA-Proyecto/"
         }
-	stage ('Push') {
-		sh "echo 'shell scripts to deploy to server...'"
+        stage ('Push') {
+            sh "echo 'shell scripts to deploy to server...'"
+            }
+        stage ('Code Analysis') {
+            def scannerhome = tool 'Sonar-Scanner';
+            withSonarQubeEnv ('SonarQubeServer'){
+                sh "${scannerhome}/bin/sonar-scanner -D sonar.login=Admin -D sonar.password=P5mDGJYBPsCE"
+            }
       	}
         stage ('Tests') {
 	    /*    sh "echo 'shell scripts to deploy to server....'"
