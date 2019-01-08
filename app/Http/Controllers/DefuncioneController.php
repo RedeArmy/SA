@@ -60,11 +60,13 @@ class DefuncioneController extends Controller
             curl_close($curl);
             
             if ($err) {
-            return "cURL Error #:" . $err;
+                $err="cURL Error #:" . $err;
+                return view('defuncion.error', compact('err'));
             } else {
-            return $response;
+                $respData = json_decode($response['data']);
+                return view('defuncion.resultado',compact('respData'));
             }
-            
+                        
     }
 
     public function create()
