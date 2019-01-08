@@ -64,7 +64,8 @@ class DefuncioneController extends Controller
                 return view('defuncion.error', compact('err'));
             } else {
                 $respData = json_decode($response, true);
-                return view('defuncion.resultado',compact('respData'));
+                $info = json_decode($respData['data'], true);
+                return view('defuncion.resultado',compact('info'));
             }
                         
     }
