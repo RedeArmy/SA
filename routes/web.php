@@ -40,6 +40,7 @@ Route::get('api/v1/consul_matri/{valor}','MatrimonioController@consultarMatrimon
 */
 
 //SERVICIOS DE DEFUNCION
+Route::resource('imprimeDiv','imprimeDiv');
 Route::resource('imprimeDef','imprimeDef');
 Route::resource('defuncion','DefuncioneController');
 Route::get('defuncion/consulta', function(){
