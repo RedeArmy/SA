@@ -39,6 +39,6 @@
 		{!!Form::label('regimen','Regimen Matrimonial:')!!}
 		{!!Form::text('regimenMatrimonial',null,['class'=>'form-control','placeholder'=>'Ingresa el regimen del matrimonio'])!!}
 	</div>
-	{!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
+	{!!Form::submit('Registrar Matrimonio',['class'=>'btn btn-primary'])!!}
 	{!!Form::close()!!}
 	@endsection

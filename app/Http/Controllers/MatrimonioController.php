@@ -176,13 +176,13 @@ class MatrimonioController extends Controller
 
     public function Registrar(Request $req){
 
-        $cui_esposo = $req['cuiHombre'];
-        $cui_esposa = $req['cuiMujer'];
-        $muni = $req['municipio'];
-        $lugar_matri = $req['lugarMatrimonio'];
-        $fecha = $req['fechaMatrimonio'];
-        $regimen = $req['regimenMatrimonial'];
-        $pais = $req['idPais'];
+        $cui_esposo = $req->input('cuiHombre');
+        $cui_esposa = $req->input('cuiMujer');
+        $muni = $req->input('municipio');
+        $lugar_matri = $req->input('lugarMatrimonio');
+        $fecha = $req->input('fechaMatrimonio');
+        $regimen = $req->input('regimenMatrimonial');
+        $pais = $req->input('idPais');
 
         $existe = DB::table('PERSONA')
             ->select('cui')
@@ -197,7 +197,7 @@ class MatrimonioController extends Controller
             ->where(
                 'cui','=',$cui_esposa)
                 ->where('estado_civil','<>','2')
-                ->where('genero','=','2')
+                ->where('genero','=','0')
             ->get();
 
         $existe3 = DB::table('MUNICIPIO')
@@ -205,11 +205,23 @@ class MatrimonioController extends Controller
             ->where('id_muni','=',$muni)
             ->get();
 
-        if($existe == "[]" || $existe2 == "[]" || $existe3 == "[]"){
+        if($existe3 == "[]"){
             $d = new Objeto;
-            $d->mensaje = "Problemas con el cui o con Municipio";
+            $d->mensaje = "El municipio no existe.";
             $d->status = "-1";
-            $d->data = [];
+            $d->data = [$existe,$existe2,$existe3];
+            return response()->json($d);
+        }else if ( $existe == "[]"){
+            $d = new Objeto;
+            $d->mensaje = "Problemas, el esposo ya esta casado.";
+            $d->status = "-1";
+            $d->data = [$existe,$existe2,$existe3];
+            return response()->json($d);
+        }else if ( $existe2 == "[]"){
+            $d = new Objeto;
+            $d->mensaje = "Problemas, la esposa ya esta casado.";
+            $d->status = "-1";
+            $d->data = [$existe,$existe2,$existe3];
             return response()->json($d);
         }
 
@@ -220,7 +232,7 @@ class MatrimonioController extends Controller
                 'id_muni' => $muni,
                 'direccion_matri' => $lugar_matri,
                 'regimen_eco' => $regimen,
-                'fecha_matri' => $fecha
+                'fecha_matri' => $fecha,
             ]
         ]);
 
@@ -232,8 +244,7 @@ class MatrimonioController extends Controller
         $json_response = [
             'mensaje' => 'Matrimonio registrado',
             'status' => '1',
-            'data' => []
-            
+            'data' => [$existe,$existe2,$existe3]
         ];
         
         return response()->json($json_response);

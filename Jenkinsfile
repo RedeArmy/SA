@@ -26,7 +26,7 @@ node {
             sh 'sudo ab -k -n800 -c100 -H "Accept-Encoding: gzip,deflate" http://104.196.194.35/api/divorcio/registro_divorcio/%7B%22cuiHombre%22:%222942637562001%22,%22cuiMujer%22:%222942637562002%22,%22municipio%22:%221%22,%22lugarDivorcio%22:%22sssss%22,%22fechaDivorcio%22:%222000-02-02%22%7D'
             sh 'sudo ab -k -n800 -c100 -H "Accept-Encoding: gzip,deflate" http://104.196.194.35/api/divorcio/consultar_divorcio/%7B"cuiHombre":"2942637562001","cuiMujer":"2942637562002"%7D'
             */
-        }   
+        }
       	stage ('Deploy') {
             sh "sudo rm -rf /var/www/html/SA-Proyecto"
             sh "sudo cp -R /var/lib/jenkins/workspace/SA-Proyecto/ /var/www/html/"

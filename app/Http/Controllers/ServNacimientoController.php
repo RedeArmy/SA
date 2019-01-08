@@ -621,7 +621,6 @@ class ServNacimientoController extends Controller
                 'cui_padre' => $cuiPadre,
                 'cui_madre' => $cuiMadre,
                 'id_muni' => $municipio,
-                //'fecha' => date("Y-m-d H:i:s", (int)$fechaNacimiento),
                 'fecha' =>  date("Y-m-d H:i:s",strtotime((int)$fechaNacimiento)),
                 'direccion_nac' => "ciudad",
                 'created_at' => Carbon::now(),
@@ -694,7 +693,7 @@ class ServNacimientoController extends Controller
                     'nombre' => $persona_1['nombres'],
                     'apellido' => $persona_1['apellidos'],
                     'genero' => $persona_1['genero'],
-                    'fechaNacimiento' => $json_persona[0]['fecha'],
+                    'fechaNacimiento' => strtotime((int)$json_persona[0]['fecha']),
                     'pais' => '1',
                     'departamento' => $id_departamento['id_dpto'],
                     'municipio' => $json_persona[0]['id_muni'],
@@ -719,7 +718,7 @@ class ServNacimientoController extends Controller
                 [
                     'status' => '1',
                     'mensaje' => "DPI encontrado",
-                    'data' => [$persona_info, $persona_m ]
+                    'data' => $persona_info
                 ];
                 
                 return response()->json($json_response);
