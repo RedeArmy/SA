@@ -12,9 +12,9 @@ node {
 		sh "echo 'shell scripts to deploy to server....'"
             sh "sudo composer install -d /var/lib/jenkins/workspace/SA-Proyecto/"
         }
-	stage ('Push') {
-		sh "echo 'shell scripts to deploy to server...'"
-      	}
+        stage ('Push') {
+            sh "echo 'shell scripts to deploy to server...'"
+            }
         stage ('Tests') {
 	    /*    sh "echo 'shell scripts to deploy to server....'"
 	        sh "echo 'shell scripts to deploy to server....'"

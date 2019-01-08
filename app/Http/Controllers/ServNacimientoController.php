@@ -82,7 +82,7 @@ class ServNacimientoController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('nacimiento.show');
     }
 
     /**
