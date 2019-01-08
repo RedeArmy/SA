@@ -338,8 +338,7 @@ class DefuncioneController extends Controller
 
             if($response_existencia == true){
 
-                $defuncion_pivote = json_decode($objeto->obtenerDefuncion($valor_cui),true)[0];
-
+                $defuncion_obtenida = json_decode($objeto->obtenerDefuncion($valor_cui),true)[0];
                 $persona_dif = json_decode($objeto->obtenerPersona($defuncion_obtenida['cui_difunto']),true)[0];
                 $persona_com = json_decode($objeto->obtenerPersona($defuncion_obtenida['cui_compareciente']),true)[0];
                 $nacimiento_dif = json_decode($objeto->obtenerNacimiento($defuncion_obtenida['cui_difunto']),true)[0];
