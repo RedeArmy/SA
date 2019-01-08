@@ -156,7 +156,7 @@ class DivorcioController extends Controller
     public function Registrar(Request $req){
 
         $cui_esposo = $req->input('cuiHombre');
-        $cui_esposa = $re->input('cuiMujer');
+        $cui_esposa = $req->input('cuiMujer');
         $muni = $req->input('municipio');
         $lugar = $req->input('lugarDivorcio');
         $fecha = $req->input('fechaDivorcio');
