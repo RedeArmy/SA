@@ -23,7 +23,7 @@ class imprimeController extends Controller
      */
     public function create()
     {
-        return view('Matrimonio.index'); 
+        return view('matrimonio.index'); 
     }
 
     /**
@@ -44,7 +44,7 @@ class imprimeController extends Controller
         CURLOPT_TIMEOUT => 30,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "POST",
-        CURLOPT_POSTFIELDS => "{\n\t\"cui\" : \"".$request->input('cui')."\" \n}",
+        CURLOPT_POSTFIELDS => "{\n\t\"cuiHombre\" : \"".$request->input('cuiHombre')."\", \"cuiMujer\" : \"".$request->input('cuiMujer')."\" \n}",
         CURLOPT_HTTPHEADER => array(
             "Content-Type: application/json",
             "Postman-Token: 2b655ed0-d367-49ef-9a7d-22c349f78a3b",
@@ -59,12 +59,12 @@ class imprimeController extends Controller
         
         if ($err) {
             $err="cURL Error #:" . $err;
-            return view('defuncion.error', compact('err'));
+            return view('matrimonio.error', compact('err'));
         } else {
             $info = json_decode($response, true);
 
             //$info = $respData['data'];
-            return view('defuncion.resultado',compact('info'));
+            return view('matrimonio.resultado',compact('info'));
         }
     }
 }

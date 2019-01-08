@@ -25,7 +25,7 @@ class MatrimonioController extends Controller
     public function store(Request $request)
     {
         //
-        //$json_salida = $objeto->registrarDefuncion(response()->json($request));
+        /*$json_salida = $objeto->registrarDefuncion(response()->json($request));
         error_log(json_encode($request));
         $json_response= '{'. '"cuiHombre":"'.$request['cuiHombre'] .'","cuiMujer":"'.$request['cuiMujer'].
             '","municipio":"'.$request['municipio'].'","lugarMatrimonio":"'.$request['lugarMatrimonio'].
@@ -39,7 +39,41 @@ class MatrimonioController extends Controller
             }else{
                 Session::flash('message','Matrimonio registrado correctamente');
                 return Redirect::to('matrimonio/create')->with('message','store');
-            }
+            }*/
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+        CURLOPT_URL => "http://104.196.194.35//matrimonio/registrar",
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        CURLOPT_POSTFIELDS => "{\n\t\"cuiHombre\" : \"".$request->input('cuiHombre')."\", \"cuiMujer\" : \"".$request->input('cuiMujer')."\",".
+            "\"municipio\" : \"".$request->input('municipio')."\", \"lugarMatrimonio\" : \"".$request->input('lugarMatrimonio')."\",".
+            "\"fechaMatrimonio\" : \"".$request->input('fechaMatrimonio')."\", \"regimenMatrimonial\" : \"".$request->input('regimenMatrimonial')."\" \n}",
+        CURLOPT_HTTPHEADER => array(
+            "Content-Type: application/json",
+            "Postman-Token: 2b655ed0-d367-49ef-9a7d-22c349f78a3b",
+            "cache-control: no-cache"
+        ),
+        ));
+        
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        
+        curl_close($curl);
+        
+        if ($err) {
+            $err="cURL Error #:" . $err;
+            return view('matrimonio.error', compact('err'));
+        } else {
+            $info = json_decode($response, true);
+
+            //$info = $respData['data'];
+            return view('matrimonio.resultado',compact('info'));
+        }
             
     }
     public function registrarMatrimonio($valor){
@@ -249,9 +283,6 @@ class MatrimonioController extends Controller
         }
     }
 
-    public function consultar(){
-        return view('matrimonio.index');
-    }
 
     public function results(Request $req){
         $objeto = new MatrimonioController;
