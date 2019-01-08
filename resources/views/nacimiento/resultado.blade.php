@@ -33,39 +33,54 @@
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-        <b>pais Nacimiento: </b>{{$info['data']['paisNacimiento']}}
+        <b>pais Nacimiento: </b>{{$info['data']['pais']}}
+        </div>
+    </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+        <b>Departamento Nacimiento: </b>{{$info['data']['departamento']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-        <b>pais Vecindad: </b>{{$info['data']['paisVecindad']}}
+        <b>Municipio Nacimiento: </b>{{$info['data']['municipio']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-        <b>departamento Vecindad: </b>{{$info['data']['departamentoVecindad']}}
+        <b>lugar Nacimiento: </b>{{$info['data']['lugarNacimiento']}}
         </div>
     </div>
 
     <div class="panel panel-default">
         <div class="panel-body">
-            <b>municipio Vecindad: </b>{{$info['data']['municipioVecindad']}}
+            <b>cui Padre: </b>{{$info['data']['cuiPadre']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            <b>estado Civil: </b>{{$info['data']['estadoCivil']}}
+            <b>nombre Padre: </b>{{$info['data']['nombrePadre']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-        <b>huella: </b>{{$info['data']['huella']}}
+        <b>apellido Padre: </b>{{$info['data']['apellidoPadre']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-        <b>fecha Vencimiento: </b>{{$info['data']['fechaVencimiento']}}
+        <b>cui Madre: </b>{{$info['data']['cuiMadre']}}
         </div>
     </div>
-    
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <b>nombre Madre: </b>{{$info['data']['nombreMadre']}}
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+        <b>apellido Madre: </b>{{$info['data']['apellidoMadre']}}
+        </div>
+    </div>
 </div>
