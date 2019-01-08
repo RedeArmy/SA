@@ -31,11 +31,12 @@ class DefuncioneController extends Controller
             return $objeto->registrarDefuncion(json_encode($json_response));*/
             //falta definir varios atributos
             $curl = curl_init();
-            $cuimuerto=(int)$request->input('cui_muerto');
-            $cuicompareciente=(int)$request->input('cuiCompareciente');
+            $cuimuerto= $request->input('cui_muerto');
+            $cuicompareciente= $request->input('cuiCompareciente');
             $id_pais = $request->input('idPais');
+            
             curl_setopt_array($curl, array(
-            CURLOPT_URL => "http://127.0.0.1:8082/defuncion/registrar",
+            CURLOPT_URL => "http://localhost:8082/defuncion/registrar",
             //CURLOPT_URL => "http://104.196.194.35/defuncion/registrar",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
@@ -44,8 +45,8 @@ class DefuncioneController extends Controller
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "POST",
             CURLOPT_POSTFIELDS => "{\n\t\"cui\" : \"".$cuimuerto."\", \"cuiCompareciente\" : \"".$cuicompareciente."\"".
-                ", \"municipio\" : \"".$request->input('municipio')."\", \"lugarDeDefuncion\" : \"".$request->input('lugarDeDefuncion')."\", ".
-                "\"fechaDeDefuncion\" : \"".$request->input('fechaDeDefuncion')."\", \"causa\" : \"".$request->input('causa')."\", \"idPais\" : \"".$request->input('idPais')."\" \n}",
+                ", \"municipio\" : \"".$request->input('municipio')."\", \"lugarDefuncion\" : \"".$request->input('lugarDefuncion')."\", ".
+                "\"fechaDefuncion\" : \"".strtotime($request->input('fechaDefuncion'))."\", \"causa\" : \"".$request->input('causa')."\", \"idPais\" : \"".$request->input('idPais')."\" \n}",
             CURLOPT_HTTPHEADER => array(
                 "Content-Type: application/json",
                 "Postman-Token: 2b655ed0-d367-49ef-9a7d-22c349f78a3b",
@@ -63,7 +64,7 @@ class DefuncioneController extends Controller
                 return view('defuncion.error', compact('err'));
             } else {
                 $info = json_decode($response, true);
-                //$info = $respData['data'];
+
                 return view('defuncion.muerto',compact('info'));
             }
                         
