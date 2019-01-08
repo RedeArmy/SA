@@ -310,6 +310,8 @@ class MatrimonioController extends Controller
             ->get()
             ->first();
 
+        $matrimonio_real = $matrimonio[0];
+
         $json_response = [
             'mensaje' => 'El acta de matrimonio se recupero con éxito',
             'status' => '1',
@@ -326,11 +328,11 @@ class MatrimonioController extends Controller
                 'paisMujer' => $mujer->pais,
                 'departamentoMujer' => $mujer->departamento,
                 'municipioMujer' => $mujer->municipio,
-                'municipio' => '',
-                'lugarMatrimonio' => '',
-                'fechaMatrimonio' => '',
-                'regimenMatrimonial' => '',
-                'data' => $matrimonio
+                'municipio' => $matrimonio_real['id_muni'],
+                'lugarMatrimonio' => $matrimonio_real['direccion_matri'],
+                'fechaMatrimonio' => strtotime((int)$matrimonio_real['fecha_matri']),
+                'regimenMatrimonial' => $matrimonio_real['regimen_eco'],
+                //'data' => $matrimonio
             ]
             
         ];
