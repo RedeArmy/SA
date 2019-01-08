@@ -209,19 +209,19 @@ class MatrimonioController extends Controller
             $d = new Objeto;
             $d->mensaje = "El municipio no existe.";
             $d->status = "-1";
-            $d->data = [$existe,$existe2,$existe3];
+            $d->data = "";
             return response()->json($d);
         }else if ( $existe == "[]"){
             $d = new Objeto;
             $d->mensaje = "Problemas, el esposo ya esta casado.";
             $d->status = "-1";
-            $d->data = [$existe,$existe2,$existe3];
+            $d->data = "";
             return response()->json($d);
         }else if ( $existe2 == "[]"){
             $d = new Objeto;
             $d->mensaje = "Problemas, la esposa ya esta casado.";
             $d->status = "-1";
-            $d->data = [$existe,$existe2,$existe3];
+            $d->data = "";
             return response()->json($d);
         }
 
@@ -244,7 +244,7 @@ class MatrimonioController extends Controller
         $json_response = [
             'mensaje' => 'Matrimonio registrado',
             'status' => '1',
-            'data' => [$existe,$existe2,$existe3]
+            'data' => ""
         ];
         
         return response()->json($json_response);
