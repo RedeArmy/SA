@@ -40,7 +40,7 @@ class ServNacimientoController extends Controller
         $curl = curl_init();
 
             curl_setopt_array($curl, array(
-        CURLOPT_URL => "http://104.196.194.35/nacimiento/Registrar",
+        CURLOPT_URL => "http://104.196.194.35/nacimiento/registrar",
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => "",
         CURLOPT_MAXREDIRS => 10,

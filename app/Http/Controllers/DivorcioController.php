@@ -20,7 +20,7 @@ class DivorcioController extends Controller
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-            CURLOPT_URL => "http://104.196.194.35//divorcio/Registrar",
+            CURLOPT_URL => "http://104.196.194.35//divorcio/registrar",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
