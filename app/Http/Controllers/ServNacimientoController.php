@@ -593,7 +593,7 @@ class ServNacimientoController extends Controller
         $existe_padre = $objeto->validarExistenciaCUI($cuiPadre);
 
         if($existe_madre == false && $existe_padre == false){
-            echo "se pudo realizar el ingreso!!1";
+            echo "se pudo realizar el ingreso!!";
         }
 
         if($existe_padre == false && $existe_madre == false){
@@ -609,7 +609,9 @@ class ServNacimientoController extends Controller
                      'huella'=>"sin valor",
                      'direccion'=>"ciudad",
                      'vivo_muerto'=>1,
-                     'id_muni'=>$municipio
+                     'id_muni'=>$municipio,
+                     'created_at' => Carbon::now(),
+                     'updated_at' => Carbon::now()
                 ]
             );
 
@@ -619,16 +621,18 @@ class ServNacimientoController extends Controller
                 'cui_padre' => $cuiPadre,
                 'cui_madre' => $cuiMadre,
                 'id_muni' => $municipio,
-                'fecha' => Carbon::now(),
+                'fecha' =>  date("Y-m-d H:i:s",strtotime((int)$fechaNacimiento)),
                 'direccion_nac' => "ciudad",
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
              ]);
             
+            $cui_ob = [ 'cui' => $cui_final_generado];
+
             $resultado_final =  [
-                'cui' => $cui_final_generado,
-                'status' => 1,
-                'mensaje' => "Registro de persona añadido"
+                'status' => "1",
+                'mensaje' => "Registro de persona realizado exitosamente",
+                'data' => $cui_ob
             ];
 
             return response()->json($resultado_final);
@@ -636,9 +640,9 @@ class ServNacimientoController extends Controller
         }else{
             
             $resultado_final =  [
-                'cui' => 0,
-                'status' => 0,
-                'mensaje' => "Registro de persona no realizado, no existe padre o madre"
+                'status' => "-1",
+                'mensaje' => "Registro de persona no realizado, no existe padre o madre",
+                'data' => ""
             ];
 
             return response()->json($resultado_final);
@@ -689,7 +693,7 @@ class ServNacimientoController extends Controller
                     'nombre' => $persona_1['nombres'],
                     'apellido' => $persona_1['apellidos'],
                     'genero' => $persona_1['genero'],
-                    'fechaNacimiento' => $json_persona[0]['fecha'],
+                    'fechaNacimiento' => strtotime((int)$json_persona[0]['fecha']),
                     'pais' => '1',
                     'departamento' => $id_departamento['id_dpto'],
                     'municipio' => $json_persona[0]['id_muni'],
@@ -697,14 +701,14 @@ class ServNacimientoController extends Controller
                     'cuiPadre' => $json_persona[0]['cui_padre'],
                     'nombrePadre' => $persona_p['nombres'],
                     'apellidoPadre' => $persona_p['apellidos'],
-                    'fechaNacimientoPadre' => $persona_p['created_at'],
+                    'fechaNacimientoPadre' => strtotime($persona_p['created_at']),
                     'paisPadre' => '1',
                     'departamentoPadre' => '',
                     'municipioPadre' => $persona_p['id_muni'],
                     'cuiMadre' => $json_persona[0]['cui_madre'],
                     'nombreMadre' => $persona_m['nombres'],
                     'apellidoMadre' => $persona_m['apellidos'],
-                    'fechaNacimientoMadre' => $persona_m['created_at'],
+                    'fechaNacimientoMadre' => strtotime($persona_m['created_at']),
                     'paisMadre' => '1',
                     'departamentoMadre' => '',
                     'municipioMadre' => $persona_m['id_muni']
@@ -714,7 +718,7 @@ class ServNacimientoController extends Controller
                 [
                     'status' => '1',
                     'mensaje' => "DPI encontrado",
-                    'data' => $persona_info,
+                    'data' => $persona_info
                 ];
                 
                 return response()->json($json_response);
@@ -723,7 +727,7 @@ class ServNacimientoController extends Controller
                     
                 $json_response =
                 [
-                    'status' => '0',
+                    'status' => '-1',
                     'mensaje' => "No existe el numero de DPI registrado",
                     'data' => "{}",
                 ];
@@ -736,7 +740,7 @@ class ServNacimientoController extends Controller
             
             $json_response =
             [
-                'status' => '0',
+                'status' => '-1',
                 'mensaje' => "Número de DPI incorrecto",
                 'data' => "{}",
             ];

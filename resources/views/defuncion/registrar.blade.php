@@ -22,8 +22,10 @@
 		{!!Form::date('fechaDeDefuncion',null,['class'=>'form-control','placeholder'=>'Ingresa la fecha de muerte'])!!}
 	</div>
     <div class="form-group">
+
 		{!!Form::label('c','Causa:')!!}
 		{!!Form::text('causa',null,['class'=>'form-control','placeholder'=>'Ingresa la causa de muerte'])!!}
+
 	</div>
 	{!!Form::submit('Registrar Defuncion',['class'=>'btn btn-primary'])!!}
 	{!!Form::close()!!}

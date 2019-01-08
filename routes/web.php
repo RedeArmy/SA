@@ -40,9 +40,13 @@ Route::get('api/v1/consul_matri/{valor}','MatrimonioController@consultarMatrimon
 */
 
 //SERVICIOS DE DEFUNCION
+Route::resource('imprimeDef','imprimeDef');
 Route::resource('defuncion','DefuncioneController');
-Route::get('api/defuncion/registro_defuncion/{valor}','DefuncioneController@registrarDefuncion');
-Route::get('api/defuncion/imprimir_defuncion/{valor}','DefuncioneController@imprimirDefuncion');
+Route::get('defuncion/consulta', function(){
+    return view('defuncion.index');
+});
+//Route::get('api/defuncion/registro_defuncion/{valor}','DefuncioneController@registrarDefuncion');
+//Route::get('api/defuncion/imprimir_defuncion/{valor}','DefuncioneController@imprimirDefuncion');
 
 
 //SERVICIOS DE DIVORCIO
@@ -63,6 +67,11 @@ Route::post('/login',function(Request $re){
     else
         return response()->json(["mensaje" => "login fallido"]);
     
+});
+
+Route::get('/time',function(){
+    $tiempo = time();
+    return response()->json(['mensaje'=>$tiempo]);
 });
 
 Route::get('/iniciov2', function(){
@@ -121,8 +130,8 @@ Route::post('/divorcio/registrar','DivorcioController@Registrar');
 Route::post('/divorcio/imprimir','DivorcioController@Imprimir');
 
 Route::post('/municipio/lista','MunicipioController@ListaMunis');
-Route::post('/departamento/lista','DepartamentoController@ListaDptos');
-Route::get('/departamento/lista','DepartamentoController@ListaDptos');
+Route::any('/departamento/lista','DepartamentoController@ListaDptos');
+//Route::get('/departamento/lista','DepartamentoController@ListaDptos');
 
 Route::post('/dpi/consultar','DpiController@Consultar');
 Route::post('/dpi/actualizar','DpiController@Actualizar');

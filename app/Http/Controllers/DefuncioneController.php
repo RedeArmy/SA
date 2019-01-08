@@ -12,13 +12,10 @@ class DefuncioneController extends Controller
 {
     //
 
-    public function ingresarDefuncion(){
-        //
-    }
-
+    
     public function store(Request $request){
         
-        error_log(json_encode($request));
+        /*error_log(json_encode($request));
         
         $objeto = new DefuncioneController;
 
@@ -31,8 +28,43 @@ class DefuncioneController extends Controller
                 'fechaDeDefuncion' => $request['fechaDeDefuncion'],
                 'causa' => $request['causa']
             ];
-            return $objeto->registrarDefuncion(json_encode($json_response));
+            return $objeto->registrarDefuncion(json_encode($json_response));*/
+            //falta definir varios atributos
+            $curl = curl_init();
+            $cuimuerto=(int)$request->input('cui');
+            $cuicompareciente=(int)$request->input('cuiCompareciente');
+            curl_setopt_array($curl, array(
+            CURLOPT_URL => "http://104.196.194.35/defuncion/Registrar",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => "{\n\t\"cui\" : \"".$cuimuerto."\", \"cuiCompareciente\" : \"".$cuicompareciente."\"".
+                ", \"municipio\" : \"".$request->input('municipio')."\", \"lugarDeDefuncion\" : \"".$request->input('lugarDeDefuncion')."\", ".
+                "\"fechaDeDefuncion\" : \"".$request->input('fechaDeDefuncion')."\", \"causa\" : \"".$request->input('causa')."\" \n}",
+            CURLOPT_HTTPHEADER => array(
+                "Content-Type: application/json",
+                "Postman-Token: 2b655ed0-d367-49ef-9a7d-22c349f78a3b",
+                "cache-control: no-cache"
+            ),
+            ));
             
+            $response = curl_exec($curl);
+            $err = curl_error($curl);
+            
+            curl_close($curl);
+            
+            if ($err) {
+                $err="cURL Error #:" . $err;
+                return view('defuncion.error', compact('err'));
+            } else {
+                $info = json_decode($response, true);
+                //$info = $respData['data'];
+                return view('defuncion.resultado',compact('info'));
+            }
+                        
     }
 
     public function create()
@@ -57,7 +89,7 @@ class DefuncioneController extends Controller
         if($response_existencia == false){
             
             $resultado_final =[
-                'status' => 0,
+                'status' => -1,
                 'mensaje' => "Defuncion no registrada, el DPI no existe",
                 'data' => []
             ];
@@ -93,7 +125,7 @@ class DefuncioneController extends Controller
             }else{
 
                 $resultado_final =[
-                    'status' => 0,
+                    'status' => -1,
                     'mensaje' => "Defuncion no registrada, el DPI del compareciente no existe",
                     'data' => []
                 ];
@@ -113,6 +145,24 @@ class DefuncioneController extends Controller
         $existe = DB::table('PERSONA')
         ->select('cui')
         ->where('cui','=',$cui)
+        ->get();
+
+        if($existe == "[]")
+        {
+            return false;
+        }else{
+            return true;
+        }
+
+    }
+
+    public function vallidarExistenciaDefuncion($cui){
+        
+        //CODIGO DE LA CONSULTA PARA CONOCER SI EXISTE EL CUI GENERADO
+
+        $existe = DB::table('DEFUNCION')
+        ->select('cui_difunto')
+        ->where('cui_difunto','=',$cui)
         ->get();
 
         if($existe == "[]")
@@ -186,7 +236,7 @@ class DefuncioneController extends Controller
             
             $json_response =
             [
-                'status' => 0,
+                'status' => -1,
                 'mensaje' => "Registro de defucion con el DPI no encontrado",
                 'data' => [],
             ];
@@ -218,7 +268,7 @@ class DefuncioneController extends Controller
         $cui_compita = $re->input('cuiCompareciente');
         $municipio =$re->input('municipio'); 
         $lugar_defuncion = $re->input('lugarDeDefuncion');
-        $fecha_defuncion = $re->input('fechaDeDefuncion');
+        $fecha_defuncion = $re->input('fechaDefuncion');
         $causa = $re->input('causa');
 
         $response_existencia = $objeto->validarExistenciaCUI($cui_persona);
@@ -226,7 +276,7 @@ class DefuncioneController extends Controller
         if($response_existencia == false){
             
             $resultado_final =[
-                'status' => 0,
+                'status' => -1,
                 'mensaje' => "Defuncion no registrada, el DPI no existe",
                 'data' => []
             ];
@@ -245,7 +295,7 @@ class DefuncioneController extends Controller
                     'cui_compareciente' => $cui_compita,
                     'muni_defuncion' => $municipio,
                     'direccion_defuncion' => $lugar_defuncion,
-                    'fecha_hora' => Carbon::now(),
+                    'fecha_hora' => date("Y-m-d H:i:s",strtotime((int)$fecha_defuncion)),
                     'causa' => $causa,
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now()
@@ -262,7 +312,7 @@ class DefuncioneController extends Controller
             }else{
 
                 $resultado_final =[
-                    'status' => 0,
+                    'status' => -1,
                     'mensaje' => "Defuncion no registrada, el DPI del compareciente no existe",
                     'data' => []
                 ];
@@ -280,88 +330,107 @@ class DefuncioneController extends Controller
 
         $valor_cui = $re->input('cui');
 
-        $defuncion_obtenida = json_decode($objeto->obtenerDefuncion($valor_cui),true)[0];
+        $response_existencia = $objeto->validarExistenciaCUI($valor_cui);
 
-        if($defuncion_obtenida == "[]"){
-            
-            $json_response =
-            [
-                'status' => 0,
-                'mensaje' => "Registro de defucion con el DPI no encontrado",
-                'data' => "{}",
-            ];
+        if($response_existencia == true){
 
-            return response()->json($json_response);
+            $response_existencia_def = $objeto->vallidarExistenciaDefuncion($valor_cui);
+
+            if($response_existencia == true){
+
+                $defuncion_obtenida = json_decode($objeto->obtenerDefuncion($valor_cui),true)[0];
+                $persona_dif = json_decode($objeto->obtenerPersona($defuncion_obtenida['cui_difunto']),true)[0];
+                $persona_com = json_decode($objeto->obtenerPersona($defuncion_obtenida['cui_compareciente']),true)[0];
+
+                $nacimiento_dif = json_decode($objeto->obtenerNacimiento($defuncion_obtenida['cui_difunto']),true)[0];
+    
+                $persona_casada = $persona_dif['estado_civil'];
+                
+                $json_casado;
+    
+                if($persona_casada == 1){
+                    //PERSONA CASADA
+                    $json_casado = [
+                        'nombre_c' => "",
+                        'apellido_c' => "",
+                    ];
+                }else{
+                    //PERSONA SOLTERA
+                    $matrimonio;
+                    $persona_casada;
+    
+                    if($persona_dif['genero'] == 1){
+                        $matrimonio = json_decode($objeto->obtenerMatrimonio($defuncion_obtenida['cui_difunto'],1),true)[0];
+                        $persona_casada = json_decode($objeto->obtenerPersona($matrimonio['cui_esposa'],0),true)[0];
+                    }else{
+                        $matrimonio = json_decode($objeto->obtenerMatrimonio($defuncion_obtenida['cui_difunto'],0),true)[0];
+                        $persona_casada = json_decode($objeto->obtenerPersona($matrimonio['cui_esposo'],0),true)[0];
+                    }
+    
+                    $json_casado = [
+                        'nombre_c' => $persona_casada['nombres'],
+                        'apellido_c' => $persona_casada['apellidos']
+                    ];
+                }
+    
+                $json_respuesta_contenido = [
+                    "cui" => $defuncion_obtenida['cui_difunto'],
+                    "nombre" => $persona_dif['nombres'],
+                    "apellido" => $persona_dif['apellidos'],
+                    "genero" => $persona_dif['genero'],
+                    "fechaNacimiento" => strtotime((int)$nacimiento_dif['fecha']),
+                    "pais" => "6",
+                    "departamento" => "",
+                    "municipio" => $persona_dif['id_muni'],
+                    "lugarNacimiento" => $nacimiento_dif['direccion_nac'],
+                    "estadoCivil" => $persona_dif['estado_civil'],
+                    "nombreConyuge" => $json_casado['nombre_c'],
+                    "apellidoConyuge" => $json_casado['apellido_c'],
+                    "cuiCompareciente" => $defuncion_obtenida['cui_compareciente'],
+                    "nombreCompareciente" => $persona_com['nombres'],
+                    "apellidoCompareciente" => $persona_com['apellidos'],
+                    "paisCompareciente" => "6",
+                    "municipioCompareciente" => $persona_com['id_muni'],
+                    "recidenciaCompareciente" => $persona_com['direccion'],
+                    "paisDefuncion" => "6",
+                    "departamentoDefuncion" => "",
+                    "lugarDefuncion" => $defuncion_obtenida['direccion_defuncion'],
+                    "fechaDefuncion" => strtotime($defuncion_obtenida['fecha_hora']),
+                    "causa" => $defuncion_obtenida['causa']
+                ];
+    
+                $json_response =
+                [
+                    'status' => "1",
+                    'mensaje' => "DPI encontrado",
+                    'data' => [$json_respuesta_contenido, $nacimiento_dif]
+                    //'data' => [$defuncion_obtenida,"",$json_respuesta_contenido,"",$persona_dif, "", $persona_com]
+                ];
+                
+                return response()->json($json_response);
+
+            }else{
+                
+                $json_response =
+                [
+                    'status' => -1,
+                    'mensaje' => "Registro de defucion con el DPI, no existe.",
+                    'data' => "",
+                ];
+    
+                return response()->json($json_response);
+    
+            }
+    
         }else{
 
-            $persona_dif = json_decode($objeto->obtenerPersona($defuncion_obtenida['cui_difunto']),true)[0];
-            $persona_com = json_decode($objeto->obtenerPersona($defuncion_obtenida['cui_compareciente']),true)[0];
-            $nacimiento_dif = json_decode($objeto->obtenerNacimiento($defuncion_obtenida['cui_difunto']),true)[0];
-
-            $persona_casada = $persona_dif['estado_civil'];
-            
-            $json_casado;
-
-            if($persona_casada == 1){
-                //PERSONA CASADA
-                $json_casado = [
-                    'nombre_c' => "",
-                    'apellido_c' => "",
-                ];
-            }else{
-                //PERSONA SOLTERA
-                $matrimonio;
-                $persona_casada;
-
-                if($persona_dif['genero'] == 1){
-                    $matrimonio = json_decode($objeto->obtenerMatrimonio($defuncion_obtenida['cui_difunto'],1),true)[0];
-                    $persona_casada = json_decode($objeto->obtenerPersona($matrimonio['cui_esposa'],0),true)[0];
-                }else{
-                    $matrimonio = json_decode($objeto->obtenerMatrimonio($defuncion_obtenida['cui_difunto'],0),true)[0];
-                    $persona_casada = json_decode($objeto->obtenerPersona($matrimonio['cui_esposo'],0),true)[0];
-                }
-
-                $json_casado = [
-                    'nombre_c' => $persona_casada['nombres'],
-                    'apellido_c' => $persona_casada['apellidos']
-                ];
-            }
-
-
-            $json_respuesta_contenido = [
-                "cui" => $defuncion_obtenida['cui_difunto'],
-                "nombre" => $persona_dif['nombres'],
-                "apellido" => $persona_dif['apellidos'],
-                "genero" => $persona_dif['genero'],
-                "fechaNacimiento" => $nacimiento_dif['fecha'],
-                "pais" => "6",
-                "departamento" => "",
-                "municipio" => $persona_dif['id_muni'],
-                "lugarNacimiento" => $nacimiento_dif['direccion_nac'],
-                "estadoCivil" => $persona_dif['estado_civil'],
-                "nombreConyuge" => $json_casado['nombre_c'],
-                "apellidoConyuge" => $json_casado['apellido_c'],
-                "cuiCompareciente" => $defuncion_obtenida['cui_compareciente'],
-                "nombreCompareciente" => $persona_com['nombres'],
-                "apellidoCompareciente" => $persona_com['apellidos'],
-                "paisCompareciente" => "6",
-                "municipioCompareciente" => $persona_com['id_muni'],
-                "recidenciaCompareciente" => $persona_com['direccion'],
-                "paisDefuncion" => "6",
-                "departamentoDefuncion" => "",
-                "lugarDefuncion" => $defuncion_obtenida['direccion_defuncion'],
-                "fechaDefuncion" => "",
-                "causa" => $defuncion_obtenida['causa']
-            ];
-
             $json_response =
             [
-                'status' => "1",
-                'mensaje' => "DPI encontrado",
-                'data' => $json_respuesta_contenido
-                //'data' => [$defuncion_obtenida,"",$json_respuesta_contenido,"",$persona_dif, "", $persona_com]
+                'status' => -1,
+                'mensaje' => "No existe el DPO ingresado",
+                'data' => "",
             ];
-            
+    
             return response()->json($json_response);
         }
 

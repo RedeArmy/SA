@@ -174,7 +174,7 @@ class MatrimonioController extends Controller
         return response()->json($json_response);
     }
 
-    public function Registrar(Resquest $req){
+    public function Registrar(Request $req){
 
         $cui_esposo = $req['cuiHombre'];
         $cui_esposa = $req['cuiMujer'];
@@ -182,7 +182,7 @@ class MatrimonioController extends Controller
         $lugar_matri = $req['lugarMatrimonio'];
         $fecha = $req['fechaMatrimonio'];
         $regimen = $req['regimenMatrimonial'];
-        
+        $pais = $req['idPais'];
 
         $existe = DB::table('PERSONA')
             ->select('cui')
