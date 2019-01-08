@@ -629,7 +629,7 @@ class ServNacimientoController extends Controller
 
             $resultado_final =  [
                 'status' => "1",
-                'mensaje' => "Registro de persona añadido",
+                'mensaje' => "Registro de persona realizado exitosamente",
                 'data' => $cui_ob
             ];
 
