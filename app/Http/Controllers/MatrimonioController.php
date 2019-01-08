@@ -233,7 +233,6 @@ class MatrimonioController extends Controller
             'mensaje' => 'Matrimonio registrado',
             'status' => '1',
             'data' => [$existe,$existe2,$existe3]
-            
         ];
         
         return response()->json($json_response);
