@@ -49,7 +49,8 @@ class imprimeNac extends Controller
             $info = json_decode($response, true);
             $info['data']['paisNacimiento']=$request->input('idPais');
             //$info = $respData['data'];
-            return view('nacimiento.resultado',compact('info'));
+            return $response;
+            //return view('nacimiento.resultado',compact('info'));
         }
     }
 }
