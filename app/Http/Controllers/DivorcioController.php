@@ -283,8 +283,8 @@ class DivorcioController extends Controller
                     'municipio' => $municipio->nombre,
                     'lugarDivorcio' => $existe->direccion_divorcio,
                     'fechaDivorcio' => strtotime((int)$existe->fecha_divorcio),
-                    'regimenMatrimonial' => $matrimonio->regimen_eco
-    
+                    'regimenMatrimonial' => $matrimonio
+                    //'regimenMatrimonial' => $matrimonio->regimen_eco
                 ]
                 
             ];
