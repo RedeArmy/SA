@@ -155,11 +155,11 @@ class DivorcioController extends Controller
 
     public function Registrar(Request $req){
 
-        $cui_esposo = $req['cuiHombre'];
-        $cui_esposa = $req['cuiMujer'];
-        $muni = $req['municipio'];
-        $lugar = $req['lugarDivorcio'];
-        $fecha = $req['fechaDivorcio'];
+        $cui_esposo = $req->input('cuiHombre');
+        $cui_esposa = $re->input('cuiMujer');
+        $muni = $req->input('municipio');
+        $lugar = $req->input('lugarDivorcio');
+        $fecha = $req->input('fechaDivorcio');
 
         $existe = DB::table('MATRIMONIO')
             ->select('acta_matrimonio')
@@ -192,6 +192,12 @@ class DivorcioController extends Controller
             ->orWhere('cui',$cui_esposo)
             ->update(['estado_civil' => 1]);
 
+        DB::table('MATRIMONIO')
+            ->where('cui_esposa', $cui_esposa)
+            ->where('cui_esposo',$cui_esposo)
+            ->where('vigente',1)
+            ->update(['vigente' => 0]);
+
         $json_response = [
                 'mensaje' => 'Divorcio registrado',
                 'status' => '1',
@@ -205,13 +211,14 @@ class DivorcioController extends Controller
 
     public function Imprimir(Request $req){
 
-        $cui_esposo = $req['cuiHombre'];
-        $cui_esposa = $req['cuiMujer'];
+        $cui_esposo = $req->input('cuiHombre');
+        $cui_esposa = $req->input('cuiMujer');
 
         $existe = DB::table('DIVORCIO')
             ->select('acta_divorcio')
             ->where('cui_esposo','=',$cui_esposo)
             ->where('cui_esposa','=',$cui_esposa)
+            ->where('vigente','=',1)
             ->orderByRaw('acta_divorcio DESC')
             ->get()
             ->first();
