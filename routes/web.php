@@ -65,6 +65,11 @@ Route::post('/login',function(Request $re){
     
 });
 
+Route::get('/time',function(){
+    $tiempo = time();
+    return response()->json(['mensaje'=>$tiempo]);
+});
+
 Route::get('/iniciov2', function(){
 
     $curl = curl_init();
