@@ -395,7 +395,7 @@ class DefuncioneController extends Controller
                     "paisDefuncion" => "6",
                     "departamentoDefuncion" => "",
                     "lugarDefuncion" => $defuncion_obtenida['direccion_defuncion'],
-                    "fechaDefuncion" => strtotime($defuncion_obtenida['fecha_hora']),
+                    "fechaDefuncion" => strtotime((int)$defuncion_obtenida['fecha_hora']),
                     "causa" => $defuncion_obtenida['causa']
                 ];
     
@@ -403,7 +403,7 @@ class DefuncioneController extends Controller
                 [
                     'status' => "1",
                     'mensaje' => "DPI encontrado",
-                    'data' => [$json_respuesta_contenido, $nacimiento_dif]
+                    'data' => [$json_respuesta_contenido, $nacimiento_dif, $persona_com, $persona_dif]
                     //'data' => [$defuncion_obtenida,"",$json_respuesta_contenido,"",$persona_dif, "", $persona_com]
                 ];
                 
