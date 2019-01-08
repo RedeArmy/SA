@@ -193,7 +193,7 @@ class DpiController extends Controller
 
                 $d->mensaje = "DPI actualizado con exito";
                 $d->status = '1';
-                $d->data = $persona;
+                $d->data = '[]';
                 return response()->json($json_response);
     }
     
