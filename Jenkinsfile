@@ -16,10 +16,7 @@ node {
             sh "echo 'shell scripts to deploy to server...'"
             }
         stage ('Tests') {
-			sh "sudo chmod 777 -R /var/www/html/SA-Proyecto"
-			sh "sudo chmod 777 -R /var/www/html/SA-Proyecto/tests"
-			sh "sudo chmod 777 -R /var/www/html/SA-Proyecto/tests/_output"	
-			sh "sudo /var/www/html/SA-Proyecto/vendor/bin/codecept build"
+			
 	    /*    sh "echo 'shell scripts to deploy to server....'"
 	        sh "echo 'shell scripts to deploy to server....'"
             sh 'sudo /var/lib/jenkins/workspace/SA-Proyecto/vendor/bin/phpunit'
@@ -37,6 +34,10 @@ node {
             sh "sudo cp -R /var/lib/jenkins/workspace/SA-Proyecto/ /var/www/html/"
             sh "sudo chgrp -R www-data /var/www/html/SA-Proyecto"
             sh "sudo chmod -R 775 /var/www/html/SA-Proyecto/storage"
+			sh "sudo chmod 777 -R /var/www/html/SA-Proyecto"
+			sh "sudo chmod 777 -R /var/www/html/SA-Proyecto/tests"
+			sh "sudo chmod 777 -R /var/www/html/SA-Proyecto/tests/_output"	
+			sh "sudo /var/www/html/SA-Proyecto/vendor/bin/codecept build"
             //sh "sudo composer install -d /var/www/html/SA-Proyecto"
             //sh "sudo mkdir /var/lib/jenkins/workspace/SA-Proyecto"
       	}
