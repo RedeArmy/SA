@@ -6,6 +6,7 @@ node {
     try {
         stage ('Clone') {
         	checkout scm
+			sh "sudo chmod 777 -R /var/lib/jenkins/workspace/SA-Proyecto"
         }
         stage ('Build') {
 		sh "echo 'shell scripts to deploy to server....'"
