@@ -305,6 +305,12 @@ class MatrimonioController extends Controller
             ->orderByRaw('acta_matrimonio DESC')
             ->get();
 
+        $matrimonio = DB::table('MATRIMONIO')
+        ->select('*')
+        ->where('cui_esposo','=',$cui_esposo)
+        ->where('cui_esposa','=',$cui_esposa)
+        ->get();
+
         if($existe == "[]"){
                 $d = new Objeto;
                 $d->mensaje = "El matrimonio buscado no existe";
@@ -348,8 +354,12 @@ class MatrimonioController extends Controller
                 'apellidoMujer' => $mujer->apellidos,
                 'paisMujer' => $mujer->pais,
                 'departamentoMujer' => $mujer->departamento,
-                'municipioMujer' => $mujer->municipio
-
+                'municipioMujer' => $mujer->municipio,
+                'municipio' => '',
+                'lugarMatrimonio' => '',
+                'fechaMatrimonio' => '',
+                'regimenMatrimonial' => '',
+                'data' => $matrimonio
             ]
             
         ];
