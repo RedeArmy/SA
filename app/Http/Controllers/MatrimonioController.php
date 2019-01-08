@@ -285,7 +285,7 @@ class MatrimonioController extends Controller
         if($existe == "[]"){
                 $d = new Objeto;
                 $d->mensaje = "El matrimonio buscado no existe";
-                $d->status = "0";
+                $d->status = "-1";
                 $d->data = [];
                 return response()->json($d);
         }
@@ -310,7 +310,7 @@ class MatrimonioController extends Controller
             ->get()
             ->first();
 
-        $matrimonio_real = $matrimonio[0];
+        //$matrimonio_real = $matrimonio[0];
 
         $json_real_datos = [
             'cuiHombre' => $cui_esposo,
@@ -325,10 +325,12 @@ class MatrimonioController extends Controller
             'paisMujer' => $mujer->pais,
             'departamentoMujer' => $mujer->departamento,
             'municipioMujer' => $mujer->municipio,
+            /*
             'municipio' => $matrimonio_real['id_muni'],
             'lugarMatrimonio' => $matrimonio_real['direccion_matri'],
             'fechaMatrimonio' => strtotime((int)$matrimonio_real['fecha_matri']),
             'regimenMatrimonial' => $matrimonio_real['regimen_eco']
+            */
         ];
 
         $json_response = [
