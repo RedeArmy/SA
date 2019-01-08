@@ -325,7 +325,7 @@ class DefuncioneController extends Controller
             [
                 'status' => -1,
                 'mensaje' => "Registro de defucion con el DPI no encontrado",
-                'data' => "{}",
+                'data' => "",
             ];
 
             return response()->json($json_response);
