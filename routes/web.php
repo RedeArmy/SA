@@ -109,7 +109,7 @@ Route::get('/retorno',function(){
 // SERVICIOS - NUEVAS RUTAS
 
 Route::post('/nacimiento/registrar','ServNacimientoController@Registrar');
-Route::post('/nacimiento/imprimir','ServNacimientoController@vista');
+Route::post('/nacimiento/imprimir','ServNacimientoController@Imprimir');
 
 Route::post('/defuncion/registrar','DefuncioneController@Registrar');
 Route::post('/defuncion/imprimir','DefuncioneController@Imprimir');
