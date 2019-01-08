@@ -83,7 +83,7 @@
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            {{$info['data']['fechaMatrimonio']}}
+            {{ date("Y-m-d H:i:s",strtotime((int)$info['data']['fechaMatrimonio'])) }}
         </div>
     </div>
     <div class="panel panel-default">
