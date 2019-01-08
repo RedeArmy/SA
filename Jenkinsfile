@@ -18,7 +18,7 @@ node {
         stage ('Code Analysis') {
             def scannerhome = tool 'Sonar-Scanner';
             withSonarQubeEnv ('SonarQubeServer'){
-                sh "${scannerhome}/bin/sonar-scanner -D sonar.login=Admin -D sonar.password=P5mDGJYBPsCE"
+                sh "${scannerhome}/bin/sonar-scanner"
             }
       	}
         stage ('Tests') {
