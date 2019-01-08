@@ -12,9 +12,6 @@ class DefuncioneController extends Controller
 {
     //
 
-    public function ingresarDefuncion(){
-        //
-    }
     
     public function store(Request $request){
         
@@ -37,7 +34,7 @@ class DefuncioneController extends Controller
             $cuimuerto=(int)$request->input('cui');
             $cuicompareciente=(int)$request->input('cuiCompareciente');
             curl_setopt_array($curl, array(
-            CURLOPT_URL => "http://104.196.194.35/defuncion/imprimir",
+            CURLOPT_URL => "http://104.196.194.35/defuncion/Registrar",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -63,9 +60,8 @@ class DefuncioneController extends Controller
                 $err="cURL Error #:" . $err;
                 return view('defuncion.error', compact('err'));
             } else {
-                $respData = json_decode($response, true);
-
-                $info = $respData['data'];
+                $info = json_decode($response, true);
+                //$info = $respData['data'];
                 return view('defuncion.resultado',compact('info'));
             }
                         
@@ -281,7 +277,7 @@ class DefuncioneController extends Controller
                     'cui_compareciente' => $cui_compita,
                     'muni_defuncion' => $municipio,
                     'direccion_defuncion' => $lugar_defuncion,
-                    'fecha_hora' => Carbon::now(),
+                    'fecha_hora' => date("Y-m-d H:i:s",strtotime((int)$fecha_defuncion)),
                     'causa' => $causa,
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now()
@@ -316,15 +312,20 @@ class DefuncioneController extends Controller
 
         $valor_cui = $re->input('cui');
 
-        $defuncion_obtenida = json_decode($objeto->obtenerDefuncion($valor_cui),true)[0];
+        $defuncion_pivote = json_decode($objeto->obtenerDefuncion($valor_cui),true);
+        $defuncion_obtenida = "[]";
 
+        if(count($defuncion_pivote) == 1){
+            $defuncion_obtenida = $defuncion_pivote[0];
+        }
+        
         if($defuncion_obtenida == "[]"){
             
             $json_response =
             [
                 'status' => -1,
                 'mensaje' => "Registro de defucion con el DPI no encontrado",
-                'data' => "{}",
+                'data' => "",
             ];
 
             return response()->json($json_response);
@@ -369,7 +370,7 @@ class DefuncioneController extends Controller
                 "nombre" => $persona_dif['nombres'],
                 "apellido" => $persona_dif['apellidos'],
                 "genero" => $persona_dif['genero'],
-                "fechaNacimiento" => $nacimiento_dif['fecha'],
+                "fechaNacimiento" => strtotime($nacimiento_dif['fecha']),
                 "pais" => "6",
                 "departamento" => "",
                 "municipio" => $persona_dif['id_muni'],
