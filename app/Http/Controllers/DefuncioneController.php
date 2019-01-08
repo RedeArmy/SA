@@ -312,8 +312,13 @@ class DefuncioneController extends Controller
 
         $valor_cui = $re->input('cui');
 
-        $defuncion_obtenida = json_decode($objeto->obtenerDefuncion($valor_cui),true)[0];
+        $defuncion_pivote = json_decode($objeto->obtenerDefuncion($valor_cui),true);
+        $defuncion_obtenida = "[]";
 
+        if(count($defuncion_pivote) == 1){
+            $defuncion_obtenida = $defuncion_pivote[0];
+        }
+        
         if($defuncion_obtenida == "[]"){
             
             $json_response =
