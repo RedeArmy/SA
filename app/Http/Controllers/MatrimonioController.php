@@ -246,6 +246,35 @@ class MatrimonioController extends Controller
             
             return response()->json($json_response);
         }
+<<<<<<< HEAD
+
+        DB::table('MATRIMONIO')->insert([
+            [
+                'cui_esposo' => $cui_esposo, 
+                'cui_esposa' => $cui_esposa,
+                'id_muni' => $muni,
+                'direccion_matri' => $lugar_matri,
+                'regimen_eco' => $regimen,
+                'fecha_matri' => date("Y-m-d H:i:s",strtotime((int)$fecha)),
+                'vigente' => 1
+            ]
+        ]);
+
+        DB::table('PERSONA')
+            ->where('cui', $cui_esposa)
+            ->orWhere('cui',$cui_esposo)
+            ->update(['estado_civil' => 2]);
+
+        $json_response = [
+            'mensaje' => 'Matrimonio registrado',
+            'status' => '1',
+            'data' => [$existe,$existe2,$existe3]
+        ];
+        
+        return response()->json($json_response);
+        //{"cuiHombre":"2942637562001","cuiMujer":"2942637562002","municipio":"1","lugarMatrimonio":"Ciudad","fecharMatrimonio":"1999-01-01","regimenMatrimonial":"bianes mancomunados"}
+=======
+>>>>>>> da0b9de48a7d0d8a5b6047f6eb66e25ea763c816
     }
 
     public function consultar(){
