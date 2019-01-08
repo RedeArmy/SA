@@ -319,7 +319,7 @@ class DefuncioneController extends Controller
             $defuncion_obtenida = $defuncion_pivote[0];
         }
         
-        if($defuncion_obtenida == "[]"){
+        if($defuncion_obtenida === "[]"){
             
             $json_response =
             [
@@ -329,6 +329,7 @@ class DefuncioneController extends Controller
             ];
 
             return response()->json($json_response);
+
         }else{
 
             $persona_dif = json_decode($objeto->obtenerPersona($defuncion_obtenida['cui_difunto']),true)[0];
@@ -407,7 +408,7 @@ class DefuncioneController extends Controller
         [
             'status' => -1,
             'mensaje' => "Registro de defucion con el DPI no encontrado",
-            'data' => "{}",
+            'data' => "",
         ];
 
         return response()->json($json_response);
