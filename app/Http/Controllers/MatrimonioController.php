@@ -220,7 +220,7 @@ class MatrimonioController extends Controller
                 'id_muni' => $muni,
                 'direccion_matri' => $lugar_matri,
                 'regimen_eco' => $regimen,
-                'fecha_matri' => $fecha
+                'fecha_matri' => $fecha,
             ]
         ]);
 
@@ -232,7 +232,7 @@ class MatrimonioController extends Controller
         $json_response = [
             'mensaje' => 'Matrimonio registrado',
             'status' => '1',
-            'data' => []
+            'data' => [$existe,$existe2,$existe3]
             
         ];
         
