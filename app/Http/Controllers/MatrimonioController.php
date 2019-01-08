@@ -310,7 +310,7 @@ class MatrimonioController extends Controller
             ->get()
             ->first();
 
-        $matrimonio_real = $matrimonio[0];
+        $matrimonio_real = json_decode($matrimonio,true)[0];
 
         $json_real_datos = [
             'cuiHombre' => $cui_esposo,
