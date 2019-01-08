@@ -89,11 +89,6 @@
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-        <b>Pais: </b>{{$info['data']['departamentoCompareciente']}}
-        </div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-body">
         <b>Departamento: </b>{{$info['data']['municipioCompareciente']}}
         </div>
     </div>
