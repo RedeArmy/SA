@@ -161,7 +161,7 @@ class DefuncioneController extends Controller
         //CODIGO DE LA CONSULTA PARA CONOCER SI EXISTE EL CUI GENERADO
 
         $existe = DB::table('DEFUNCION')
-        ->select('cui_difunto')
+        ->select('*')
         ->where('cui_difunto','=',$cui)
         ->get();
 
@@ -267,7 +267,7 @@ class DefuncioneController extends Controller
         $cui_persona = $re->input('cui');
         $cui_compita = $re->input('cuiCompareciente');
         $municipio =$re->input('municipio'); 
-        $lugar_defuncion = $re->input('lugarDeDefuncion');
+        $lugar_defuncion = $re->input('lugarDefuncion');
         $fecha_defuncion = $re->input('fechaDefuncion');
         $causa = $re->input('causa');
 
@@ -336,7 +336,7 @@ class DefuncioneController extends Controller
 
             $response_existencia_def = $objeto->vallidarExistenciaDefuncion($valor_cui);
 
-            if($response_existencia == true){
+            if($response_existencia_def == true){
 
                 $defuncion_obtenida = json_decode($objeto->obtenerDefuncion($valor_cui),true)[0];
                 $persona_dif = json_decode($objeto->obtenerPersona($defuncion_obtenida['cui_difunto']),true)[0];
@@ -402,8 +402,9 @@ class DefuncioneController extends Controller
                 $json_response =
                 [
                     'status' => "1",
-                    'mensaje' => "DPI encontrado",
-                    'data' => [$json_respuesta_contenido, $nacimiento_dif, $persona_com, $persona_dif]
+                    'mensaje' => "Acta de defuncion y DPI encontrados.",
+                    'data' => $json_respuesta_contenido
+                    //'data' => [$json_respuesta_contenido, $nacimiento_dif, $persona_com, $persona_dif, $defuncion_obtenida]
                     //'data' => [$defuncion_obtenida,"",$json_respuesta_contenido,"",$persona_dif, "", $persona_com]
                 ];
                 
@@ -413,7 +414,7 @@ class DefuncioneController extends Controller
                 
                 $json_response =
                 [
-                    'status' => -1,
+                    'status' => "-1",
                     'mensaje' => "Registro de defucion con el DPI, no existe.",
                     'data' => "",
                 ];
@@ -426,13 +427,23 @@ class DefuncioneController extends Controller
 
             $json_response =
             [
-                'status' => -1,
+                'status' => "-1",
                 'mensaje' => "No existe el DPO ingresado",
                 'data' => "",
             ];
     
             return response()->json($json_response);
         }
+
+        $json_response =
+        [
+            'status' => "-1",
+            'mensaje' => "Registro de defucion con el DPI, no existe.",
+            'data' => "",
+        ];
+
+        return response()->json($json_response);
+
 
     }
 
