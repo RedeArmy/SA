@@ -717,7 +717,7 @@ class ServNacimientoController extends Controller
                 [
                     'status' => '1',
                     'mensaje' => "DPI encontrado",
-                    'data' => $persona_info,
+                    'data' => [$persona_info, $persona_m ]
                 ];
                 
                 return response()->json($json_response);
