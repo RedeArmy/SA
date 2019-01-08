@@ -403,7 +403,7 @@ class DefuncioneController extends Controller
                 [
                     'status' => "1",
                     'mensaje' => "DPI encontrado",
-                    'data' => [$json_respuesta_contenido, $nacimiento_dif, $persona_com, $persona_dif]
+                    'data' => [$json_respuesta_contenido, $nacimiento_dif, $persona_com, $persona_dif, $defuncion_obtenida]
                     //'data' => [$defuncion_obtenida,"",$json_respuesta_contenido,"",$persona_dif, "", $persona_com]
                 ];
                 
