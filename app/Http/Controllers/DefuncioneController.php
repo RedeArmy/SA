@@ -316,7 +316,7 @@ class DefuncioneController extends Controller
                     'cui_compareciente' => $cui_compita,
                     'muni_defuncion' => $municipio,
                     'direccion_defuncion' => $lugar_defuncion,
-                    'fecha_hora' => Carbon::now(),
+                    'fecha_hora' => date("Y-m-d H:i:s",strtotime((int)$fecha_defuncion)),
                     'causa' => $causa,
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now()
@@ -404,7 +404,7 @@ class DefuncioneController extends Controller
                 "nombre" => $persona_dif['nombres'],
                 "apellido" => $persona_dif['apellidos'],
                 "genero" => $persona_dif['genero'],
-                "fechaNacimiento" => $nacimiento_dif['fecha'],
+                "fechaNacimiento" => strtotime($nacimiento_dif['fecha']),
                 "pais" => "6",
                 "departamento" => "",
                 "municipio" => $persona_dif['id_muni'],
