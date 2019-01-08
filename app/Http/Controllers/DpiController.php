@@ -191,9 +191,13 @@ class DpiController extends Controller
                     ['huella' => $huella]
                 );
 
-                $d->mensaje = "DPI actualizado con exito";
-                $d->status = '1';
-                $d->data = '[]';
+                $json_response = [
+                    'mensaje' => 'DPI actualizado',
+                    'status' => '1',
+                    'data' => []
+                    
+                ];
+                
                 return response()->json($json_response);
     }
     
