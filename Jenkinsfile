@@ -27,6 +27,12 @@ node {
             sh 'sudo ab -k -n800 -c100 -H "Accept-Encoding: gzip,deflate" http://104.196.194.35/api/divorcio/consultar_divorcio/%7B"cuiHombre":"2942637562001","cuiMujer":"2942637562002"%7D'
             */
         }
+        stage ('Code Analysis') {
+            def scannerhome = tool 'Sonar-Scanner';
+            withSonarQubeEnv ('SonarQubeServer'){
+                sh "${scannerhome}/bin/sonar-scanner -D sonar.login=Admin -D sonar.password=P5mDGJYBPsCE"
+            }
+      	}
       	stage ('Deploy') {
             sh "sudo rm -rf /var/www/html/SA-Proyecto"
             sh "sudo cp -R /var/lib/jenkins/workspace/SA-Proyecto/ /var/www/html/"
