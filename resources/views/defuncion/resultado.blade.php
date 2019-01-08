@@ -8,123 +8,118 @@
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            <b>cui: </b>{{$info['cui']}}
+            <b>cui: </b>{{$info['data']['cui']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-        <b>nombre: </b>{{$info['nombre']}}
+        <b>nombre: </b>{{$info['data']['nombre']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-        <b>apellido: </b>{{$info['apellido']}}
+        <b>apellido: </b>{{$info['data']['apellido']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-        <b>genero: </b>{{$info['genero']}}
+        <b>genero: </b>{{$info['data']['genero']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-        <b>Fecha de Nacimiento: </b>{{$info['fechaNacimiento']}}
+        <b>Fecha de Nacimiento: </b>{{$info['data']['fechaNacimiento']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-        <b>Pais: </b>{{$info['pais']}}
+        <b>Pais: </b>{{$info['data']['pais']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-        <b>Departamento: </b>{{$info['departamento']}}
+        <b>Departamento: </b>{{$info['data']['departamento']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-        <b>Municipio: </b>{{$info['municipio']}}
+        <b>Municipio: </b>{{$info['data']['municipio']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-        <b>Lugar de Nacimiento: </b>{{$info['lugarNacimiento']}}
+        <b>Lugar de Nacimiento: </b>{{$info['data']['lugarNacimiento']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-        <b>Estado Civil: </b>{{$info['estadoCivil']}}
+        <b>Estado Civil: </b>{{$info['data']['estadoCivil']}}
         </div>
     </div>
 
     <div class="panel panel-default">
         <div class="panel-body">
-            <b>nombreConyuge: </b>{{$info['nombreConyuge']}}
+            <b>nombreConyuge: </b>{{$info['data']['nombreConyuge']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            <b>cui: </b>{{$info['apellidoConyuge']}}
+            <b>cui: </b>{{$info['data']['apellidoConyuge']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-        <b>nombre: </b>{{$info['cuiCompareciente']}}
+        <b>nombre: </b>{{$info['data']['cuiCompareciente']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-        <b>apellido: </b>{{$info['nombreCompareciente']}}
+        <b>apellido: </b>{{$info['data']['nombreCompareciente']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-        <b>genero: </b>{{$info['apellidoCompareciente']}}
+        <b>genero: </b>{{$info['data']['apellidoCompareciente']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-        <b>Fecha de Nacimiento: </b>{{$info['paisCompareciente']}}
+        <b>Fecha de Nacimiento: </b>{{$info['data']['paisCompareciente']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-        <b>Pais: </b>{{$info['departamentoCompareciente']}}
+        <b>Departamento: </b>{{$info['data']['municipioCompareciente']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-        <b>Departamento: </b>{{$info['municipioCompareciente']}}
+        <b>Municipio: </b>{{$info['data']['recidenciaCompareciente']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-        <b>Municipio: </b>{{$info['recidenciaCompareciente']}}
+        <b>Lugar de Nacimiento: </b>{{$info['data']['paisDefuncion']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-        <b>Lugar de Nacimiento: </b>{{$info['paisDefuncion']}}
+        <b>Estado Civil: </b>{{$info['data']['departamentoDefuncion']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-        <b>Estado Civil: </b>{{$info['departamentoDefuncion']}}
+        <b>Departamento: </b>{{$info['data']['lugarDefuncion']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-        <b>Departamento: </b>{{$info['lugarDefuncion']}}
+        <b>Municipio: </b>{{$info['data']['fechaDefuncion']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-        <b>Municipio: </b>{{$info['fechaDefuncion']}}
-        </div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-body">
-        <b>Lugar de Nacimiento: </b>{{$info['causa']}}
+        <b>Lugar de Nacimiento: </b>{{$info['data']['causa']}}
         </div>
     </div>
 </div>

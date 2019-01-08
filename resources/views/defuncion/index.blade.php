@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 	@section('content')
-	{!!Form::open(['route'=>'Defuncione.show', 'method'=>'POST'])!!}
+	{!!Form::open(['route'=>'imprimeDef.store', 'method'=>'POST'])!!}
 	<div class="form-group">
 		{!!Form::label('pais','Id Pais:')!!}
 		{!!Form::text('idPais',null,['class'=>'form-control','placeholder'=>'Ingresa el Id del Pais'])!!}
