@@ -13,7 +13,6 @@
             <b>Statuts: </b>{{$info['status']}}
         </div>
     </div>
-
     
     <div class="panel panel-default">
         <div class="panel-body">

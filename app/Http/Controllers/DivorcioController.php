@@ -48,7 +48,6 @@ class DivorcioController extends Controller
             } else {
                 $info = json_decode($response, true);
 
-                //$info = $respData['data'];
                 return view('divorcio.mostrar',compact('info'));
             }
                    
