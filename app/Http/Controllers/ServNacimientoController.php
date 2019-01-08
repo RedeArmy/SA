@@ -40,7 +40,8 @@ class ServNacimientoController extends Controller
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "http://104.196.194.35/nacimiento/registrar",
+            //CURLOPT_URL => "http://104.196.194.35/nacimiento/registrar",
+            CURLOPT_URL => "http://localhost:8081/nacimiento/registrar",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
@@ -49,7 +50,7 @@ class ServNacimientoController extends Controller
             CURLOPT_CUSTOMREQUEST => "POST",
             CURLOPT_POSTFIELDS => "{\n\t\"nombre\" : \"".$request->input('nombre')."\",".
                 "\"apellido\" : \"".$request->input('apellido')."\", \"genero\" : \"".$request->input('genero')."\",".
-                "\"fechaNacimiento\" : \"".$request->input('fechaNacimiento')."\", \"municipio\" : \"".$request->input('municipio')."\"".
+                "\"fechaNacimiento\" : \"".strtotime($request->input('fechanacimiento'))."\", \"municipio\" : \"".$request->input('municipio')."\", \"idPais\" : \"".$request->input('idPais')."\",".
                 "\" lugarNacimiento : \".$request->input('lugarNacimiento').\", \"cuiPadre\" : \"".$request->input('cuiPadre')."\", \"cuiMadre\" : \"".$request->input('cuiMadre')."\"\n}",
             CURLOPT_HTTPHEADER => array(
                 "Content-Type: application/json",
@@ -57,6 +58,8 @@ class ServNacimientoController extends Controller
                 "cache-control: no-cache"
             ),
         ));
+        
+
         
         $response = curl_exec($curl);
         $err = curl_error($curl);
@@ -70,7 +73,7 @@ class ServNacimientoController extends Controller
             $info = json_decode($response, true);
 
             //$info = $respData['data'];
-            return view('nacimiento.resultado',compact('info'));
+            return view('nacimiento.resultadoreg',compact('info'));
         }
     }
 
@@ -603,7 +606,7 @@ class ServNacimientoController extends Controller
         $existe_padre = $objeto->validarExistenciaCUI($cuiPadre);
 
         if($existe_madre == false && $existe_padre == false){
-            echo "se pudo realizar el ingreso!!";
+            //echo "se pudo realizar el ingreso!!";
         }
 
         if($existe_padre == false && $existe_madre == false){

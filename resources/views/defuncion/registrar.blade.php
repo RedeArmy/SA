@@ -2,7 +2,7 @@
 	@section('content')
 	{!!Form::open(['route'=>'defuncion.store', 'method'=>'POST'])!!}
 	<div class="form-group">
-		{!!Form::label('IDpais','ID del pais:')!!}
+		{!!Form::label('pais','ID del pais:')!!}
 		{!!Form::text('idPais',null,['class'=>'form-control','placeholder'=>'ID del pais'])!!}
 	</div>
 	
@@ -21,11 +21,11 @@
 	</div>
 	<div class="form-group">
 		{!!Form::label('lugar','Lugar de Defuncion:')!!}
-		{!!Form::text('lugarDeDefuncion',null,['class'=>'form-control','placeholder'=>'Ingresa el lugar de muerte'])!!}
+		{!!Form::text('lugarDefuncion',null,['class'=>'form-control','placeholder'=>'Ingresa el lugar de muerte'])!!}
 	</div>
 	<div class="form-group">
 		{!!Form::label('fecha','Fecha de Defuncion:')!!}
-		{!!Form::date('fechaDeDefuncion',null,['class'=>'form-control','placeholder'=>'Ingresa la fecha de muerte'])!!}
+		{!!Form::date('fechaDefuncion',null,['class'=>'form-control','placeholder'=>'Ingresa la fecha de muerte'])!!}
 	</div>
     <div class="form-group">
 

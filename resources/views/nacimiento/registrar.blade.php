@@ -1,6 +1,12 @@
 @extends('layouts.admin')
 	@section('content')
 	{!!Form::open(['route'=>'servicionacimiento.store', 'method'=>'POST'])!!}
+	
+	<div class="form-group">
+		{!!Form::label('pais','Pais:')!!}
+		{!!Form::text('idPais',null,['class'=>'form-control','placeholder'=>'Ingresa el id del pais'])!!}
+	</div>
+	
 	<div class="form-group">
 		{!!Form::label('name','Nombre:')!!}
 		{!!Form::text('nombre',null,['class'=>'form-control','placeholder'=>'Ingresa el Nombre del usuario'])!!}
