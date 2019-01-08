@@ -44,9 +44,9 @@ class DefuncioneController extends Controller
             CURLOPT_TIMEOUT => 30,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => "{\n\t\"cui\" : \""+$cuimuerto+"\", \"cuiCompareciente\" : \""+$cuicompareciente+"\""+
-                ", \"municipio\" : \""+$request->input('municipio')+"\", \"lugarDeDefuncion\" : \""+$request->input('lugarDeDefuncion')+"\", "+
-                "\"fechaDeDefuncion\" : \""+$request->input('fechaDeDefuncion')+"\", \"causa\" : \""+$request->input('causa')+"\" \n}",
+            CURLOPT_POSTFIELDS => "{\n\t\"cui\" : \"".$cuimuerto."\", \"cuiCompareciente\" : \"".$cuicompareciente."\"".
+                ", \"municipio\" : \"".$request->input('municipio')."\", \"lugarDeDefuncion\" : \"".$request->input('lugarDeDefuncion')."\", ".
+                "\"fechaDeDefuncion\" : \"".$request->input('fechaDeDefuncion')."\", \"causa\" : \"".$request->input('causa')."\" \n}",
             CURLOPT_HTTPHEADER => array(
                 "Content-Type: application/json",
                 "Postman-Token: 2b655ed0-d367-49ef-9a7d-22c349f78a3b",
@@ -60,11 +60,13 @@ class DefuncioneController extends Controller
             curl_close($curl);
             
             if ($err) {
-            return "cURL Error #:" . $err;
+                $err="cURL Error #:" . $err;
+                return view('defuncion.error', compact('err'));
             } else {
-            return $response;
+                $respData = json_decode($response, true);
+                return view('defuncion.resultado',compact('respData'));
             }
-            
+                        
     }
 
     public function create()
