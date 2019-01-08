@@ -80,7 +80,7 @@
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-        <b>fecha Divorcio: </b>{{date("Y-m-d H:i:s",strtotime((int)$info['data']['fechaDivorcio']))}}
+        <b>fecha Divorcio: </b>{{date("Y-m-d",strtotime((int)$info['data']['fechaDivorcio']))}}
         </div>
     </div>
     @endif
