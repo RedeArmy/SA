@@ -13,7 +13,7 @@ class MatrimonioController extends Controller
     
     public function show()
     {
-        return view('matrimonio.mostrar');
+        return view('matrimonio.index');
     }
     
     public function create()
