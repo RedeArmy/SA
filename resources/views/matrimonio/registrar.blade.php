@@ -16,6 +16,10 @@
 	@section('content')
 	{!!Form::open(['route'=>'matrimonio.store', 'method'=>'POST'])!!}
 	<div class="form-group">
+		{!!Form::label('pais','ID DEL PAIS:')!!}
+		{!!Form::text('idPais',null,['class'=>'form-control','placeholder'=>'Ingresa el ID del pais'])!!}
+	</div>
+	<div class="form-group">
 		{!!Form::label('hombre','CUI Hombre:')!!}
 		{!!Form::text('cuiHombre',null,['class'=>'form-control','placeholder'=>'Ingresa el CUI del usuario'])!!}
 	</div>

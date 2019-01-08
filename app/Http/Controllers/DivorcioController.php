@@ -20,14 +20,15 @@ class DivorcioController extends Controller
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-            CURLOPT_URL => "http://104.196.194.35/divorcio/registrar",
+            //CURLOPT_URL => "http://104.196.194.35/divorcio/registrar",
+            CURLOPT_URL => "http://localhost:8084/divorcio/registrar",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
             CURLOPT_TIMEOUT => 30,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => "{\n\t\"cuiHombre\" : \"".$request->input('cuiHombre')."\", \"cuiMujer\" : \"".$request->input('cuiMujer')."\",".
+            CURLOPT_POSTFIELDS => "{\n\t\"cuiHombre\" : \"".$request->input('cuiHombre')."\", \"cuiMujer\" : \"".$request->input('cuiMujer')."\","."\"idPais\" : \"".$request->input('idPais')."\",".
                 "\"municipio\" : \"".$request->input('municipio')."\", \"lugarDivorcio\" : \"".$request->input('lugarDivorcio')."\",".
                 "\"fechaDivorcio\" : \"".$request->input('fechaDivorcio')."\" \n}",
             CURLOPT_HTTPHEADER => array(
