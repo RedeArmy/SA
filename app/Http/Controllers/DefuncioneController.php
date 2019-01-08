@@ -156,6 +156,24 @@ class DefuncioneController extends Controller
 
     }
 
+    public function vallidarExistenciaDefuncion($cui){
+        
+        //CODIGO DE LA CONSULTA PARA CONOCER SI EXISTE EL CUI GENERADO
+
+        $existe = DB::table('DEFUNCION')
+        ->select('cui_difunto')
+        ->where('cui_difunto','=',$cui)
+        ->get();
+
+        if($existe == "[]")
+        {
+            return false;
+        }else{
+            return true;
+        }
+
+    }
+
     public function obtenerDefuncion($cui){
         $person = DB::table('DEFUNCION')
         ->select('*')
@@ -315,27 +333,13 @@ class DefuncioneController extends Controller
         $response_existencia = $objeto->validarExistenciaCUI($valor_cui);
 
         if($response_existencia == true){
-            
-            $defuncion_pivote = json_decode($objeto->obtenerDefuncion($valor_cui),true);
-            $defuncion_obtenida = "[]";
-    
-            if(count($defuncion_pivote) == 1){
-                $defuncion_obtenida = $defuncion_pivote[0];
-            }
-            
-            if($defuncion_obtenida == "[]"){
-                
-                $json_response =
-                [
-                    'status' => -1,
-                    'mensaje' => "Registro de defucion con el DPI no encontrado",
-                    'data' => "",
-                ];
-    
-                return response()->json($json_response);
-    
-            }else{
-    
+
+            $response_existencia_def = $objeto->vallidarExistenciaDefuncion($valor_cui);
+
+            if($response_existencia == true){
+
+                $defuncion_pivote = json_decode($objeto->obtenerDefuncion($valor_cui),true)[0];
+
                 $persona_dif = json_decode($objeto->obtenerPersona($defuncion_obtenida['cui_difunto']),true)[0];
                 $persona_com = json_decode($objeto->obtenerPersona($defuncion_obtenida['cui_compareciente']),true)[0];
                 $nacimiento_dif = json_decode($objeto->obtenerNacimiento($defuncion_obtenida['cui_difunto']),true)[0];
@@ -368,7 +372,6 @@ class DefuncioneController extends Controller
                         'apellido_c' => $persona_casada['apellidos']
                     ];
                 }
-    
     
                 $json_respuesta_contenido = [
                     "cui" => $defuncion_obtenida['cui_difunto'],
@@ -405,6 +408,18 @@ class DefuncioneController extends Controller
                 ];
                 
                 return response()->json($json_response);
+
+            }else{
+                
+                $json_response =
+                [
+                    'status' => -1,
+                    'mensaje' => "Registro de defucion con el DPI, no existe.",
+                    'data' => "",
+                ];
+    
+                return response()->json($json_response);
+    
             }
     
         }else{
