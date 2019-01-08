@@ -86,7 +86,7 @@ class DepartamentoController extends Controller
 
     public function getDptos(){
         $dptos = DB::table('DEPARTAMENTO')
-            ->select('id_dpto as idDepartamento', 'nombre_dpto as Departamento')
+            ->select('id_dpto as idDepartamento', 'nombre_dpto as departamento')
             ->get();
         $d = new Departamento;
         $d->mensaje = "Lista recuperada con exito";
@@ -97,7 +97,7 @@ class DepartamentoController extends Controller
 
     public function ListaDptos(Request $req){
         $dptos = DB::table('DEPARTAMENTO')
-            ->select('id_dpto as idDepartamento', 'nombre_dpto as Departamento')
+            ->select('id_dpto as idDepartamento', 'nombre_dpto as departamento')
             ->get();
         $d = new Departamento;
         $d->mensaje = "Lista recuperada con exito";
