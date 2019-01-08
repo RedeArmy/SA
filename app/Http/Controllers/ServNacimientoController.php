@@ -694,7 +694,7 @@ class ServNacimientoController extends Controller
                     'nombre' => $persona_1['nombres'],
                     'apellido' => $persona_1['apellidos'],
                     'genero' => $persona_1['genero'],
-                    'fechaNacimiento' => $json_persona[0]['fecha'],
+                    'fechaNacimiento' => strtotime($json_persona[0]['fecha']),
                     'pais' => '1',
                     'departamento' => $id_departamento['id_dpto'],
                     'municipio' => $json_persona[0]['id_muni'],
