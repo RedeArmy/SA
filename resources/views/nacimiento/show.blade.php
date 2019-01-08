@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 	@section('content')
-	{!!Form::open(['route'=>'servicionacimiento.edit', 'method'=>'POST'])!!}
+	{!!Form::open(['route'=>'servicionacimiento.mostrar', 'method'=>'POST'])!!}
         <div class="form-group">
             {!!Form::label('name','ID Pais:')!!}
             {!!Form::text('idpais',null,['class'=>'form-control','placeholder'=>'Ingresa el ID del Pais'])!!}

@@ -84,15 +84,20 @@ class ServNacimientoController extends Controller
         return view('nacimiento.show');
     }
 
+    public function mostrar()
+    {
+        
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($id)
     {
-
+        //
     }
 
     /**
