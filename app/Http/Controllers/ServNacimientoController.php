@@ -681,7 +681,7 @@ class ServNacimientoController extends Controller
                 $persona_p = json_decode($objeto->obtenerPersona($json_persona[0]['cui_padre']),true)[0];
                 $persona_m = json_decode($objeto->obtenerPersona($json_persona[0]['cui_madre']),true)[0];
 
-                $id_departamento = json_decode($objeto->obtenerDepartamento($json_persona[0]['id_muni']),true);
+                $id_departamento = json_decode($objeto->obtenerDepartamento($json_persona[0]['id_muni']),true)[0];
                 
                 
                 $persona_info = [
@@ -691,7 +691,7 @@ class ServNacimientoController extends Controller
                     'genero' => $persona_1['genero'],
                     'fechaNacimiento' => $json_persona[0]['fecha'],
                     'pais' => '1',
-                    'departamento' => $id_departamento,
+                    'departamento' => $id_departamento['id_dpto'],
                     'municipio' => $json_persona[0]['id_muni'],
                     'lugarNacimiento' => $json_persona[0]['direccion_nac'],
                     'cuiPadre' => $json_persona[0]['cui_padre'],
