@@ -232,7 +232,7 @@ class MatrimonioController extends Controller
                 'id_muni' => $muni,
                 'direccion_matri' => $lugar_matri,
                 'regimen_eco' => $regimen,
-                'fecha_matri' => $fecha,
+                'fecha_matri' => date("Y-m-d H:i:s",strtotime((int)$fecha))
             ]
         ]);
 
