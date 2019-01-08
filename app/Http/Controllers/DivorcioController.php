@@ -183,7 +183,7 @@ class DivorcioController extends Controller
                 'cui_esposa' => $cui_esposa,
                 'id_muni' => $muni,
                 'direccion_divorcio' => $lugar,
-                'fecha_divorcio' => $fecha
+                'fecha_divorcio' => date("Y-m-d H:i:s",strtotime((int)$fecha))
             ]
         ]);
 
@@ -215,10 +215,9 @@ class DivorcioController extends Controller
         $cui_esposa = $req->input('cuiMujer');
 
         $existe = DB::table('DIVORCIO')
-            ->select('acta_divorcio')
+            ->select('acta_divorcio,id_muni,fecha_divorcio,direccion_divorcio')
             ->where('cui_esposo','=',$cui_esposo)
             ->where('cui_esposa','=',$cui_esposa)
-            ->where('vigente','=',1)
             ->orderByRaw('acta_divorcio DESC')
             ->get()
             ->first();
@@ -251,6 +250,20 @@ class DivorcioController extends Controller
             ->get()
             ->first();
 
+        $matrimonio = DB::table('MATRIMONIO')
+            ->select('*')
+            ->where('cui_esposo','=',$cui_esposo)
+            ->where('cui_esposa','=',$cui_esposa)
+            ->where('vigente','=',1)
+            ->get()
+            ->first();
+
+        $municipio = DB::table('MUNICIPIO')
+            ->select('nombre')
+            ->where('id_muni','=',$existe->id_muni)
+            ->get()
+            ->first();
+
             $json_response = [
                 'mensaje' => 'El acata de matrimonio se recupero con éxito',
                 'status' => '1',
@@ -266,7 +279,11 @@ class DivorcioController extends Controller
                     'apellidoMujer' => $mujer->apellidos,
                     'paisMujer' => $mujer->pais,
                     'departamentoMujer' => $mujer->departamento,
-                    'municipioMujer' => $mujer->municipio
+                    'municipioMujer' => $mujer->municipio,
+                    'municipio' => $municipio->nombre,
+                    'lugarDivorcio' => $existe->direccion_divorcio,
+                    'fechaDivorcio' => strtotime((int)$existe->fecha_divorcio),
+                    'regimenMatrimonial' => $matrimonio->regimen_eco
     
                 ]
                 
