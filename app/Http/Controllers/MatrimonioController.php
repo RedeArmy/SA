@@ -258,8 +258,8 @@ class MatrimonioController extends Controller
     
     public function Imprimir(Request $req){
 
-        $cui_esposo = $req['cuiHombre'];
-        $cui_esposa = $req['cuiMujer'];
+        $cui_esposo = $req->input('cuiHombre');
+        $cui_esposa = $req->input('cuiMujer');
 
         $existe = DB::table('MATRIMONIO')
             ->select('acta_matrimonio')
