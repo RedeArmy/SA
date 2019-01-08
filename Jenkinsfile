@@ -16,7 +16,9 @@ node {
             sh "echo 'shell scripts to deploy to server...'"
             }
         stage ('Tests') {
-			sh "sudo chmod 777 -R /var/www/html/SA-Proyecto" 
+			sh "sudo chmod 777 -R /var/www/html/SA-Proyecto"
+			sh "sudo chmod 777 -R /var/www/html/SA-Proyecto/tests"
+			sh "sudo chmod 777 -R /var/www/html/SA-Proyecto/tests/_output"			
 	    /*    sh "echo 'shell scripts to deploy to server....'"
 	        sh "echo 'shell scripts to deploy to server....'"
             sh 'sudo /var/lib/jenkins/workspace/SA-Proyecto/vendor/bin/phpunit'
