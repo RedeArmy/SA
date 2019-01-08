@@ -72,7 +72,7 @@ class MatrimonioController extends Controller
             $info = json_decode($response, true);
 
             //$info = $respData['data'];
-            return view('matrimonio.resultado',compact('info'));
+            return view('matrimonio.resultadoreg',compact('info'));
         }
             
     }
