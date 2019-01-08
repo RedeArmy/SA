@@ -161,7 +161,7 @@ class DefuncioneController extends Controller
         //CODIGO DE LA CONSULTA PARA CONOCER SI EXISTE EL CUI GENERADO
 
         $existe = DB::table('DEFUNCION')
-        ->select('cui_difunto')
+        ->select('*')
         ->where('cui_difunto','=',$cui)
         ->get();
 
@@ -434,6 +434,16 @@ class DefuncioneController extends Controller
     
             return response()->json($json_response);
         }
+
+        $json_response =
+        [
+            'status' => "-1",
+            'mensaje' => "Registro de defucion con el DPI, no existe.",
+            'data' => "",
+        ];
+
+        return response()->json($json_response);
+
 
     }
 
