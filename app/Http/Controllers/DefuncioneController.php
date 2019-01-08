@@ -268,7 +268,7 @@ class DefuncioneController extends Controller
         $cui_compita = $re->input('cuiCompareciente');
         $municipio =$re->input('municipio'); 
         $lugar_defuncion = $re->input('lugarDeDefuncion');
-        $fecha_defuncion = $re->input('fechaDeDefuncion');
+        $fecha_defuncion = $re->input('fechaDefuncion');
         $causa = $re->input('causa');
 
         $response_existencia = $objeto->validarExistenciaCUI($cui_persona);
@@ -341,6 +341,7 @@ class DefuncioneController extends Controller
                 $defuncion_obtenida = json_decode($objeto->obtenerDefuncion($valor_cui),true)[0];
                 $persona_dif = json_decode($objeto->obtenerPersona($defuncion_obtenida['cui_difunto']),true)[0];
                 $persona_com = json_decode($objeto->obtenerPersona($defuncion_obtenida['cui_compareciente']),true)[0];
+
                 $nacimiento_dif = json_decode($objeto->obtenerNacimiento($defuncion_obtenida['cui_difunto']),true)[0];
     
                 $persona_casada = $persona_dif['estado_civil'];
