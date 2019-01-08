@@ -174,11 +174,11 @@ class DivorcioController extends Controller
 
     public function Registrar(Request $req){
 
-        $cui_esposo = $req['cuiHombre'];
-        $cui_esposa = $req['cuiMujer'];
-        $muni = $req['municipio'];
-        $lugar = $req['lugarDivorcio'];
-        $fecha = $req['fechaDivorcio'];
+        $cui_esposo = $req->input('cuiHombre');
+        $cui_esposa = $req->input('cuiMujer');
+        $muni = $req->input('municipio');
+        $lugar = $req->input('lugarDivorcio');
+        $fecha = $req->input('fechaDivorcio');
 
         $existe = DB::table('MATRIMONIO')
             ->select('acta_matrimonio')
@@ -202,7 +202,7 @@ class DivorcioController extends Controller
                 'cui_esposa' => $cui_esposa,
                 'id_muni' => $muni,
                 'direccion_divorcio' => $lugar,
-                'fecha_divorcio' => $fecha
+                'fecha_divorcio' => date("Y-m-d H:i:s",strtotime((int)$fecha))
             ]
         ]);
 
@@ -210,6 +210,12 @@ class DivorcioController extends Controller
             ->where('cui', $cui_esposa)
             ->orWhere('cui',$cui_esposo)
             ->update(['estado_civil' => 1]);
+
+        DB::table('MATRIMONIO')
+            ->where('cui_esposa', $cui_esposa)
+            ->where('cui_esposo',$cui_esposo)
+            ->where('vigente',1)
+            ->update(['vigente' => 0]);
 
         $json_response = [
                 'mensaje' => 'Divorcio registrado',
@@ -224,11 +230,11 @@ class DivorcioController extends Controller
 
     public function Imprimir(Request $req){
 
-        $cui_esposo = $req['cuiHombre'];
-        $cui_esposa = $req['cuiMujer'];
+        $cui_esposo = $req->input('cuiHombre');
+        $cui_esposa = $req->input('cuiMujer');
 
         $existe = DB::table('DIVORCIO')
-            ->select('acta_divorcio')
+            ->select('acta_divorcio','id_muni','fecha_divorcio','direccion_divorcio')
             ->where('cui_esposo','=',$cui_esposo)
             ->where('cui_esposa','=',$cui_esposa)
             ->orderByRaw('acta_divorcio DESC')
@@ -263,6 +269,20 @@ class DivorcioController extends Controller
             ->get()
             ->first();
 
+        $matrimonio = DB::table('MATRIMONIO')
+            ->select('*')
+            ->where('cui_esposo','=',$cui_esposo)
+            ->where('cui_esposa','=',$cui_esposa)
+            ->where('vigente','=',0)
+            ->get()
+            ->first();
+
+        $municipio = DB::table('MUNICIPIO')
+            ->select('nombre')
+            ->where('id_muni','=',$existe->id_muni)
+            ->get()
+            ->first();
+
             $json_response = [
                 'mensaje' => 'El acata de matrimonio se recupero con éxito',
                 'status' => '1',
@@ -278,8 +298,12 @@ class DivorcioController extends Controller
                     'apellidoMujer' => $mujer->apellidos,
                     'paisMujer' => $mujer->pais,
                     'departamentoMujer' => $mujer->departamento,
-                    'municipioMujer' => $mujer->municipio
-    
+                    'municipioMujer' => $mujer->municipio,
+                    'municipio' => $municipio->nombre,
+                    'lugarDivorcio' => $existe->direccion_divorcio,
+                    'fechaDivorcio' => strtotime((int)$existe->fecha_divorcio),
+                    'regimenMatrimonial' => $matrimonio->regimen_eco
+                    //'regimenMatrimonial' => $matrimonio->regimen_eco
                 ]
                 
             ];

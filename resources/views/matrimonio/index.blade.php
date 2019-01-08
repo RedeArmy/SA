@@ -9,6 +9,6 @@
 		{!!Form::label('mujer','CUI Mujer:')!!}
 		{!!Form::text('cuiMujer',null,['class'=>'form-control','placeholder'=>'Ingresa el CUI del usuario'])!!}
 	</div>
-	{!!Form::submit('Buscar',['class'=>'btn btn-primary'])!!}
+	{!!Form::submit('Buscar Matrimonio',['class'=>'btn btn-primary'])!!}
 	{!!Form::close()!!}
 	@endsection

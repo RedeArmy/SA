@@ -9,6 +9,6 @@
 		{!!Form::label('dpi','CUI:')!!}
 		{!!Form::text('cui',null,['class'=>'form-control','placeholder'=>'Ingresa el CUI del usuario'])!!}
 	</div>
-	{!!Form::submit('Buscar',['class'=>'btn btn-primary'])!!}
+	{!!Form::submit('Buscar Defuncion',['class'=>'btn btn-primary'])!!}
 	{!!Form::close()!!}
 	@endsection

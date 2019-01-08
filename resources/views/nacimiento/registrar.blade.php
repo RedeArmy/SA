@@ -33,6 +33,6 @@
 		{!!Form::label('mama','Cui Madre:')!!}
 		{!!Form::text('cuiMadre',null,['class'=>'form-control','placeholder'=>'Ingresa el Nombre del usuario'])!!}
 	</div>
-	{!!Form::submit('Registrar',['class'=>'btn btn-primary'])!!}
+	{!!Form::submit('Registrar Nacimiento',['class'=>'btn btn-primary'])!!}
 	{!!Form::close()!!}
 	@endsection

@@ -176,28 +176,25 @@ class MatrimonioController extends Controller
 
     public function Registrar(Request $req){
 
-        $cui_esposo = $req['cuiHombre'];
-        $cui_esposa = $req['cuiMujer'];
-        $muni = $req['municipio'];
-        $lugar_matri = $req['lugarMatrimonio'];
-        $fecha = $req['fechaMatrimonio'];
-        $regimen = $req['regimenMatrimonial'];
-        $pais = $req['idPais'];
+        $cui_esposo = $req->input('cuiHombre');
+        $cui_esposa = $req->input('cuiMujer');
+        $muni = $req->input('municipio');
+        $lugar_matri = $req->input('lugarMatrimonio');
+        $fecha = $req->input('fechaMatrimonio');
+        $regimen = $req->input('regimenMatrimonial');
 
         $existe = DB::table('PERSONA')
             ->select('cui')
-            ->where(
-                'cui','=',$cui_esposo)
+            ->where('cui','=',$cui_esposo)
                 ->where('estado_civil','<>','2')
                 ->where('genero','=','1')
             ->get();
 
         $existe2 = DB::table('PERSONA')
             ->select('cui')
-            ->where(
-                'cui','=',$cui_esposa)
+            ->where('cui','=',$cui_esposa)
                 ->where('estado_civil','<>','2')
-                ->where('genero','=','2')
+                ->where('genero','=','0')
             ->get();
 
         $existe3 = DB::table('MUNICIPIO')
@@ -205,39 +202,51 @@ class MatrimonioController extends Controller
             ->where('id_muni','=',$muni)
             ->get();
 
-        if($existe == "[]" || $existe2 == "[]" || $existe3 == "[]"){
+        if($existe3 == "[]"){
             $d = new Objeto;
-            $d->mensaje = "Problemas con el cui o con Municipio";
+            $d->mensaje = "El municipio no existe.";
             $d->status = "-1";
-            $d->data = [];
+            $d->data = "";
             return response()->json($d);
-        }
+        }else if ( $existe == "[]"){
+            $d = new Objeto;
+            $d->mensaje = "Problemas, el esposo ya esta casado.";
+            $d->status = "-1";
+            $d->data = "";
+            return response()->json($d);
+        }else if ( $existe2 == "[]"){
+            $d = new Objeto;
+            $d->mensaje = "Problemas, la esposa ya esta casado.";
+            $d->status = "-1";
+            $d->data = "";
+            return response()->json($d);
+        }else{
 
-        DB::table('MATRIMONIO')->insert([
-            [
-                'cui_esposo' => $cui_esposo, 
-                'cui_esposa' => $cui_esposa,
-                'id_muni' => $muni,
-                'direccion_matri' => $lugar_matri,
-                'regimen_eco' => $regimen,
-                'fecha_matri' => $fecha
-            ]
-        ]);
-
-        DB::table('PERSONA')
-            ->where('cui', $cui_esposa)
-            ->orWhere('cui',$cui_esposo)
-            ->update(['estado_civil' => 2]);
-
-        $json_response = [
-            'mensaje' => 'Matrimonio registrado',
-            'status' => '1',
-            'data' => []
+            DB::table('MATRIMONIO')->insert([
+                [
+                    'cui_esposo' => $cui_esposo, 
+                    'cui_esposa' => $cui_esposa,
+                    'id_muni' => $muni,
+                    'direccion_matri' => $lugar_matri,
+                    'regimen_eco' => $regimen,
+                    'fecha_matri' => date("Y-m-d H:i:s",strtotime((int)$fecha)),
+                    'vigente' => 1
+                ]
+            ]);
+    
+            DB::table('PERSONA')
+                ->where('cui', $cui_esposa)
+                ->orWhere('cui',$cui_esposo)
+                ->update(['estado_civil' => 2]);
+    
+            $json_response = [
+                'mensaje' => 'Matrimonio registrado',
+                'status' => '1',
+                'data' => ""
+            ];
             
-        ];
-        
-        return response()->json($json_response);
-        //{"cuiHombre":"2942637562001","cuiMujer":"2942637562002","municipio":"1","lugarMatrimonio":"Ciudad","fecharMatrimonio":"1999-01-01","regimenMatrimonial":"bianes mancomunados"}
+            return response()->json($json_response);
+        }
     }
 
     public function consultar(){
@@ -258,8 +267,8 @@ class MatrimonioController extends Controller
     
     public function Imprimir(Request $req){
 
-        $cui_esposo = $req['cuiHombre'];
-        $cui_esposa = $req['cuiMujer'];
+        $cui_esposo = $req->input('cuiHombre');
+        $cui_esposa = $req->input('cuiMujer');
 
         $existe = DB::table('MATRIMONIO')
             ->select('acta_matrimonio')
@@ -268,11 +277,17 @@ class MatrimonioController extends Controller
             ->orderByRaw('acta_matrimonio DESC')
             ->get();
 
+        $matrimonio = DB::table('MATRIMONIO')
+        ->select('*')
+        ->where('cui_esposo','=',$cui_esposo)
+        ->where('cui_esposa','=',$cui_esposa)
+        ->get();
+
         if($existe == "[]"){
                 $d = new Objeto;
                 $d->mensaje = "El matrimonio buscado no existe";
-                $d->status = "0";
-                $d->data = [];
+                $d->status = "-1";
+                $d->data = "";
                 return response()->json($d);
         }
 
@@ -296,25 +311,31 @@ class MatrimonioController extends Controller
             ->get()
             ->first();
 
+        $matrimonio_real = json_decode($matrimonio,true)[0];
+
+        $json_real_datos = [
+            'cuiHombre' => $cui_esposo,
+            'nombreHombre' => $hombre->nombres,
+            'apellidoHombre' => $hombre->apellidos,
+            'paisHombre' => $hombre->pais,
+            'departamentoHombre' => $hombre->departamento,
+            'municipioHombre' => $hombre->municipio,
+            'cuiMujer' => $cui_esposa,
+            'nombreMujer' => $mujer->nombres,
+            'apellidoMujer' => $mujer->apellidos,
+            'paisMujer' => $mujer->pais,
+            'departamentoMujer' => $mujer->departamento,
+            'municipioMujer' => $mujer->municipio,
+            'municipio' => $matrimonio_real['id_muni'],
+            'lugarMatrimonio' => $matrimonio_real['direccion_matri'],
+            'fechaMatrimonio' => strtotime((int)$matrimonio_real['fecha_matri']),
+            'regimenMatrimonial' => $matrimonio_real['regimen_eco']
+        ];
+
         $json_response = [
             'mensaje' => 'El acta de matrimonio se recupero con éxito',
             'status' => '1',
-            'data' => [
-                'cuiHombre' => $cui_esposo,
-                'nombreHombre' => $hombre->nombres,
-                'apellidoHombre' => $hombre->apellidos,
-                'paisHombre' => $hombre->pais,
-                'departamentoHombre' => $hombre->departamento,
-                'municipioHombre' => $hombre->municipio,
-                'cuiMujer' => $cui_esposa,
-                'nombreMujer' => $mujer->nombres,
-                'apellidoMujer' => $mujer->apellidos,
-                'paisMujer' => $mujer->pais,
-                'departamentoMujer' => $mujer->departamento,
-                'municipioMujer' => $mujer->municipio
-
-            ]
-            
+            'data' => $json_real_datos
         ];
 
         return response()->json($json_response);
