@@ -3,7 +3,7 @@
     <h1>Datos del fallecido</h1>
     <div class="panel panel-default">
         <div class="panel-body">
-            <b>cui: </b>{{$info['cui']]}}
+            <b>cui: </b>{{$info['cui']}}
         </div>
     </div>
     <div class="panel panel-default">
