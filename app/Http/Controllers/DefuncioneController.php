@@ -336,7 +336,7 @@ class DefuncioneController extends Controller
 
             $response_existencia_def = $objeto->vallidarExistenciaDefuncion($valor_cui);
 
-            if($response_existencia == true){
+            if($response_existencia_def == true){
 
                 $defuncion_obtenida = json_decode($objeto->obtenerDefuncion($valor_cui),true)[0];
                 $persona_dif = json_decode($objeto->obtenerPersona($defuncion_obtenida['cui_difunto']),true)[0];
