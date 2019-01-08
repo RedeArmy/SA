@@ -254,6 +254,7 @@ class DivorcioController extends Controller
             ->select('*')
             ->where('cui_esposo','=',$cui_esposo)
             ->where('cui_esposa','=',$cui_esposa)
+            ->where('vigente','=',0)
             ->get()
             ->first();
 
@@ -282,7 +283,7 @@ class DivorcioController extends Controller
                     'municipio' => $municipio->nombre,
                     'lugarDivorcio' => $existe->direccion_divorcio,
                     'fechaDivorcio' => strtotime((int)$existe->fecha_divorcio),
-                    'regimenMatrimonial' => $matrimonio
+                    'regimenMatrimonial' => $matrimonio->regimen_eco
                     //'regimenMatrimonial' => $matrimonio->regimen_eco
                 ]
                 
