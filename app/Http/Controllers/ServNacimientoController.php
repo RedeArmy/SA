@@ -39,23 +39,23 @@ class ServNacimientoController extends Controller
     {
         $curl = curl_init();
 
-            curl_setopt_array($curl, array(
-        CURLOPT_URL => "http://104.196.194.35/nacimiento/registrar",
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => "",
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 30,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => "POST",
-        CURLOPT_POSTFIELDS => "{\n\t\"nombre\" : \"".$request->input('nombre')."\",".
-            "\"apellido\" : \"".$request->input('apellido')."\", \"genero\" : \"".$request->input('genero')."\",".
-            "\"fechaNacimiento\" : \"".$request->input('fechaNacimiento')."\", \"municipio\" : \"".$request->input('municipio')."\"".
-            "\" lugarNacimiento : \".$request->input('lugarNacimiento').\", \"cuiPadre\" : \"".$request->input('cuiPadre')."\", \"cuiMadre\" : \"".$request->input('cuiMadre')."\"\n}",
-        CURLOPT_HTTPHEADER => array(
-            "Content-Type: application/json",
-            "Postman-Token: 2b655ed0-d367-49ef-9a7d-22c349f78a3b",
-            "cache-control: no-cache"
-        ),
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "http://104.196.194.35/nacimiento/registrar",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => "{\n\t\"nombre\" : \"".$request->input('nombre')."\",".
+                "\"apellido\" : \"".$request->input('apellido')."\", \"genero\" : \"".$request->input('genero')."\",".
+                "\"fechaNacimiento\" : \"".$request->input('fechaNacimiento')."\", \"municipio\" : \"".$request->input('municipio')."\"".
+                "\" lugarNacimiento : \".$request->input('lugarNacimiento').\", \"cuiPadre\" : \"".$request->input('cuiPadre')."\", \"cuiMadre\" : \"".$request->input('cuiMadre')."\"\n}",
+            CURLOPT_HTTPHEADER => array(
+                "Content-Type: application/json",
+                "Postman-Token: 2b655ed0-d367-49ef-9a7d-22c349f78a3b",
+                "cache-control: no-cache"
+            ),
         ));
         
         $response = curl_exec($curl);

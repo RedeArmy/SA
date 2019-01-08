@@ -31,7 +31,7 @@ class DefuncioneController extends Controller
             return $objeto->registrarDefuncion(json_encode($json_response));*/
             //falta definir varios atributos
             $curl = curl_init();
-            $cuimuerto=(int)$request->input('cui');
+            $cuimuerto=(int)$request->input('cui_muerto');
             $cuicompareciente=(int)$request->input('cuiCompareciente');
             curl_setopt_array($curl, array(
             CURLOPT_URL => "http://104.196.194.35/defuncion/registrar",
@@ -62,7 +62,7 @@ class DefuncioneController extends Controller
             } else {
                 $info = json_decode($response, true);
                 //$info = $respData['data'];
-                return view('defuncion.resultado',compact('info'));
+                return view('defuncion.muerto',compact('info'));
             }
                         
     }
