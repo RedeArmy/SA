@@ -6,6 +6,7 @@
             <b>Mensaje: </b>{{$info['mensaje']}}
         </div>
     </div>
+    @if($info['status']!='-1')
     <div class="panel panel-default">
         <div class="panel-body">
             <b>cui Hombre: </b>{{$info['data']['cuiHombre']}}
@@ -82,9 +83,5 @@
         <b>fecha Divorcio: </b>{{$info['data']['fechaDivorcio']}}
         </div>
     </div>
-    <div class="panel panel-default">
-        <div class="panel-body">
-        <b>regimen Matrimonial: </b>{{$info['data']['regimenMatrimonial']}}
-        </div>
-    </div>
+    @endif
 </div>

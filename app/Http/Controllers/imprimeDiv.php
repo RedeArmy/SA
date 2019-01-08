@@ -49,8 +49,7 @@ class imprimeDiv extends Controller
             $info = json_decode($response, true);
 
             //$info = $respData['data'];
-            //return view('divorcio.resultado',compact('info'));
-            return $response;
+            return view('divorcio.resultado',compact('info'));
         }
     }
 }
