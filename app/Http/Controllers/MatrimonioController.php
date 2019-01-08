@@ -182,20 +182,17 @@ class MatrimonioController extends Controller
         $lugar_matri = $req->input('lugarMatrimonio');
         $fecha = $req->input('fechaMatrimonio');
         $regimen = $req->input('regimenMatrimonial');
-        $pais = $req->input('idPais');
 
         $existe = DB::table('PERSONA')
             ->select('cui')
-            ->where(
-                'cui','=',$cui_esposo)
+            ->where('cui','=',$cui_esposo)
                 ->where('estado_civil','<>','2')
                 ->where('genero','=','1')
             ->get();
 
         $existe2 = DB::table('PERSONA')
             ->select('cui')
-            ->where(
-                'cui','=',$cui_esposa)
+            ->where('cui','=',$cui_esposa)
                 ->where('estado_civil','<>','2')
                 ->where('genero','=','0')
             ->get();
@@ -209,21 +206,47 @@ class MatrimonioController extends Controller
             $d = new Objeto;
             $d->mensaje = "El municipio no existe.";
             $d->status = "-1";
-            $d->data = [$existe,$existe2,$existe3];
+            $d->data = "";
             return response()->json($d);
         }else if ( $existe == "[]"){
             $d = new Objeto;
             $d->mensaje = "Problemas, el esposo ya esta casado.";
             $d->status = "-1";
-            $d->data = [$existe,$existe2,$existe3];
+            $d->data = "";
             return response()->json($d);
         }else if ( $existe2 == "[]"){
             $d = new Objeto;
             $d->mensaje = "Problemas, la esposa ya esta casado.";
             $d->status = "-1";
-            $d->data = [$existe,$existe2,$existe3];
+            $d->data = "";
             return response()->json($d);
+        }else{
+
+            DB::table('MATRIMONIO')->insert([
+                [
+                    'cui_esposo' => $cui_esposo, 
+                    'cui_esposa' => $cui_esposa,
+                    'id_muni' => $muni,
+                    'direccion_matri' => $lugar_matri,
+                    'regimen_eco' => $regimen,
+                    'fecha_matri' => date("Y-m-d H:i:s",strtotime((int)$fecha))
+                ]
+            ]);
+    
+            DB::table('PERSONA')
+                ->where('cui', $cui_esposa)
+                ->orWhere('cui',$cui_esposo)
+                ->update(['estado_civil' => 2]);
+    
+            $json_response = [
+                'mensaje' => 'Matrimonio registrado',
+                'status' => '1',
+                'data' => ""
+            ];
+            
+            return response()->json($json_response);
         }
+<<<<<<< HEAD
 
         DB::table('MATRIMONIO')->insert([
             [
@@ -250,6 +273,8 @@ class MatrimonioController extends Controller
         
         return response()->json($json_response);
         //{"cuiHombre":"2942637562001","cuiMujer":"2942637562002","municipio":"1","lugarMatrimonio":"Ciudad","fecharMatrimonio":"1999-01-01","regimenMatrimonial":"bianes mancomunados"}
+=======
+>>>>>>> da0b9de48a7d0d8a5b6047f6eb66e25ea763c816
     }
 
     public function consultar(){
