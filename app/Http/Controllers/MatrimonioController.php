@@ -176,13 +176,13 @@ class MatrimonioController extends Controller
 
     public function Registrar(Request $req){
 
-        $cui_esposo = $req['cuiHombre'];
-        $cui_esposa = $req['cuiMujer'];
-        $muni = $req['municipio'];
-        $lugar_matri = $req['lugarMatrimonio'];
-        $fecha = $req['fechaMatrimonio'];
-        $regimen = $req['regimenMatrimonial'];
-        $pais = $req['idPais'];
+        $cui_esposo = $req->input('cuiHombre');
+        $cui_esposa = $req->input('cuiMujer');
+        $muni = $req->input('municipio');
+        $lugar_matri = $req->input('lugarMatrimonio');
+        $fecha = $req->input('fechaMatrimonio');
+        $regimen = $req->input('regimenMatrimonial');
+        $pais = $req->input('idPais');
 
         $existe = DB::table('PERSONA')
             ->select('cui')
