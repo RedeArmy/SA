@@ -37,7 +37,7 @@ class imprimeController extends Controller
         $curl = curl_init();
 
             curl_setopt_array($curl, array(
-        CURLOPT_URL => "http://104.196.194.35//matrimonio/imprimir",
+        CURLOPT_URL => "http://104.196.194.35/matrimonio/imprimir",
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => "",
         CURLOPT_MAXREDIRS => 10,
@@ -64,7 +64,7 @@ class imprimeController extends Controller
             $info = json_decode($response, true);
 
             //$info = $respData['data'];
-            return view('matrimonio.resultado',compact('info'));
+            return view('matrimonio.mostrar',compact('info'));
         }
     }
 }
