@@ -13,10 +13,9 @@ class MatrimonioController extends Controller
     
     public function show()
     {
-        return view('matrimonio.index');
+        return view('matrimonio.mostrar');
     }
     
-
     public function create()
     {
         return view('matrimonio.registrar');
@@ -43,21 +42,21 @@ class MatrimonioController extends Controller
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-        CURLOPT_URL => "http://104.196.194.35/matrimonio/registrar",
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => "",
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 30,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => "POST",
-        CURLOPT_POSTFIELDS => "{\n\t\"cuiHombre\" : \"".$request->input('cuiHombre')."\", \"cuiMujer\" : \"".$request->input('cuiMujer')."\",".
-            "\"municipio\" : \"".$request->input('municipio')."\", \"lugarMatrimonio\" : \"".$request->input('lugarMatrimonio')."\",".
-            "\"fechaMatrimonio\" : \"".$request->input('fechaMatrimonio')."\", \"regimenMatrimonial\" : \"".$request->input('regimenMatrimonial')."\" \n}",
-        CURLOPT_HTTPHEADER => array(
-            "Content-Type: application/json",
-            "Postman-Token: 2b655ed0-d367-49ef-9a7d-22c349f78a3b",
-            "cache-control: no-cache"
-        ),
+            CURLOPT_URL => "http://104.196.194.35/matrimonio/registrar",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => "{\n\t\"cuiHombre\" : \"".$request->input('cuiHombre')."\", \"cuiMujer\" : \"".$request->input('cuiMujer')."\",".
+                "\"municipio\" : \"".$request->input('municipio')."\", \"lugarMatrimonio\" : \"".$request->input('lugarMatrimonio')."\",".
+                "\"fechaMatrimonio\" : \"".$request->input('fechaMatrimonio')."\", \"regimenMatrimonial\" : \"".$request->input('regimenMatrimonial')."\" \n}",
+            CURLOPT_HTTPHEADER => array(
+                "Content-Type: application/json",
+                "Postman-Token: 2b655ed0-d367-49ef-9a7d-22c349f78a3b",
+                "cache-control: no-cache"
+            ),
         ));
         
         $response = curl_exec($curl);
