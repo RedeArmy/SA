@@ -43,7 +43,7 @@ class MatrimonioController extends Controller
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
-        CURLOPT_URL => "http://104.196.194.35//matrimonio/registrar",
+        CURLOPT_URL => "http://104.196.194.35/matrimonio/registrar",
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => "",
         CURLOPT_MAXREDIRS => 10,
@@ -71,7 +71,6 @@ class MatrimonioController extends Controller
         } else {
             $info = json_decode($response, true);
 
-            //$info = $respData['data'];
             return view('matrimonio.resultadoreg',compact('info'));
         }
             
