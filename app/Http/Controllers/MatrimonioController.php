@@ -264,7 +264,7 @@ class MatrimonioController extends Controller
         return view('matrimonio.error', compact('messagge'));
     }
     
-    public function Impresion(Request $req){
+    public function Imprimir(Request $req){
 
         $cui_esposo = $req->input('cuiHombre');
         $cui_esposa = $req->input('cuiMujer');
