@@ -3,92 +3,92 @@
     <h1>DATOS DEL MATRIMONIO</h1>
     <div class="panel panel-default">
         <div class="panel-body">
-            {{$info['status']}}
+        <b>Status: </b>{{$info['status']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            {{$info['mensaje']}}
+        <b>Mensaje: </b>{{$info['mensaje']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            {{$info['data']['cuiHombre']}}
+        <b>CUI Esposo: </b>{{$info['data']['cuiHombre']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            {{$info['data']['nombreHombre']}}
+        <b>Nombre Esposo: </b>{{$info['data']['nombreHombre']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            {{$info['data']['apellidoHombre']}}
+        <b>Apellido Esposo: </b>{{$info['data']['apellidoHombre']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            {{$info['data']['paisHombre']}}
+        <b>Pais Esposo: </b>{{$info['data']['paisHombre']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            {{$info['data']['departamentoHombre']}}
+        <b>Departamento Esposo: </b>{{$info['data']['departamentoHombre']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            {{$info['data']['municipioHombre']}}
+        <b>Municipio Esposo: </b>{{$info['data']['municipioHombre']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            {{$info['data']['cuiMujer']}}
+        <b>CUI Esposa: </b>{{$info['data']['cuiMujer']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            {{$info['data']['nombreMujer']}}
+        <b>Nombre Esposa: </b>{{$info['data']['nombreMujer']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            {{$info['data']['apellidoMujer']}}
+        <b>Apellido Mujer: </b>{{$info['data']['apellidoMujer']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            {{$info['data']['paisMujer']}}
+        <b>Pais Mujer: </b>{{$info['data']['paisMujer']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            {{$info['data']['departamentoMujer']}}
+        <b>Departamento Mujer: </b>{{$info['data']['departamentoMujer']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            {{$info['data']['municipioMujer']}}
+        <b>Municipio Esposa: </b>{{$info['data']['municipioMujer']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            {{$info['data']['municipio']}}
+        <b>Municipio: </b>{{$info['data']['municipio']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            {{$info['data']['lugarMatrimonio']}}
+        <b>Direccion: </b>{{$info['data']['lugarMatrimonio']}}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            {{ date("Y-m-d H:i:s",strtotime((int)$info['data']['fechaMatrimonio'])) }}
+        <b>Fecha: </b>{{ date("Y-m-d H:i:s",strtotime((int)$info['data']['fechaMatrimonio'])) }}
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-            {{$info['data']['regimenMatrimonial']}}
+        <b>Regimen Matrimonial: </b>{{$info['data']['regimenMatrimonial']}}
         </div>
     </div>
 </div>
