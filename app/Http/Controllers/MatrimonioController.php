@@ -182,7 +182,6 @@ class MatrimonioController extends Controller
         $lugar_matri = $req->input('lugarMatrimonio');
         $fecha = $req->input('fechaMatrimonio');
         $regimen = $req->input('regimenMatrimonial');
-        $pais = $req->input('idPais');
 
         $existe = DB::table('PERSONA')
             ->select('cui')
