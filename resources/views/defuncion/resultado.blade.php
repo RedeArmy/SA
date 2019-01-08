@@ -23,7 +23,7 @@
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-        <b>Fecha de Nacimiento: </b>{{$$info['fechaNacimiento']}}
+        <b>Fecha de Nacimiento: </b>{{$info['fechaNacimiento']}}
         </div>
     </div>
     <div class="panel panel-default">
