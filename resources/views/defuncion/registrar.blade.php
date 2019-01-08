@@ -3,7 +3,7 @@
 	{!!Form::open(['route'=>'defuncion.store', 'method'=>'POST'])!!}
 	<div class="form-group">
 		{!!Form::label('cui_hombre','CUI muerto:')!!}
-		{!!Form::text('cui',null,['class'=>'form-control','placeholder'=>'Ingresa el CUI del muerto'])!!}
+		{!!Form::text('cui_muerto',null,['class'=>'form-control','placeholder'=>'Ingresa el CUI del muerto'])!!}
 	</div>
 	<div class="form-group">
 		{!!Form::label('cui_compa','CUI Compareciente:')!!}
