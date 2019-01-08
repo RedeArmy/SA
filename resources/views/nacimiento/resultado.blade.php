@@ -38,11 +38,6 @@
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
-        <b>departamento Nacimiento: </b>{{$info['data']['departamentoNacimiento']}}
-        </div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-body">
         <b>municipio Nacimiento: </b>{{$info['data']['municipioNacimiento']}}
         </div>
     </div>
