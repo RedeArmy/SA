@@ -33,6 +33,7 @@ class DefuncioneController extends Controller
             $curl = curl_init();
             $cuimuerto=(int)$request->input('cui_muerto');
             $cuicompareciente=(int)$request->input('cuiCompareciente');
+            $id_pais = $request->input('idPais');
             curl_setopt_array($curl, array(
             CURLOPT_URL => "http://localhost:8082/defuncion/registrar",
             //CURLOPT_URL => "http://104.196.194.35/defuncion/registrar",
@@ -44,7 +45,7 @@ class DefuncioneController extends Controller
             CURLOPT_CUSTOMREQUEST => "POST",
             CURLOPT_POSTFIELDS => "{\n\t\"cui\" : \"".$cuimuerto."\", \"cuiCompareciente\" : \"".$cuicompareciente."\"".
                 ", \"municipio\" : \"".$request->input('municipio')."\", \"lugarDeDefuncion\" : \"".$request->input('lugarDeDefuncion')."\", ".
-                "\"fechaDeDefuncion\" : \"".$request->input('fechaDeDefuncion')."\", \"causa\" : \"".$request->input('causa')."\" \n}",
+                "\"fechaDeDefuncion\" : \"".$request->input('fechaDeDefuncion')."\", \"causa\" : \"".$request->input('causa')."\", \"idPais\" : \"".$request->input('idPais')."\" \n}",
             CURLOPT_HTTPHEADER => array(
                 "Content-Type: application/json",
                 "Postman-Token: 2b655ed0-d367-49ef-9a7d-22c349f78a3b",
