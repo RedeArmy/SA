@@ -15,12 +15,6 @@ node {
         stage ('Push') {
             sh "echo 'shell scripts to deploy to server...'"
             }
-        stage ('Code Analysis') {
-            def scannerhome = tool 'Sonar-Scanner';
-            withSonarQubeEnv ('SonarQubeServer'){
-                sh "${scannerhome}/bin/sonar-scanner"
-            }
-      	}
         stage ('Tests') {
 	    /*    sh "echo 'shell scripts to deploy to server....'"
 	        sh "echo 'shell scripts to deploy to server....'"
