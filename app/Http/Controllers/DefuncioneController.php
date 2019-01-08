@@ -57,7 +57,7 @@ class DefuncioneController extends Controller
         if($response_existencia == false){
             
             $resultado_final =[
-                'status' => 0,
+                'status' => -1,
                 'mensaje' => "Defuncion no registrada, el DPI no existe",
                 'data' => []
             ];
@@ -93,7 +93,7 @@ class DefuncioneController extends Controller
             }else{
 
                 $resultado_final =[
-                    'status' => 0,
+                    'status' => -1,
                     'mensaje' => "Defuncion no registrada, el DPI del compareciente no existe",
                     'data' => []
                 ];
@@ -186,7 +186,7 @@ class DefuncioneController extends Controller
             
             $json_response =
             [
-                'status' => 0,
+                'status' => -1,
                 'mensaje' => "Registro de defucion con el DPI no encontrado",
                 'data' => [],
             ];
@@ -226,7 +226,7 @@ class DefuncioneController extends Controller
         if($response_existencia == false){
             
             $resultado_final =[
-                'status' => 0,
+                'status' => -1,
                 'mensaje' => "Defuncion no registrada, el DPI no existe",
                 'data' => []
             ];
@@ -262,7 +262,7 @@ class DefuncioneController extends Controller
             }else{
 
                 $resultado_final =[
-                    'status' => 0,
+                    'status' => -1,
                     'mensaje' => "Defuncion no registrada, el DPI del compareciente no existe",
                     'data' => []
                 ];
@@ -286,7 +286,7 @@ class DefuncioneController extends Controller
             
             $json_response =
             [
-                'status' => 0,
+                'status' => -1,
                 'mensaje' => "Registro de defucion con el DPI no encontrado",
                 'data' => "{}",
             ];
@@ -364,6 +364,16 @@ class DefuncioneController extends Controller
             
             return response()->json($json_response);
         }
+
+        
+        $json_response =
+        [
+            'status' => -1,
+            'mensaje' => "Registro de defucion con el DPI no encontrado",
+            'data' => "{}",
+        ];
+
+        return response()->json($json_response);
 
     }
 
