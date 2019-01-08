@@ -254,7 +254,6 @@ class DivorcioController extends Controller
             ->select('*')
             ->where('cui_esposo','=',$cui_esposo)
             ->where('cui_esposa','=',$cui_esposa)
-            ->where('vigente','=',1)
             ->get()
             ->first();
 
