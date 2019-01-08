@@ -395,7 +395,7 @@ class DefuncioneController extends Controller
                     "paisDefuncion" => "6",
                     "departamentoDefuncion" => "",
                     "lugarDefuncion" => $defuncion_obtenida['direccion_defuncion'],
-                    "fechaDefuncion" => "",
+                    "fechaDefuncion" => strtotime($defuncion_obtenida['fecha_hora']),
                     "causa" => $defuncion_obtenida['causa']
                 ];
     
