@@ -34,7 +34,8 @@ class DefuncioneController extends Controller
             $cuimuerto=(int)$request->input('cui_muerto');
             $cuicompareciente=(int)$request->input('cuiCompareciente');
             curl_setopt_array($curl, array(
-            CURLOPT_URL => "http://104.196.194.35/defuncion/registrar",
+            CURLOPT_URL => "http://localhost:8082/defuncion/registrar",
+            //CURLOPT_URL => "http://104.196.194.35/defuncion/registrar",
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
