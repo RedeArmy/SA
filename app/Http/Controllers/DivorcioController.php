@@ -215,7 +215,7 @@ class DivorcioController extends Controller
         $cui_esposa = $req->input('cuiMujer');
 
         $existe = DB::table('DIVORCIO')
-            ->select('acta_divorcio,id_muni,fecha_divorcio,direccion_divorcio')
+            ->select('acta_divorcio','id_muni','fecha_divorcio','direccion_divorcio')
             ->where('cui_esposo','=',$cui_esposo)
             ->where('cui_esposa','=',$cui_esposa)
             ->orderByRaw('acta_divorcio DESC')
